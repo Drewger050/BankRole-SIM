@@ -211,6 +211,32 @@ dollar figures. Caveats:
 - Origination/annual fees existed in the starting-point B210 but per-bank fees are
   still not captured (see `loan_rates` note above).
 
+## `detail.json` — Bank 1 report detail (searchable Details tab)
+
+Self-describing table format so new reports can be added without touching dashboard
+code — the Details tab renders whatever sections exist:
+
+```json
+{
+  "Q1/29": {
+    "sections": [
+      { "id": "loan_profitability", "title": "…", "source": "B260 + B262",
+        "columns": ["Product", "Avg balance", "…"],
+        "rows": [["Nat'l Corp credit lines", 47.5, "…"]],
+        "note": "optional caption" }
+    ]
+  }
+}
+```
+
+Numbers as printed in the source report ($M quarterly unless the column says
+otherwise; % annualized). `null` = blank in the report. Rows whose first cell starts
+with `TOTAL` render bold. Current sections and sources: loan_profitability (B260+B262),
+loan_activity + loan_commitments (B202), new_loan_quality (B206), loan_yields (B208),
+funds_profitability (B602), deposit_cost (B460), core_deposit_activity (B401),
+retail_cd_sales (B421), securities (B102), purchased_funds (B501), mortgage_banking
+(B275), salaries (B600), premises (B601), private_banking (B465).
+
 ## `decisions.json`
 
 ```json

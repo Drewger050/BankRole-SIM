@@ -143,6 +143,7 @@
   <button data-tab="rates">Rate Positioning</button>
   <button data-tab="risk">Risk</button>
   <button data-tab="profit">Path to Profit</button>
+  <button data-tab="details">Details</button>
   <button data-tab="decisions">Decisions</button>
 </nav>
 <main id="main"><div class="card">Loading data…</div></main>
@@ -281,7 +282,7 @@ function render() {
   destroyCharts();
   const main = document.getElementById("main");
   if (!S.data) return;
-  const fns = { scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, profit: renderProfit, decisions: renderDecisions };
+  const fns = { scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, profit: renderProfit, details: renderDetails, decisions: renderDecisions };
   // decision-only quarters (no packet yet) are valid on the Decisions tab, nowhere else
   if (S.tab !== "decisions" && !S.data[S.quarter]) S.quarter = latestQuarter();
   main.innerHTML = "";
@@ -852,7 +853,50 @@ function renderProfit(main) {
   main.appendChild(plCard);
 }
 
-/* ---------- 6. DECISIONS ---------- */
+/* ---------- 6. DETAILS (searchable bank-1 report data) ---------- */
+function renderDetails(main) {
+  const dqs = Object.keys(S.detail || {}).sort(qSort);
+  if (!dqs.length) {
+    main.innerHTML = `<div class="card">No detail data (data/detail.json) loaded yet.</div>`;
+    return;
+  }
+  const controls = document.createElement("div"); controls.className = "controls";
+  if (!dqs.includes(S.quarter)) S.quarter = dqs[dqs.length - 1];
+  quarterSelect(controls, render, dqs);
+  const search = document.createElement("input");
+  search.type = "search"; search.placeholder = "Search everything… (e.g. construction, salaries, CD, 6.42)";
+  search.style.minWidth = "320px"; search.id = "detail-search";
+  controls.appendChild(search);
+  main.appendChild(controls);
+  main.insertAdjacentHTML("beforeend", `<p class="hint">Bank 1's own report detail for ${S.quarter} — every controllable and its current result. Search filters rows across all sections; section titles and sources also match.</p>`);
+
+  const wrap = document.createElement("div");
+  main.appendChild(wrap);
+  const sections = S.detail[S.quarter].sections || [];
+  const fmtCell = v => v == null ? "—" : (typeof v === "number" && !Number.isInteger(v) ? +v.toFixed(3) : v);
+
+  function draw(filter) {
+    const f = (filter || "").trim().toLowerCase();
+    wrap.innerHTML = sections.map(sec => {
+      const secMatch = !f || sec.title.toLowerCase().includes(f) || (sec.source || "").toLowerCase().includes(f);
+      const rows = secMatch ? sec.rows : sec.rows.filter(r => r.some(c => c != null && String(c).toLowerCase().includes(f)));
+      if (!rows.length) return "";
+      const totalRow = r => typeof r[0] === "string" && /^TOTAL|^—/.test(r[0]);
+      return `<div class="card" style="margin-bottom:16px">
+        <h3>${sec.title} <span class="hint">— source: ${sec.source}${rows.length < sec.rows.length ? ` · ${rows.length}/${sec.rows.length} rows match` : ""}</span></h3>
+        <div class="table-scroll"><table>
+          <thead><tr>${sec.columns.map(c => `<th>${c}</th>`).join("")}</tr></thead>
+          <tbody>${rows.map(r => `<tr${totalRow(r) ? ' style="font-weight:600"' : ""}>${r.map((c, i) => `<td${i === 0 ? ' style="text-align:left"' : ""}>${fmtCell(c)}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table></div>
+        ${sec.note ? `<div class="note">${sec.note}</div>` : ""}
+      </div>`;
+    }).join("") || `<div class="card">No rows match "${filter}".</div>`;
+  }
+  draw("");
+  search.addEventListener("input", () => draw(search.value));
+}
+
+/* ---------- 7. DECISIONS ---------- */
 const LS_KEY = "bmsim_decisions_v1";
 function loadDecisions() {
   let local = null;
@@ -1055,9 +1099,11 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () 
 Promise.all([
   fetch("data/quarters.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
   fetch("data/decisions.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
-]).then(([quartersData, decisionsData]) => {
+  fetch("data/detail.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+]).then(([quartersData, decisionsData, detailData]) => {
   S.data = quartersData;
   S.decisionsBase = decisionsData;
+  S.detail = detailData;
   S.quarter = latestQuarter();
   render();
 }).catch(err => {

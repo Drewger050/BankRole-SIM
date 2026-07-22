@@ -1,0 +1,2115 @@
+{
+ "Q1/29": {
+  "sections": [
+   {
+    "id": "loan_profitability",
+    "title": "Loan profitability by product (quarterly $M / annualized %)",
+    "source": "B260 + B262",
+    "columns": [
+     "Product",
+     "Avg balance",
+     "Interest inc",
+     "Fees",
+     "Total income",
+     "Direct expense",
+     "Net earnings",
+     "Net % avg bal",
+     "Charge-offs",
+     "ChgOff % avg bal",
+     "Net after chgoff+review",
+     "Net % after"
+    ],
+    "rows": [
+     [
+      "Nat'l Corp credit lines",
+      47.5,
+      0.727,
+      0.113,
+      0.84,
+      0.087,
+      0.753,
+      6.34,
+      0.163,
+      1.37,
+      0.59,
+      4.97
+     ],
+     [
+      "Nat'l Corp term",
+      19.3,
+      0.266,
+      0.015,
+      0.282,
+      0.03,
+      0.251,
+      5.2,
+      0,
+      0,
+      0.251,
+      5.2
+     ],
+     [
+      "Middle Market credit lines",
+      46.9,
+      0.736,
+      0.127,
+      0.863,
+      0.083,
+      0.78,
+      6.66,
+      0,
+      0,
+      0.78,
+      6.66
+     ],
+     [
+      "Middle Market term",
+      31.9,
+      0.487,
+      0.026,
+      0.513,
+      0.065,
+      0.448,
+      5.62,
+      0,
+      0,
+      0.448,
+      5.62
+     ],
+     [
+      "Small Business credit lines",
+      46.7,
+      0.742,
+      0.144,
+      0.887,
+      0.105,
+      0.782,
+      6.69,
+      0.126,
+      1.08,
+      0.656,
+      5.62
+     ],
+     [
+      "Small Business term",
+      38.0,
+      0.643,
+      0.047,
+      0.69,
+      0.104,
+      0.586,
+      6.18,
+      0.104,
+      1.1,
+      0.482,
+      5.08
+     ],
+     [
+      "Trade Finance",
+      21.1,
+      0.344,
+      0.103,
+      0.446,
+      0.097,
+      0.35,
+      6.64,
+      0.066,
+      1.26,
+      0.283,
+      5.38
+     ],
+     [
+      "Business ops overhead",
+      null,
+      null,
+      null,
+      null,
+      0.061,
+      -0.061,
+      null,
+      null,
+      null,
+      -0.061,
+      null
+     ],
+     [
+      "TOTAL BUSINESS",
+      251.3,
+      3.944,
+      0.576,
+      4.521,
+      0.633,
+      3.888,
+      6.19,
+      0.459,
+      0.73,
+      3.429,
+      5.46
+     ],
+     [
+      "Construction",
+      68.7,
+      1.231,
+      0.218,
+      1.449,
+      0.227,
+      1.222,
+      7.12,
+      0,
+      0,
+      1.177,
+      6.86
+     ],
+     [
+      "Commercial RE",
+      32.2,
+      0.49,
+      0.021,
+      0.511,
+      0.07,
+      0.441,
+      5.48,
+      0.195,
+      2.43,
+      0.224,
+      2.78
+     ],
+     [
+      "Multi-family",
+      9.9,
+      0.144,
+      0.013,
+      0.156,
+      0.036,
+      0.121,
+      4.87,
+      0,
+      0,
+      0.113,
+      4.54
+     ],
+     [
+      "1-4 Fixed",
+      -1.8,
+      0.024,
+      0.031,
+      0.055,
+      0.075,
+      -0.02,
+      4.45,
+      0.001,
+      -0.19,
+      -0.021,
+      4.64
+     ],
+     [
+      "1-4 Variable",
+      46.9,
+      0.592,
+      0.01,
+      0.602,
+      0.049,
+      0.553,
+      4.71,
+      0.005,
+      0.05,
+      0.547,
+      4.67
+     ],
+     [
+      "Home Equity",
+      96.5,
+      1.444,
+      0.087,
+      1.531,
+      0.284,
+      1.247,
+      5.17,
+      0.032,
+      0.13,
+      1.216,
+      5.04
+     ],
+     [
+      "RE ops overhead",
+      null,
+      null,
+      null,
+      null,
+      0.154,
+      -0.154,
+      null,
+      null,
+      null,
+      -0.154,
+      null
+     ],
+     [
+      "TOTAL REAL ESTATE",
+      252.4,
+      3.925,
+      0.379,
+      4.304,
+      0.893,
+      3.411,
+      5.41,
+      0.233,
+      0.37,
+      3.102,
+      4.92
+     ],
+     [
+      "Personal",
+      31.0,
+      0.526,
+      0.045,
+      0.571,
+      0.062,
+      0.508,
+      6.57,
+      0.083,
+      1.07,
+      0.406,
+      5.25
+     ],
+     [
+      "Credit Card",
+      25.1,
+      0.526,
+      0.325,
+      0.851,
+      0.336,
+      0.515,
+      8.22,
+      0.097,
+      1.56,
+      0.401,
+      6.4
+     ],
+     [
+      "Installment",
+      22.2,
+      0.421,
+      0,
+      0.421,
+      0.172,
+      0.25,
+      4.49,
+      0.055,
+      0.99,
+      0.179,
+      3.22
+     ],
+     [
+      "Consumer ops overhead",
+      null,
+      null,
+      null,
+      null,
+      0.14,
+      -0.14,
+      null,
+      null,
+      null,
+      -0.14,
+      null
+     ],
+     [
+      "TOTAL CONSUMER",
+      78.3,
+      1.473,
+      0.37,
+      1.843,
+      0.71,
+      1.133,
+      5.79,
+      0.235,
+      1.2,
+      0.847,
+      4.33
+     ],
+     [
+      "TOTAL LOANS",
+      581.9,
+      9.343,
+      1.325,
+      10.668,
+      2.236,
+      8.432,
+      5.8,
+      0.928,
+      0.64,
+      7.378,
+      5.07
+     ]
+    ],
+    "note": "Direct expense = salaries + benefits + business development. 'Net after' also deducts loan review costs ($0.126M total: Construction reviews downgraded $9.1M/upgraded $4.5M; CRE downgraded $7.3M). Best net-after-losses: MidMkt lines 6.66%, Construction 6.86%, Credit card 6.40%. Worst: Commercial RE 2.78%, Installment 3.22%, Nat'l lines 4.97% (chgoffs)."
+   },
+   {
+    "id": "loan_activity",
+    "title": "Loan activity \u2014 where balances moved ($M)",
+    "source": "B202",
+    "columns": [
+     "Product",
+     "Beg balance",
+     "New loans",
+     "Line draws",
+     "Repaid/matured",
+     "Sold",
+     "Charge-offs",
+     "End balance"
+    ],
+    "rows": [
+     [
+      "Nat'l Corp credit lines",
+      47.0,
+      4.7,
+      0,
+      3.5,
+      0,
+      0.2,
+      48.0
+     ],
+     [
+      "Nat'l Corp term",
+      19.8,
+      1.5,
+      0,
+      2.4,
+      0,
+      0,
+      18.9
+     ],
+     [
+      "MidMkt credit lines",
+      47.0,
+      5.8,
+      0.4,
+      6.5,
+      0,
+      0,
+      46.7
+     ],
+     [
+      "MidMkt term",
+      31.4,
+      2.6,
+      0,
+      1.6,
+      0,
+      0,
+      32.4
+     ],
+     [
+      "SmBiz credit lines",
+      47.7,
+      6.0,
+      0.8,
+      8.9,
+      0,
+      0.1,
+      45.7
+     ],
+     [
+      "SmBiz term",
+      36.3,
+      4.7,
+      0,
+      1.6,
+      0,
+      0.1,
+      39.6
+     ],
+     [
+      "Trade Finance",
+      21.7,
+      3.5,
+      0.3,
+      5.1,
+      0,
+      0.1,
+      20.5
+     ],
+     [
+      "Construction",
+      67.6,
+      6.8,
+      19.0,
+      23.6,
+      0,
+      0,
+      69.8
+     ],
+     [
+      "Commercial RE",
+      32.0,
+      1.4,
+      0,
+      0.7,
+      0,
+      0.2,
+      32.5
+     ],
+     [
+      "Multi-family",
+      9.5,
+      0.9,
+      0,
+      0.1,
+      0,
+      0,
+      10.3
+     ],
+     [
+      "1-4 Fixed",
+      15.0,
+      6.2,
+      0,
+      0.2,
+      19.8,
+      0.0,
+      1.2
+     ],
+     [
+      "1-4 Variable",
+      46.7,
+      1.0,
+      0,
+      0.7,
+      0,
+      0.0,
+      47.1
+     ],
+     [
+      "Home Equity",
+      93.7,
+      6.1,
+      6.1,
+      6.7,
+      0,
+      0.0,
+      99.2
+     ],
+     [
+      "Personal",
+      30.9,
+      4.5,
+      0,
+      4.3,
+      0,
+      0.1,
+      31.1
+     ],
+     [
+      "Credit Card",
+      24.3,
+      6.3,
+      5.6,
+      10.4,
+      0,
+      0.1,
+      25.9
+     ],
+     [
+      "Installment",
+      22.5,
+      7.1,
+      0,
+      7.7,
+      0,
+      0.1,
+      22.0
+     ],
+     [
+      "TOTAL",
+      593.0,
+      68.9,
+      32.2,
+      84.1,
+      19.8,
+      0.9,
+      590.6
+     ]
+    ],
+    "note": "$68.9M new loans originated vs $84.1M repaid \u2014 the book shrank before line draws. $19.8M of 1-4 fixed sold (the $0.715M gain)."
+   },
+   {
+    "id": "loan_commitments",
+    "title": "Credit line commitments and usage ($M)",
+    "source": "B202",
+    "columns": [
+     "Line",
+     "Beginning",
+     "New",
+     "Expired",
+     "Ending",
+     "Usage %"
+    ],
+    "rows": [
+     [
+      "Nat'l Corp credit lines",
+      107.9,
+      10.5,
+      7.0,
+      111.0,
+      43.2
+     ],
+     [
+      "MidMkt credit lines",
+      102.3,
+      12.9,
+      13.9,
+      101.2,
+      46.1
+     ],
+     [
+      "SmBiz credit lines",
+      98.5,
+      11.9,
+      18.0,
+      92.4,
+      49.4
+     ],
+     [
+      "Trade Finance",
+      45.5,
+      7.1,
+      10.6,
+      41.9,
+      48.9
+     ],
+     [
+      "Construction",
+      115.1,
+      24.9,
+      23.6,
+      116.3,
+      60.0
+     ],
+     [
+      "Home Equity",
+      200.0,
+      11.1,
+      0,
+      211.0,
+      47.0
+     ],
+     [
+      "Credit Card",
+      59.5,
+      12.6,
+      9.5,
+      62.6,
+      41.3
+     ]
+    ]
+   },
+   {
+    "id": "new_loan_quality",
+    "title": "New loan credit quality \u2014 what current pricing attracts ($M)",
+    "source": "B206",
+    "columns": [
+     "Product",
+     "New $",
+     "Avg CQ",
+     "CQ 1-2",
+     "CQ 3",
+     "CQ 4",
+     "CQ 5",
+     "CQ 6",
+     "Low grade",
+     "Turndowns"
+    ],
+    "rows": [
+     [
+      "Nat'l Corp credit lines",
+      4.7,
+      3.5,
+      1.0,
+      0.9,
+      1.4,
+      1.4,
+      0,
+      0,
+      1.4
+     ],
+     [
+      "Nat'l Corp term",
+      1.5,
+      3.1,
+      0.3,
+      0.7,
+      0,
+      0.4,
+      0,
+      0,
+      0.5
+     ],
+     [
+      "MidMkt credit lines",
+      5.8,
+      3.4,
+      1.7,
+      0.9,
+      1.5,
+      1.6,
+      0.1,
+      0,
+      0.7
+     ],
+     [
+      "MidMkt term",
+      2.6,
+      3.5,
+      0.5,
+      0.7,
+      0.5,
+      0.8,
+      0,
+      0,
+      0.7
+     ],
+     [
+      "SmBiz credit lines",
+      6.0,
+      3.6,
+      1.5,
+      0.7,
+      1.6,
+      1.9,
+      0.1,
+      0,
+      0.5
+     ],
+     [
+      "SmBiz term",
+      4.7,
+      3.4,
+      1.4,
+      0.6,
+      1.3,
+      1.5,
+      0,
+      0,
+      0.4
+     ],
+     [
+      "Trade Finance",
+      3.5,
+      3.5,
+      1.0,
+      0.6,
+      0.6,
+      0.9,
+      0.4,
+      0,
+      1.7
+     ],
+     [
+      "Construction",
+      6.8,
+      3.0,
+      2.5,
+      2.0,
+      1.0,
+      0.4,
+      0.8,
+      0.1,
+      5.9
+     ],
+     [
+      "Commercial RE",
+      1.4,
+      3.6,
+      0.3,
+      0.3,
+      0.4,
+      0.3,
+      0.1,
+      0,
+      0.4
+     ],
+     [
+      "Multi-family",
+      0.9,
+      2.4,
+      0.4,
+      0,
+      0.4,
+      0,
+      0,
+      0,
+      0.3
+     ],
+     [
+      "1-4 Fixed",
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      "1-4 Variable",
+      1.0,
+      4.4,
+      0.2,
+      0,
+      0.2,
+      0.3,
+      0.3,
+      0,
+      0.2
+     ],
+     [
+      "Home Equity",
+      6.1,
+      3.6,
+      1.3,
+      1.3,
+      1.3,
+      1.6,
+      0.5,
+      0.1,
+      3.2
+     ],
+     [
+      "Personal",
+      4.5,
+      3.7,
+      0.9,
+      0.6,
+      1.3,
+      1.5,
+      0.1,
+      0,
+      1.2
+     ],
+     [
+      "Credit Card",
+      6.3,
+      3.5,
+      1.8,
+      0.8,
+      1.7,
+      1.9,
+      0.1,
+      0,
+      0.8
+     ],
+     [
+      "Installment",
+      7.1,
+      3.6,
+      1.7,
+      1.2,
+      2.0,
+      2.1,
+      0.1,
+      0,
+      1.1
+     ],
+     [
+      "TOTAL",
+      62.8,
+      3.5,
+      16.5,
+      11.4,
+      15.2,
+      16.6,
+      2.8,
+      0.2,
+      19.1
+     ]
+    ],
+    "note": "Turndowns = demand you rejected via CQ targets. Construction turned down $5.9M vs $6.8M written (R1's tight 45/45/10/0/0 targets); Home Equity turned down $3.2M."
+   },
+   {
+    "id": "loan_yields",
+    "title": "Interest income and portfolio runoff",
+    "source": "B208",
+    "columns": [
+     "Product",
+     "Q1/29 int inc $M",
+     "Avg rate %",
+     "Avg balance $M",
+     "Balance in 4 qtrs (runoff) $M"
+    ],
+    "rows": [
+     [
+      "Nat'l Corp credit lines",
+      0.7,
+      6.1,
+      47.3,
+      26.1
+     ],
+     [
+      "Nat'l Corp term",
+      0.3,
+      5.5,
+      19.3,
+      12.6
+     ],
+     [
+      "MidMkt credit lines",
+      0.7,
+      6.3,
+      46.5,
+      18.5
+     ],
+     [
+      "MidMkt term",
+      0.5,
+      6.1,
+      31.7,
+      26.1
+     ],
+     [
+      "SmBiz credit lines",
+      0.7,
+      6.4,
+      46.6,
+      15.5
+     ],
+     [
+      "SmBiz term",
+      0.6,
+      6.8,
+      37.8,
+      32.0
+     ],
+     [
+      "Trade Finance",
+      0.3,
+      6.5,
+      21.0,
+      1.8
+     ],
+     [
+      "Construction",
+      1.2,
+      7.2,
+      68.3,
+      10.6
+     ],
+     [
+      "Commercial RE",
+      0.5,
+      6.1,
+      32.1,
+      31.3
+     ],
+     [
+      "Multi-family",
+      0.1,
+      5.8,
+      9.9,
+      10.0
+     ],
+     [
+      "1-4 Fixed",
+      0.0,
+      7.4,
+      1.3,
+      0.9
+     ],
+     [
+      "1-4 Variable",
+      0.6,
+      5.0,
+      46.9,
+      43.2
+     ],
+     [
+      "Home Equity",
+      1.4,
+      6.0,
+      96.4,
+      71.0
+     ],
+     [
+      "Personal",
+      0.5,
+      6.8,
+      30.9,
+      10.3
+     ],
+     [
+      "Credit Card",
+      0.5,
+      8.4,
+      25.0,
+      4.4
+     ],
+     [
+      "Installment",
+      0.4,
+      7.6,
+      22.2,
+      4.7
+     ],
+     [
+      "TOTAL",
+      9.3,
+      6.4,
+      583.3,
+      318.9
+     ]
+    ],
+    "note": "Runoff column: projected balance of TODAY'S portfolio 4 quarters out \u2014 $264M (45%) rolls off within a year and reprices at whatever rates you set. Short-books: Trade (1.8 left), Credit card (4.4), Installment (4.7), Construction (10.6)."
+   },
+   {
+    "id": "funds_profitability",
+    "title": "All-in cost/yield by funds source vs community (annualized %)",
+    "source": "B602",
+    "columns": [
+     "Source",
+     "Avg balance $M",
+     "All-in % (int+ops)",
+     "Community avg %",
+     "Gap bp"
+    ],
+    "rows": [
+     [
+      "Demand deposits",
+      132.5,
+      0.78,
+      1.09,
+      -31
+     ],
+     [
+      "Int-bearing checking",
+      74.5,
+      3.42,
+      2.25,
+      117
+     ],
+     [
+      "Savings",
+      63.8,
+      3.58,
+      3.33,
+      25
+     ],
+     [
+      "Money market",
+      134.4,
+      3.45,
+      3.0,
+      45
+     ],
+     [
+      "Retail certificates",
+      120.2,
+      6.03,
+      6.01,
+      2
+     ],
+     [
+      "Public/Brokered CDs",
+      23.0,
+      4.66,
+      4.66,
+      0
+     ],
+     [
+      "Borrowed funds",
+      135.9,
+      3.71,
+      3.74,
+      -3
+     ],
+     [
+      "TOTAL FUNDS",
+      684.3,
+      3.74,
+      3.53,
+      21
+     ],
+     [
+      "\u2014 Earning assets \u2014",
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      "Taxable securities",
+      75.3,
+      3.38,
+      3.4,
+      -2
+     ],
+     [
+      "Tax-exempt securities",
+      15.0,
+      4.85,
+      4.85,
+      0
+     ],
+     [
+      "Business loans (net of exp)",
+      251.3,
+      6.19,
+      6.02,
+      17
+     ],
+     [
+      "Real estate loans (net of exp)",
+      252.4,
+      5.41,
+      5.31,
+      10
+     ],
+     [
+      "Consumer loans (net of exp)",
+      78.3,
+      5.79,
+      5.25,
+      54
+     ],
+     [
+      "Total earning assets",
+      672.2,
+      4.25,
+      4.14,
+      11
+     ]
+    ],
+    "note": "All-in = interest + allocated operating expense (and fee offsets). Biggest funding outliers vs community: IBC +117bp, MMA +45bp. Retail CDs are the most expensive money on the book at 6.03% \u2014 dearer than borrowed funds at 3.71%."
+   },
+   {
+    "id": "deposit_cost",
+    "title": "Deposit cost detail (quarterly $M; % annualized of avg balance)",
+    "source": "B460",
+    "columns": [
+     "Category",
+     "Avg balance",
+     "Interest",
+     "Salaries+benefits",
+     "Bus dev",
+     "Total expense",
+     "Fee offset (net)",
+     "Net expense",
+     "Net % annualized"
+    ],
+    "rows": [
+     [
+      "Business demand",
+      84.0,
+      0,
+      0.128,
+      0.05,
+      0.178,
+      0.021,
+      0.157,
+      0.75
+     ],
+     [
+      "Business savings",
+      1.1,
+      0.006,
+      0.001,
+      0.03,
+      0.037,
+      0,
+      0.037,
+      13.13
+     ],
+     [
+      "Business retail CDs",
+      1.4,
+      0.013,
+      0.001,
+      0.001,
+      0.015,
+      0,
+      0.015,
+      4.27
+     ],
+     [
+      "Brokered CDs",
+      23.0,
+      0.268,
+      0,
+      0,
+      0.268,
+      0,
+      0.268,
+      4.66
+     ],
+     [
+      "Public demand",
+      24.9,
+      0,
+      0.036,
+      0.01,
+      0.046,
+      0,
+      0.046,
+      0.74
+     ],
+     [
+      "Individual demand",
+      9.5,
+      0,
+      0.062,
+      0.03,
+      0.092,
+      0.035,
+      0.057,
+      2.38
+     ],
+     [
+      "Individual IBC",
+      61.4,
+      0.303,
+      0.239,
+      0.04,
+      0.582,
+      0.011,
+      0.571,
+      3.72
+     ],
+     [
+      "Individual money market",
+      104.9,
+      0.783,
+      0.102,
+      0.04,
+      0.925,
+      0,
+      0.925,
+      3.53
+     ],
+     [
+      "Individual savings",
+      55.7,
+      0.303,
+      0.163,
+      0.03,
+      0.496,
+      0,
+      0.496,
+      3.56
+     ],
+     [
+      "Individual retail CDs",
+      82.3,
+      1.248,
+      0.047,
+      0.024,
+      1.32,
+      0,
+      1.32,
+      6.42
+     ],
+     [
+      "Private banking",
+      100.2,
+      0.817,
+      0.077,
+      0.025,
+      0.918,
+      0.002,
+      0.917,
+      3.66
+     ],
+     [
+      "Deposit processing",
+      null,
+      null,
+      0.329,
+      null,
+      0.33,
+      null,
+      0.33,
+      null
+     ],
+     [
+      "TOTAL DEPOSITS",
+      548.5,
+      3.741,
+      1.186,
+      0.28,
+      5.207,
+      0.069,
+      5.138,
+      3.75
+     ]
+    ],
+    "note": "Business savings looks expensive (13.1%) only because $30K bus-dev sits on a $1.1M balance. The real money: individual retail CDs cost 6.42% all-in on $82M \u2014 the most expensive funding at scale."
+   },
+   {
+    "id": "core_deposit_activity",
+    "title": "Core deposit flows ($M) and account counts",
+    "source": "B401",
+    "columns": [
+     "Category",
+     "Beginning",
+     "Withdrawals/matured",
+     "New deposits",
+     "Interest accrued",
+     "Ending",
+     "# accounts"
+    ],
+    "rows": [
+     [
+      "Business demand \u2014 National",
+      36.0,
+      1.4,
+      1.8,
+      0,
+      36.4,
+      273
+     ],
+     [
+      "Business demand \u2014 MidMkt",
+      26.8,
+      1.1,
+      1.5,
+      0,
+      27.2,
+      530
+     ],
+     [
+      "Business demand \u2014 Local",
+      10.7,
+      0.5,
+      0.6,
+      0,
+      10.8,
+      479
+     ],
+     [
+      "Business demand \u2014 Other",
+      23.8,
+      1.0,
+      1.5,
+      0,
+      24.3,
+      2310
+     ],
+     [
+      "Individual demand",
+      9.8,
+      0.5,
+      0,
+      0,
+      9.3,
+      7417
+     ],
+     [
+      "Public demand",
+      25.2,
+      1.1,
+      0.6,
+      0,
+      24.7,
+      2121
+     ],
+     [
+      "Int-bearing checking",
+      72.5,
+      3.6,
+      7.1,
+      0.368,
+      76.4,
+      17997
+     ],
+     [
+      "Business savings",
+      1.5,
+      0.1,
+      0.2,
+      0.009,
+      1.7,
+      133
+     ],
+     [
+      "Individual savings",
+      60.2,
+      1.2,
+      5.0,
+      0.338,
+      64.3,
+      18158
+     ],
+     [
+      "MMDA premium tier",
+      97.6,
+      5.9,
+      8.0,
+      0.78,
+      100.5,
+      3425
+     ],
+     [
+      "MMDA base tier",
+      34.3,
+      2.1,
+      4.0,
+      0.238,
+      36.5,
+      7054
+     ],
+     [
+      "Retail certificates",
+      122.6,
+      13.4,
+      6.4,
+      1.738,
+      117.4,
+      47505
+     ],
+     [
+      "TOTAL CORE",
+      521.1,
+      31.8,
+      36.8,
+      3.471,
+      529.4,
+      107404
+     ]
+    ],
+    "note": "CDs bled $13.4M matured vs $6.4M new \u2014 the R1 CD ladder didn't retain. IBC and savings both grew nicely on the rate bumps."
+   },
+   {
+    "id": "retail_cd_sales",
+    "title": "Retail CD products \u2014 what actually sold in Q1/29 ($M new deposits)",
+    "source": "B421",
+    "columns": [
+     "Rate %",
+     "Maturity (qtrs)",
+     "Fixed/Var",
+     "Business",
+     "Individual",
+     "Non-relationship",
+     "Total"
+    ],
+    "rows": [
+     [
+      3.2,
+      1,
+      "F",
+      0,
+      0.317,
+      0,
+      0.317
+     ],
+     [
+      3.5,
+      2,
+      "F",
+      0.203,
+      1.376,
+      0.036,
+      1.615
+     ],
+     [
+      3.5,
+      4,
+      "V",
+      0.263,
+      1.328,
+      0.488,
+      2.079
+     ],
+     [
+      3.4,
+      4,
+      "F",
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      3.7,
+      8,
+      "V",
+      0,
+      1.559,
+      0,
+      1.559
+     ],
+     [
+      3.7,
+      8,
+      "F",
+      0,
+      0.767,
+      0,
+      0.767
+     ],
+     [
+      3.7,
+      12,
+      "V",
+      0,
+      0.27,
+      0,
+      0.27
+     ],
+     [
+      4.0,
+      20,
+      "V",
+      0,
+      0.351,
+      0,
+      0.351
+     ],
+     [
+      null,
+      null,
+      "TOTAL",
+      0.466,
+      5.969,
+      0.523,
+      6.958
+     ]
+    ],
+    "note": "The 3.40% 4-qtr fixed sold $0 (market fixed 4-qtr was ~4.24% \u2014 84bp under). R2 deleted it. Non-relationship pulled only $0.5M of the $10M cap."
+   },
+   {
+    "id": "securities",
+    "title": "Security portfolio \u2014 every position",
+    "source": "B102",
+    "columns": [
+     "Issue #",
+     "Type",
+     "Par $M",
+     "Market $M",
+     "Book $M",
+     "Gain/loss $M",
+     "Qtrs to maturity",
+     "Coupon %",
+     "TE coupon %",
+     "Duration"
+    ],
+    "rows": [
+     [
+      128,
+      "T-Bill",
+      15,
+      15.0,
+      15.0,
+      0,
+      0,
+      2.76,
+      null,
+      null
+     ],
+     [
+      131,
+      "T-Bill",
+      20,
+      20.0,
+      20.0,
+      0,
+      0,
+      3.42,
+      null,
+      null
+     ],
+     [
+      126,
+      "Strip",
+      8,
+      7.924,
+      7.938,
+      -0.013,
+      1,
+      3.2,
+      3.82,
+      1
+     ],
+     [
+      129,
+      "T-Bond",
+      15,
+      14.937,
+      15.0,
+      -0.063,
+      2,
+      3.2,
+      4.04,
+      2
+     ],
+     [
+      130,
+      "T-Bond",
+      10,
+      10.0,
+      10.0,
+      0,
+      0,
+      3.46,
+      null,
+      null
+     ],
+     [
+      106,
+      "Muni (BQ)",
+      5,
+      5.029,
+      5.0,
+      0.029,
+      1,
+      5.5,
+      6.82,
+      1
+     ],
+     [
+      107,
+      "Muni (BQ)",
+      5,
+      4.929,
+      5.0,
+      -0.071,
+      51,
+      4.25,
+      5.24,
+      40
+     ],
+     [
+      108,
+      "Muni (BQ)",
+      5,
+      5.167,
+      5.0,
+      0.167,
+      73,
+      4.8,
+      5.93,
+      49
+     ],
+     [
+      127,
+      "MBS",
+      7,
+      7.251,
+      7.355,
+      -0.104,
+      2,
+      2.93,
+      4.07,
+      1
+     ],
+     [
+      null,
+      "TOTAL",
+      90,
+      90.237,
+      90.293,
+      -0.055,
+      null,
+      null,
+      null,
+      null
+     ]
+    ],
+    "note": "Portfolio yields ~3.6% while new 1-qtr bills pay 3.97% \u2014 the book is short and low-coupon. Munis 107/108 (>5yr) count against the 50%-of-equity long-bond limit: $10M vs ~$23M cap. Bills 128/131 + bonds are pledged: $60M required (repos $35.3 + public deposits $24.7), $0 spare \u2014 new Public Time Deposits would need more UST."
+   },
+   {
+    "id": "purchased_funds",
+    "title": "Purchased funds position and next-quarter brokered CD offers",
+    "source": "B501",
+    "columns": [
+     "Item",
+     "End Q4/28 $M",
+     "Day 1 Q1/29 $M",
+     "End Q1/29 $M",
+     "Q1 interest $M"
+    ],
+    "rows": [
+     [
+      "Federal funds sold",
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      "FRB borrowing",
+      0,
+      0,
+      0,
+      0
+     ],
+     [
+      "Repurchase agreements",
+      14.8,
+      35.3,
+      35.3,
+      0.306
+     ],
+     [
+      "Federal funds purchased",
+      87.8,
+      51.0,
+      40.1,
+      0.466
+     ],
+     [
+      "Short-term FHLB (variable)",
+      15.0,
+      55.0,
+      55.0,
+      0.487
+     ],
+     [
+      "TOTAL BORROWED",
+      117.6,
+      141.3,
+      130.4,
+      1.26
+     ],
+     [
+      "Brokered CDs outstanding",
+      30.0,
+      null,
+      23.0,
+      0.268
+     ]
+    ],
+    "note": "Brokered CD offers for Q2/29 (rate % / amount $M): 1q 5.29/23, 2q 5.44/16, 3q 5.58/8, 4q 5.69/12, 5q 5.78/4, 6q 5.86/8, 7q 5.92/3, 8q 5.98/5 \u2014 total $79M available but 60-100bp OVER Q1 rates (B-rating money is expensive). Public Time offers: 1q 4.38, 2q 4.49, 3q 4.58, 4q 4.66 \u2014 ~90-130bp cheaper than brokered but needs UST pledging you currently don't have spare."
+   },
+   {
+    "id": "mortgage_banking",
+    "title": "Mortgage banking, servicing, and loan packages for sale",
+    "source": "B275",
+    "columns": [
+     "Item",
+     "Book $M",
+     "Market/Sale $M",
+     "Gain/loss $M",
+     "Book yield %",
+     "Mkt yield %",
+     "Avg CQ",
+     "Maturity qtrs"
+    ],
+    "rows": [
+     [
+      "SOLD Q1: 1-4 Fixed package",
+      13.585,
+      14.3,
+      0.715,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      "Servicing portfolio (total)",
+      92.106,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      "Servicing net income (qtr)",
+      0.024,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      "\u2014 Packages available to sell \u2014",
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+     ],
+     [
+      "201 SmBiz term",
+      8.086,
+      7.692,
+      -0.394,
+      5.77,
+      6.07,
+      1.9,
+      22
+     ],
+     [
+      "205 Commercial RE",
+      9.87,
+      9.846,
+      -0.023,
+      5.75,
+      5.76,
+      2.1,
+      26
+     ],
+     [
+      "207 Commercial RE",
+      9.906,
+      9.821,
+      -0.085,
+      6.22,
+      6.28,
+      4.7,
+      27
+     ],
+     [
+      "208 Commercial RE",
+      5.184,
+      5.168,
+      -0.016,
+      6.5,
+      6.51,
+      4.9,
+      20
+     ],
+     [
+      "209 Multi-family",
+      3.068,
+      3.042,
+      -0.026,
+      5.53,
+      5.58,
+      1.7,
+      29
+     ],
+     [
+      "211 Multi-family",
+      4.821,
+      4.725,
+      -0.096,
+      5.92,
+      6.04,
+      4.6,
+      29
+     ],
+     [
+      "217 Resi 1-4 Var",
+      5.309,
+      5.282,
+      -0.026,
+      4.16,
+      4.18,
+      1.9,
+      57
+     ],
+     [
+      "218 Resi 1-4 Var",
+      8.943,
+      8.924,
+      -0.019,
+      4.92,
+      4.93,
+      3.1,
+      99
+     ],
+     [
+      "219 Resi 1-4 Var",
+      8.541,
+      8.519,
+      -0.022,
+      5.01,
+      5.02,
+      4.7,
+      55
+     ]
+    ],
+    "note": "Selling packages frees balance sheet (helps capital ratios) at small losses now that rates rose. 205/209/217 (high-quality, low-yield) cost least to sell; 207/208 CRE sales would also cut the CRE concentration and its 2.43% charge-off drag. R1 sold packages 213/215; R2 sold none."
+   },
+   {
+    "id": "salaries",
+    "title": "Salary budgets vs actuals ($K per quarter)",
+    "source": "B600",
+    "columns": [
+     "Area",
+     "Current budget",
+     "Actual",
+     "Proposed next qtr",
+     "Over/under budget"
+    ],
+    "rows": [
+     [
+      "Lending \u2014 Nat'l Corp",
+      48,
+      48,
+      58,
+      0
+     ],
+     [
+      "Lending \u2014 Middle Market",
+      56,
+      56,
+      58,
+      0
+     ],
+     [
+      "Lending \u2014 Small Business",
+      96,
+      96,
+      101,
+      0
+     ],
+     [
+      "Lending \u2014 Trade Finance",
+      40,
+      40,
+      40,
+      0
+     ],
+     [
+      "Lending \u2014 Commercial RE",
+      168,
+      168,
+      168,
+      0
+     ],
+     [
+      "Lending \u2014 Resi/Home Equity",
+      240,
+      240,
+      240,
+      0
+     ],
+     [
+      "Lending \u2014 Consumer",
+      200,
+      422,
+      416,
+      222
+     ],
+     [
+      "Credit Admin \u2014 Nat'l",
+      28,
+      28,
+      28,
+      0
+     ],
+     [
+      "Credit Admin \u2014 MidMkt",
+      32,
+      32,
+      36,
+      0
+     ],
+     [
+      "Credit Admin \u2014 SmBiz",
+      40,
+      40,
+      41,
+      0
+     ],
+     [
+      "Credit Admin \u2014 Trade",
+      24,
+      24,
+      24,
+      0
+     ],
+     [
+      "Credit Admin \u2014 CRE",
+      40,
+      40,
+      40,
+      0
+     ],
+     [
+      "Credit Admin \u2014 Resi/HE",
+      48,
+      48,
+      48,
+      0
+     ],
+     [
+      "Credit Admin \u2014 Consumer",
+      25,
+      26,
+      30,
+      1
+     ],
+     [
+      "Deposits \u2014 Business",
+      101,
+      101,
+      117,
+      0
+     ],
+     [
+      "Deposits \u2014 Public",
+      28,
+      28,
+      28,
+      0
+     ],
+     [
+      "Deposits \u2014 Individual",
+      480,
+      480,
+      480,
+      0
+     ],
+     [
+      "Deposits \u2014 Private Banking",
+      60,
+      60,
+      60,
+      0
+     ],
+     [
+      "Ops \u2014 Commercial",
+      48,
+      48,
+      52,
+      0
+     ],
+     [
+      "Ops \u2014 Real Estate",
+      120,
+      120,
+      140,
+      0
+     ],
+     [
+      "Ops \u2014 Consumer",
+      100,
+      112,
+      129,
+      12
+     ],
+     [
+      "Ops \u2014 Deposits",
+      240,
+      262,
+      305,
+      22
+     ],
+     [
+      "Admin \u2014 Administrative",
+      160,
+      160,
+      160,
+      0
+     ],
+     [
+      "Admin \u2014 Personnel/Training",
+      48,
+      48,
+      48,
+      0
+     ],
+     [
+      "Admin \u2014 Central IT/Ops",
+      200,
+      200,
+      216,
+      0
+     ]
+    ],
+    "note": "Consumer lending ran $222K OVER budget ($422 vs $200) \u2014 volume-driven staffing you don't fully control; R2 budgeted 325. 'Proposed' = the system's request for next quarter; your decision can differ, but underfunding vs proposed risks weaker attraction/processing."
+   },
+   {
+    "id": "premises",
+    "title": "Premises \u2014 book value, utilization, cost",
+    "source": "B601",
+    "columns": [
+     "Type",
+     "Gross $M",
+     "Net book $M",
+     "Utilization %",
+     "Operating cost $M/qtr",
+     "Depreciation $M/qtr"
+    ],
+    "rows": [
+     [
+      "Urban branches",
+      8.56,
+      1.977,
+      143,
+      0.214,
+      0.171
+     ],
+     [
+      "Regional branches",
+      5.85,
+      2.463,
+      122,
+      0.117,
+      0.117
+     ],
+     [
+      "Suburban/County branches",
+      8.22,
+      3.412,
+      130,
+      0.189,
+      0.164
+     ],
+     [
+      "Admin/IT/Ops",
+      4.1,
+      1.698,
+      123,
+      0.103,
+      0.082
+     ],
+     [
+      "TOTAL (occupancy incl. dep.)",
+      26.73,
+      9.549,
+      null,
+      1.157,
+      0.535
+     ]
+    ],
+    "note": "Every facility runs OVER 100% utilization (urban 143%) \u2014 capacity is tight, which drags on business attraction; selling premises (R2: \u2212$2M) raises cash + gains but worsens crowding. Bank 2 is investing $2.5M in suburban branches."
+   },
+   {
+    "id": "private_banking",
+    "title": "Private banking division ($M)",
+    "source": "B465",
+    "columns": [
+     "Item",
+     "Value"
+    ],
+    "rows": [
+     [
+      "Total balances (end Q1/29)",
+      100.6
+     ],
+     [
+      "Business accounts",
+      15.2
+     ],
+     [
+      "Individual accounts",
+      85.4
+     ],
+     [
+      "Individual money market",
+      30.0
+     ],
+     [
+      "Individual retail CDs",
+      35.4
+     ],
+     [
+      "All-in cost (annualized %)",
+      3.66
+     ]
+    ],
+    "note": "~$100M of cheap-ish stable funding at 3.66% all-in. R1/R2 fund it at $25K bus-dev + $55-60K salaries."
+   }
+  ]
+ }
+}
