@@ -1,0 +1,449 @@
+{
+  "Q4/28": {
+    "bank1": {
+      "income": {
+        "interest_income": 9.942,
+        "interest_expense": 4.548,
+        "net_interest_income": 5.394,
+        "credit_loss_provision": 1.2,
+        "operating_expenses": 6.56,
+        "operating_earnings": -0.533,
+        "gains_on_assets": 0,
+        "income_taxes": -0.365,
+        "net_income": -0.169,
+        "eps": -0.17,
+        "dps": 1.0
+      },
+      "balance": {
+        "cash_due_from": 40.2,
+        "fed_funds_sold": 0,
+        "securities": 72.6,
+        "business_loans": 250.8,
+        "real_estate_loans": 264.5,
+        "consumer_loans": 77.7,
+        "total_loans": 588.0,
+        "premises": 10.1,
+        "other_assets": 28.9,
+        "total_assets": 739.8,
+        "demand_deposits": 132.4,
+        "interest_checking": 72.5,
+        "savings": 61.7,
+        "money_market": 131.9,
+        "retail_cds": 122.6,
+        "public_brokered_cds": 30.0,
+        "total_deposits": 551.1,
+        "borrowed_funds": 117.6,
+        "other_liabilities": 24.2,
+        "long_term_debt": 0,
+        "subordinated_debt": 0,
+        "owners_equity": 47.0,
+        "net_liq_assets_ta": -7.4,
+        "loans_to_deposits": 106.7,
+        "fed_funds_purch_equity": 186.9,
+        "core_deposit_ratio": 94.6,
+        "earning_assets_ta": 89.3,
+        "int_bearing_liab_ta": 72.5,
+        "acl_loans": 0.8,
+        "nonperf_loans": 1.9,
+        "chgoff_avg_loans": 0.8,
+        "acl_nonperf": 43.7
+      },
+      "capital": {
+        "stock_price": 34.82
+      }
+    },
+    "bank2": {
+      "balance": {
+        "cash_due_from": 40.2, "fed_funds_sold": 0, "securities": 72.6,
+        "business_loans": 250.8, "real_estate_loans": 264.5, "consumer_loans": 77.7,
+        "total_loans": 588.0, "premises": 10.1, "other_assets": 28.9, "total_assets": 739.8,
+        "demand_deposits": 132.4, "interest_checking": 72.5, "savings": 61.7,
+        "money_market": 131.9, "retail_cds": 122.6, "public_brokered_cds": 30.0,
+        "total_deposits": 551.1, "borrowed_funds": 117.6, "other_liabilities": 24.2,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 47.0,
+        "net_liq_assets_ta": -7.4, "loans_to_deposits": 106.7, "fed_funds_purch_equity": 186.9,
+        "core_deposit_ratio": 94.6, "earning_assets_ta": 89.3, "int_bearing_liab_ta": 72.5,
+        "acl_loans": 0.8, "nonperf_loans": 1.9, "chgoff_avg_loans": 0.8, "acl_nonperf": 43.7
+      },
+      "capital": { "stock_price": 34.82 }
+    },
+    "bank3": {
+      "balance": {
+        "cash_due_from": 40.2, "fed_funds_sold": 0, "securities": 72.6,
+        "business_loans": 250.8, "real_estate_loans": 264.5, "consumer_loans": 77.7,
+        "total_loans": 588.0, "premises": 10.1, "other_assets": 28.9, "total_assets": 739.8,
+        "demand_deposits": 132.4, "interest_checking": 72.5, "savings": 61.7,
+        "money_market": 131.9, "retail_cds": 122.6, "public_brokered_cds": 30.0,
+        "total_deposits": 551.1, "borrowed_funds": 117.6, "other_liabilities": 24.2,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 47.0,
+        "net_liq_assets_ta": -7.4, "loans_to_deposits": 106.7, "fed_funds_purch_equity": 186.9,
+        "core_deposit_ratio": 94.6, "earning_assets_ta": 89.3, "int_bearing_liab_ta": 72.5,
+        "acl_loans": 0.8, "nonperf_loans": 1.9, "chgoff_avg_loans": 0.8, "acl_nonperf": 43.7
+      },
+      "capital": { "stock_price": 34.82 }
+    },
+    "bank4": {
+      "balance": {
+        "cash_due_from": 40.2, "fed_funds_sold": 0, "securities": 72.6,
+        "business_loans": 250.8, "real_estate_loans": 264.5, "consumer_loans": 77.7,
+        "total_loans": 588.0, "premises": 10.1, "other_assets": 28.9, "total_assets": 739.8,
+        "demand_deposits": 132.4, "interest_checking": 72.5, "savings": 61.7,
+        "money_market": 131.9, "retail_cds": 122.6, "public_brokered_cds": 30.0,
+        "total_deposits": 551.1, "borrowed_funds": 117.6, "other_liabilities": 24.2,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 47.0,
+        "net_liq_assets_ta": -7.4, "loans_to_deposits": 106.7, "fed_funds_purch_equity": 186.9,
+        "core_deposit_ratio": 94.6, "earning_assets_ta": 89.3, "int_bearing_liab_ta": 72.5,
+        "acl_loans": 0.8, "nonperf_loans": 1.9, "chgoff_avg_loans": 0.8, "acl_nonperf": 43.7
+      },
+      "capital": { "stock_price": 34.82 }
+    },
+    "bank5": {
+      "balance": {
+        "cash_due_from": 40.2, "fed_funds_sold": 0, "securities": 72.6,
+        "business_loans": 250.8, "real_estate_loans": 264.5, "consumer_loans": 77.7,
+        "total_loans": 588.0, "premises": 10.1, "other_assets": 28.9, "total_assets": 739.8,
+        "demand_deposits": 132.4, "interest_checking": 72.5, "savings": 61.7,
+        "money_market": 131.9, "retail_cds": 122.6, "public_brokered_cds": 30.0,
+        "total_deposits": 551.1, "borrowed_funds": 117.6, "other_liabilities": 24.2,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 47.0,
+        "net_liq_assets_ta": -7.4, "loans_to_deposits": 106.7, "fed_funds_purch_equity": 186.9,
+        "core_deposit_ratio": 94.6, "earning_assets_ta": 89.3, "int_bearing_liab_ta": 72.5,
+        "acl_loans": 0.8, "nonperf_loans": 1.9, "chgoff_avg_loans": 0.8, "acl_nonperf": 43.7
+      },
+      "capital": { "stock_price": 34.82 }
+    },
+    "community": {
+      "prime": 5.76,
+      "fed_funds": 3.61,
+      "sofr": 3.43,
+      "discount_rate": 3.42,
+      "inflation": 1.27,
+      "gdp_change": 3.95,
+      "unemployment_national": 6.43,
+      "unemployment_local": 6.0
+    }
+  },
+  "Q1/29": {
+    "bank1": {
+      "income": {
+        "interest_income": 10.16,
+        "int_inc_loans": 9.343,
+        "int_inc_securities_taxable": 0.636,
+        "int_inc_tax_exempt": 0.182,
+        "interest_expense": 5.001,
+        "net_interest_income": 5.16,
+        "fees_svc_other": 1.451,
+        "total_nii_fees": 6.6,
+        "credit_loss_provision": 2.1,
+        "operating_expenses": 5.853,
+        "operating_earnings": -1.341,
+        "gains_on_assets": 0.715,
+        "income_taxes": 0,
+        "net_income": -0.627,
+        "eps": -0.63,
+        "dps": 0,
+        "te_int_inc_avg_ea": 6.11,
+        "int_exp_avg_ibl": 3.68,
+        "spread": 2.43,
+        "nim": 3.12,
+        "chgoff_provision_pct": 44,
+        "fee_income_pct": 22,
+        "efficiency_ratio": 89,
+        "oper_earn_avg_assets": -0.72,
+        "roaa": -0.34,
+        "roae": -5.37
+      },
+      "balance": {
+        "cash_due_from": 41.0,
+        "fed_funds_sold": 0,
+        "securities": 90.3,
+        "business_loans": 251.7,
+        "real_estate_loans": 260.0,
+        "consumer_loans": 78.9,
+        "total_loans": 584.4,
+        "premises": 9.5,
+        "other_assets": 29.2,
+        "total_assets": 754.4,
+        "demand_deposits": 132.7,
+        "interest_checking": 76.4,
+        "savings": 66.0,
+        "money_market": 137.0,
+        "retail_cds": 117.9,
+        "public_brokered_cds": 23.0,
+        "total_deposits": 552.9,
+        "borrowed_funds": 130.4,
+        "other_liabilities": 24.7,
+        "long_term_debt": 0,
+        "subordinated_debt": 0,
+        "owners_equity": 46.3,
+        "net_liq_assets_ta": -6.6,
+        "loans_to_deposits": 105.7,
+        "fed_funds_purch_equity": 86.6,
+        "core_deposit_ratio": 95.7,
+        "earning_assets_ta": 89.4,
+        "int_bearing_liab_ta": 73.0,
+        "acl_loans": 1.0,
+        "nonperf_loans": 1.5,
+        "chgoff_avg_loans": 0.6,
+        "acl_nonperf": 68.7
+      },
+      "capital": {
+        "stock_price": 26.99,
+        "stock_price_prev": 34.82,
+        "stock_price_chg_pct": -22.5,
+        "pe": null,
+        "mkt_book": 0.58,
+        "eps_forecast": 0.2,
+        "eps_actual": -0.63,
+        "dps_qtr": 0,
+        "dividend_yield": 0,
+        "credit_rating": "B",
+        "shares_outstanding": 1000000,
+        "book_value": 46.34,
+        "leverage_ratio": 6.14,
+        "equity_risk_assets_ratio": 7.68,
+        "risk_capital_ratio": 8.7,
+        "capital_issue_planned": 10
+      },
+      "deposit_rates": {
+        "ibc": 1.98,
+        "ibc_min_bal": 4000,
+        "mmda_premium": 3.2,
+        "mmda_base": 2.7,
+        "mmda_min_bal": 2000,
+        "savings_ind": 2.18,
+        "savings_bus": 2.25,
+        "nsf_fee_ind": 10,
+        "earnings_credit_bus": 4.0,
+        "mkt_share_business": 27,
+        "mkt_share_public": 14,
+        "mkt_share_individual": 19
+      },
+      "loan_rates": {
+        "national_credit_lines": 6.11,
+        "national_term": 6.3,
+        "middle_market_credit_lines": 6.01,
+        "middle_market_term": 6.26,
+        "small_business_credit_lines": 6.05,
+        "small_business_term": 6.41,
+        "trade_finance": 6.45,
+        "construction": 6.87,
+        "commercial_re": 6.53,
+        "multi_family": 6.24,
+        "res_1_4_fixed": 6.0,
+        "res_1_4_variable": 5.25,
+        "home_equity": 6.11,
+        "personal": 6.62,
+        "credit_card": 10.89,
+        "installment": 6.76
+      },
+      "risk": {
+        "total_capital": 52.506,
+        "cre_total": 112.532,
+        "cre_construction": 69.771,
+        "cre_commercial": 32.457,
+        "cre_multifamily": 10.305,
+        "cre_pct_capital": 214,
+        "cre_guidance_pct": 300,
+        "construction_pct_capital": 133,
+        "construction_guidance_pct": 100,
+        "nonaccrual_total": 3.4,
+        "past_due_total": 5.5,
+        "gap_q1": 17,
+        "gap_q2": 32,
+        "gap_q3": 38,
+        "gap_q4": 22,
+        "gap_1yr_cum": 109,
+        "gap_over_1yr": -109,
+        "gap_1yr_pct_ta": 15,
+        "gap_over_1yr_pct_ta": -15
+      }
+    },
+    "bank2": {
+      "income": {
+        "interest_income": 10.3, "int_inc_loans": 9.7, "int_inc_securities_taxable": 0.5,
+        "int_inc_tax_exempt": 0.2, "interest_expense": 5.3, "net_interest_income": 5.1,
+        "fees_svc_other": 1.5, "total_nii_fees": 6.6, "credit_loss_provision": 2.2,
+        "operating_expenses": 6.0, "operating_earnings": -1.7, "gains_on_assets": 0,
+        "income_taxes": 0, "net_income": -1.7,
+        "te_int_inc_avg_ea": 6.19, "int_exp_avg_ibl": 3.86, "spread": 2.33, "nim": 3.04,
+        "chgoff_provision_pct": 49, "fee_income_pct": 23, "efficiency_ratio": 92,
+        "oper_earn_avg_assets": -0.88, "roaa": -0.88, "roae": -14.39
+      },
+      "balance": {
+        "cash_due_from": 41.6, "fed_funds_sold": 0, "securities": 73.3,
+        "business_loans": 256.2, "real_estate_loans": 280.0, "consumer_loans": 79.1,
+        "total_loans": 609.1, "premises": 12.0, "other_assets": 30.0, "total_assets": 766.1,
+        "demand_deposits": 136.8, "interest_checking": 73.7, "savings": 66.4,
+        "money_market": 137.0, "retail_cds": 147.8, "public_brokered_cds": 23.0,
+        "total_deposits": 584.6, "borrowed_funds": 111.4, "other_liabilities": 24.9,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 45.2,
+        "net_liq_assets_ta": -6.7, "loans_to_deposits": 104.2, "fed_funds_purch_equity": 94.0,
+        "core_deposit_ratio": 90.9, "earning_assets_ta": 89.1, "int_bearing_liab_ta": 73.0,
+        "acl_loans": 1.0, "nonperf_loans": 1.5, "chgoff_avg_loans": 0.7, "acl_nonperf": 65.4
+      },
+      "capital": {
+        "stock_price": 24.86, "stock_price_prev": 34.82, "stock_price_chg_pct": -28.61,
+        "pe": null, "mkt_book": 0.55, "eps_forecast": 0.1, "eps_actual": -1.66,
+        "dps_qtr": 0.1, "dividend_yield": 1.61, "credit_rating": "B",
+        "shares_outstanding": 1000000, "book_value": 45.2, "leverage_ratio": 5.9,
+        "equity_risk_assets_ratio": 7.26, "risk_capital_ratio": 8.24, "capital_issue_planned": 15
+      },
+      "deposit_rates": {
+        "ibc": 2.33, "ibc_min_bal": 2000, "mmda_premium": 3.55, "mmda_base": 3.15,
+        "mmda_min_bal": 3000, "savings_ind": 2.43, "savings_bus": 2.53, "nsf_fee_ind": 10,
+        "earnings_credit_bus": 4.15, "mkt_share_business": 31, "mkt_share_public": 21,
+        "mkt_share_individual": 18
+      },
+      "loan_rates": {
+        "national_credit_lines": 6.05, "national_term": 6.3, "middle_market_credit_lines": 6.21,
+        "middle_market_term": 6.24, "small_business_credit_lines": 5.89, "small_business_term": 6.39,
+        "trade_finance": 6.34, "construction": 7.07, "commercial_re": 6.85, "multi_family": 6.55,
+        "res_1_4_fixed": 6.2, "res_1_4_variable": 5.14, "home_equity": 6.24, "personal": 6.74,
+        "credit_card": 10.34, "installment": 6.85
+      }
+    },
+    "bank3": {
+      "income": {
+        "interest_income": 9.9, "int_inc_loans": 9.2, "int_inc_securities_taxable": 0.5,
+        "int_inc_tax_exempt": 0.2, "interest_expense": 4.6, "net_interest_income": 5.3,
+        "fees_svc_other": 1.5, "total_nii_fees": 6.8, "credit_loss_provision": 1.0,
+        "operating_expenses": 5.9, "operating_earnings": -0.1, "gains_on_assets": 0.7,
+        "income_taxes": 0.1, "net_income": 0.5,
+        "te_int_inc_avg_ea": 6.06, "int_exp_avg_ibl": 3.45, "spread": 2.61, "nim": 3.28,
+        "chgoff_provision_pct": 103, "fee_income_pct": 22, "efficiency_ratio": 87,
+        "oper_earn_avg_assets": -0.05, "roaa": 0.28, "roae": 4.35
+      },
+      "balance": {
+        "cash_due_from": 40.3, "fed_funds_sold": 8.9, "securities": 75.3,
+        "business_loans": 248.0, "real_estate_loans": 249.9, "consumer_loans": 72.0,
+        "total_loans": 564.9, "premises": 9.5, "other_assets": 28.9, "total_assets": 728.0,
+        "demand_deposits": 134.0, "interest_checking": 69.8, "savings": 65.4,
+        "money_market": 135.1, "retail_cds": 133.6, "public_brokered_cds": 23.0,
+        "total_deposits": 560.9, "borrowed_funds": 95.0, "other_liabilities": 24.5,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 47.5,
+        "net_liq_assets_ta": -3.5, "loans_to_deposits": 100.7, "fed_funds_purch_equity": 0,
+        "core_deposit_ratio": 93.2, "earning_assets_ta": 89.2, "int_bearing_liab_ta": 71.7,
+        "acl_loans": 0.9, "nonperf_loans": 1.5, "chgoff_avg_loans": 0.7, "acl_nonperf": 58.1
+      },
+      "capital": {
+        "stock_price": 34.74, "stock_price_prev": 34.82, "stock_price_chg_pct": -0.23,
+        "pe": 16.9, "mkt_book": 0.73, "eps_forecast": 0, "eps_actual": 0.51,
+        "dps_qtr": 0, "dividend_yield": 0, "credit_rating": "B",
+        "shares_outstanding": 1000000, "book_value": 47.48, "leverage_ratio": 6.52,
+        "equity_risk_assets_ratio": 8.04, "risk_capital_ratio": 8.88, "capital_issue_planned": null
+      },
+      "deposit_rates": {
+        "ibc": 1.75, "ibc_min_bal": 5000, "mmda_premium": 3.0, "mmda_base": 2.25,
+        "mmda_min_bal": 9999, "savings_ind": 2.0, "savings_bus": 2.0, "nsf_fee_ind": 15,
+        "earnings_credit_bus": 4.0, "mkt_share_business": 12, "mkt_share_public": 27,
+        "mkt_share_individual": 21
+      },
+      "loan_rates": {
+        "national_credit_lines": 6.18, "national_term": 6.3, "middle_market_credit_lines": 6.16,
+        "middle_market_term": 5.96, "small_business_credit_lines": 7.54, "small_business_term": 7.9,
+        "trade_finance": 6.43, "construction": 7.97, "commercial_re": 6.63, "multi_family": 5.84,
+        "res_1_4_fixed": 7.2, "res_1_4_variable": 6.37, "home_equity": 7.13, "personal": 7.92,
+        "credit_card": 11.89, "installment": 7.76
+      }
+    },
+    "bank4": {
+      "income": {
+        "interest_income": 10.0, "int_inc_loans": 9.3, "int_inc_securities_taxable": 0.5,
+        "int_inc_tax_exempt": 0.2, "interest_expense": 4.4, "net_interest_income": 5.6,
+        "fees_svc_other": 1.3, "total_nii_fees": 6.9, "credit_loss_provision": 2.0,
+        "operating_expenses": 6.0, "operating_earnings": -1.1, "gains_on_assets": 0.0,
+        "income_taxes": 0, "net_income": -1.1,
+        "te_int_inc_avg_ea": 6.17, "int_exp_avg_ibl": 3.33, "spread": 2.84, "nim": 3.48,
+        "chgoff_provision_pct": 49, "fee_income_pct": 19, "efficiency_ratio": 87,
+        "oper_earn_avg_assets": -0.62, "roaa": -0.61, "roae": -9.57
+      },
+      "balance": {
+        "cash_due_from": 40.3, "fed_funds_sold": 0, "securities": 70.3,
+        "business_loans": 242.0, "real_estate_loans": 267.1, "consumer_loans": 64.5,
+        "total_loans": 567.5, "premises": 9.5, "other_assets": 28.9, "total_assets": 716.5,
+        "demand_deposits": 134.6, "interest_checking": 70.6, "savings": 64.2,
+        "money_market": 133.7, "retail_cds": 117.7, "public_brokered_cds": 23.0,
+        "total_deposits": 543.8, "borrowed_funds": 103.0, "other_liabilities": 24.4,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 45.4,
+        "net_liq_assets_ta": -6.0, "loans_to_deposits": 104.4, "fed_funds_purch_equity": 44.1,
+        "core_deposit_ratio": 95.8, "earning_assets_ta": 89.0, "int_bearing_liab_ta": 71.5,
+        "acl_loans": 1.1, "nonperf_loans": 1.8, "chgoff_avg_loans": 0.7, "acl_nonperf": 59.8
+      },
+      "capital": {
+        "stock_price": 29.11, "stock_price_prev": 34.82, "stock_price_chg_pct": -16.4,
+        "pe": null, "mkt_book": 0.64, "eps_forecast": 0.4, "eps_actual": -1.1,
+        "dps_qtr": 0.5, "dividend_yield": 6.87, "credit_rating": "B",
+        "shares_outstanding": 1000000, "book_value": 45.36, "leverage_ratio": 6.33,
+        "equity_risk_assets_ratio": 7.79, "risk_capital_ratio": 8.83, "capital_issue_planned": 5
+      },
+      "deposit_rates": {
+        "ibc": 1.76, "ibc_min_bal": 4000, "mmda_premium": 2.25, "mmda_base": 2.0,
+        "mmda_min_bal": 4000, "savings_ind": 1.8, "savings_bus": 1.8, "nsf_fee_ind": 12,
+        "earnings_credit_bus": 4.0, "mkt_share_business": 17, "mkt_share_public": 21,
+        "mkt_share_individual": 21
+      },
+      "loan_rates": {
+        "national_credit_lines": 6.8, "national_term": 6.93, "middle_market_credit_lines": 6.24,
+        "middle_market_term": 6.49, "small_business_credit_lines": 6.68, "small_business_term": 6.97,
+        "trade_finance": 7.2, "construction": 7.72, "commercial_re": 6.61, "multi_family": 6.47,
+        "res_1_4_fixed": 6.26, "res_1_4_variable": 6.37, "home_equity": 6.07, "personal": 8.17,
+        "credit_card": 15.64, "installment": 9.01
+      }
+    },
+    "bank5": {
+      "income": {
+        "interest_income": 10.3, "int_inc_loans": 9.6, "int_inc_securities_taxable": 0.5,
+        "int_inc_tax_exempt": 0.2, "interest_expense": 4.6, "net_interest_income": 5.7,
+        "fees_svc_other": 1.5, "total_nii_fees": 7.2, "credit_loss_provision": 3.0,
+        "operating_expenses": 6.2, "operating_earnings": -2.0, "gains_on_assets": 0,
+        "income_taxes": 0, "net_income": -2.0,
+        "te_int_inc_avg_ea": 6.19, "int_exp_avg_ibl": 3.38, "spread": 2.81, "nim": 3.44,
+        "chgoff_provision_pct": 37, "fee_income_pct": 21, "efficiency_ratio": 86,
+        "oper_earn_avg_assets": -1.07, "roaa": -1.07, "roae": -17.38
+      },
+      "balance": {
+        "cash_due_from": 40.6, "fed_funds_sold": 0, "securities": 70.3,
+        "business_loans": 249.8, "real_estate_loans": 280.4, "consumer_loans": 81.2,
+        "total_loans": 604.5, "premises": 9.5, "other_assets": 29.0, "total_assets": 753.9,
+        "demand_deposits": 135.7, "interest_checking": 71.4, "savings": 64.5,
+        "money_market": 134.2, "retail_cds": 119.5, "public_brokered_cds": 23.0,
+        "total_deposits": 548.4, "borrowed_funds": 136.0, "other_liabilities": 24.6,
+        "long_term_debt": 0, "subordinated_debt": 0, "owners_equity": 45.0,
+        "net_liq_assets_ta": -10.0, "loans_to_deposits": 110.2, "fed_funds_purch_equity": 30.9,
+        "core_deposit_ratio": 95.5, "earning_assets_ta": 89.5, "int_bearing_liab_ta": 72.8,
+        "acl_loans": 1.1, "nonperf_loans": 1.4, "chgoff_avg_loans": 0.7, "acl_nonperf": 78.7
+      },
+      "capital": {
+        "stock_price": 25.3, "stock_price_prev": 34.82, "stock_price_chg_pct": -27.33,
+        "pe": null, "mkt_book": 0.56, "eps_forecast": 0, "eps_actual": -2.0,
+        "dps_qtr": 0, "dividend_yield": 0, "credit_rating": "B",
+        "shares_outstanding": 1000000, "book_value": 44.96, "leverage_ratio": 5.96,
+        "equity_risk_assets_ratio": 7.29, "risk_capital_ratio": 8.4, "capital_issue_planned": 10
+      },
+      "deposit_rates": {
+        "ibc": 1.85, "ibc_min_bal": 4000, "mmda_premium": 2.5, "mmda_base": 2.25,
+        "mmda_min_bal": 4000, "savings_ind": 1.85, "savings_bus": 2.0, "nsf_fee_ind": 10,
+        "earnings_credit_bus": 4.0, "mkt_share_business": 12, "mkt_share_public": 18,
+        "mkt_share_individual": 20
+      },
+      "loan_rates": {
+        "national_credit_lines": 6.3, "national_term": 6.55, "middle_market_credit_lines": 6.46,
+        "middle_market_term": 6.71, "small_business_credit_lines": 6.79, "small_business_term": 7.15,
+        "trade_finance": 6.7, "construction": 7.22, "commercial_re": 6.88, "multi_family": 6.59,
+        "res_1_4_fixed": 6.45, "res_1_4_variable": 5.62, "home_equity": 6.38, "personal": 7.17,
+        "credit_card": 11.64, "installment": 7.01
+      }
+    },
+    "community": {
+      "prime": 6.07,
+      "fed_funds": 3.87,
+      "sofr": 3.88,
+      "discount_rate": 3.78,
+      "inflation": 2.17,
+      "gdp_change": 3.38,
+      "unemployment_national": 6.01,
+      "unemployment_local": 5.57
+    }
+  }
+}

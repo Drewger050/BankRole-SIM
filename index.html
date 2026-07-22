@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMSim Dashboard — Bank 1</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --accent: #2a78d6;
+    --bank1: #2a78d6; --bank2: #eb6834; --bank3: #1baf7a; --bank4: #eda100; --bank5: #e87ba4;
+    --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+    --good-text: #006300;
+    --div-fav: #2a78d6; --div-adv: #e34948;
+  }
+  :root[data-theme="dark"] { color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+    --accent: #3987e5;
+    --bank1: #3987e5; --bank2: #d95926; --bank3: #199e70; --bank4: #c98500; --bank5: #d55181;
+    --good-text: #0ca30c;
+    --div-fav: #3987e5; --div-adv: #e66767;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+      --muted: #898781; --grid: #2c2c2a; --baseline: #383835; --border: rgba(255,255,255,0.10);
+      --accent: #3987e5;
+      --bank1: #3987e5; --bank2: #d95926; --bank3: #199e70; --bank4: #c98500; --bank5: #d55181;
+      --good-text: #0ca30c;
+      --div-fav: #3987e5; --div-adv: #e66767;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  header {
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+    padding: 18px 24px 0;
+  }
+  header h1 { font-size: 20px; margin: 0; }
+  header .sub { color: var(--ink-2); }
+  header .spacer { flex: 1; }
+  .btn {
+    background: var(--surface); color: var(--ink); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 12px; cursor: pointer; font: inherit;
+  }
+  .btn:hover { border-color: var(--muted); }
+  nav.tabs {
+    display: flex; gap: 4px; padding: 12px 24px 0; border-bottom: 1px solid var(--grid);
+    flex-wrap: wrap;
+  }
+  nav.tabs button {
+    background: none; border: none; border-bottom: 2px solid transparent;
+    padding: 8px 14px; font: inherit; font-weight: 600; color: var(--ink-2); cursor: pointer;
+  }
+  nav.tabs button.active { color: var(--ink); border-bottom-color: var(--accent); }
+  main { padding: 20px 24px 60px; max-width: 1280px; margin: 0 auto; }
+  .controls { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+  .controls select, .controls input, .controls textarea {
+    background: var(--surface); color: var(--ink); border: 1px solid var(--border);
+    border-radius: 8px; padding: 6px 10px; font: inherit;
+  }
+  .grid { display: grid; gap: 16px; }
+  .tiles { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .charts2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .card h3 { margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+  .card .note { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .tile .value { font-size: 26px; font-weight: 700; }
+  .tile .delta { font-size: 12px; }
+  .delta.up { color: var(--good-text); } .delta.down { color: var(--critical); }
+  .chart-wrap { position: relative; height: 240px; margin-top: 8px; }
+  .chart-tall { height: 300px; }
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+  th { color: var(--ink-2); font-weight: 600; font-size: 12px; }
+  th:first-child, td:first-child { text-align: left; }
+  tr.me td { background: color-mix(in srgb, var(--accent) 9%, transparent); font-weight: 600; }
+  .table-scroll { overflow-x: auto; }
+  .badge {
+    display: inline-block; min-width: 30px; text-align: center; font-size: 11px; font-weight: 700;
+    border: 1px solid var(--baseline); border-radius: 999px; padding: 1px 7px; margin-left: 6px;
+    color: var(--ink-2);
+  }
+  .badge.r1 { background: var(--ink); color: var(--page); border-color: var(--ink); }
+  .badge.r5 { color: var(--muted); border-style: dashed; }
+  .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 7px; vertical-align: baseline; }
+  .flag {
+    display: flex; gap: 10px; align-items: baseline; padding: 8px 12px; border-radius: 8px;
+    border: 1px solid var(--border); margin-bottom: 8px;
+  }
+  .flag .icon { font-weight: 700; }
+  .flag.critical .icon { color: var(--critical); }
+  .flag.serious .icon { color: var(--serious); }
+  .flag.warning .icon { color: var(--warning); }
+  .flag.good .icon { color: var(--good-text); }
+  details.tableview { margin-top: 10px; }
+  details.tableview summary { cursor: pointer; color: var(--ink-2); font-size: 12px; }
+  .decision-item { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+  .decision-item .cat { font-weight: 700; font-size: 12px; color: var(--ink-2); }
+  .decision-item .why { color: var(--ink-2); font-size: 13px; }
+  .decision-item .row-actions { float: right; }
+  .decision-item .row-actions button { background: none; border: none; cursor: pointer; color: var(--ink-2); font-size: 12px; }
+  form.dec-form { display: grid; gap: 8px; grid-template-columns: 160px 1fr; align-items: start; margin-top: 10px; }
+  form.dec-form textarea { grid-column: 2; width: 100%; min-height: 44px; resize: vertical; }
+  form.dec-form input, form.dec-form select { width: 100%; }
+  form.dec-form .actions { grid-column: 2; }
+  .error-banner {
+    background: color-mix(in srgb, var(--critical) 12%, var(--surface));
+    border: 1px solid var(--critical); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px;
+  }
+  h2 { font-size: 16px; margin: 22px 0 10px; }
+  h2:first-child { margin-top: 0; }
+  .hint { color: var(--muted); font-size: 12px; }
+  @media (max-width: 640px) { form.dec-form { grid-template-columns: 1fr; } form.dec-form textarea, form.dec-form .actions { grid-column: 1; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>BMSim Dashboard</h1>
+  <span class="sub" id="bank-title">Bank 1 — Bottom of the Barrel Bank · Community B</span>
+  <span class="spacer"></span>
+  <button class="btn" id="theme-toggle" title="Cycle theme">Theme: auto</button>
+</header>
+<nav class="tabs" id="tabs">
+  <button data-tab="scoreboard" class="active">Scoreboard</button>
+  <button data-tab="trajectory">Trajectory</button>
+  <button data-tab="rates">Rate Positioning</button>
+  <button data-tab="risk">Risk</button>
+  <button data-tab="decisions">Decisions</button>
+</nav>
+<main id="main"><div class="card">Loading data…</div></main>
+
+<script>
+"use strict";
+/* ================= data & state ================= */
+const S = {
+  data: null, decisionsBase: {}, tab: "scoreboard", quarter: null, charts: [],
+};
+const BANK_LABEL = b => b === "bank1" ? "Bank 1 (You)" : "Bank " + b.slice(4);
+const MY = "bank1";
+
+function qSort(a, b) { return qNum(a) - qNum(b); }
+function qNum(q) { const m = /^Q(\d)\/(\d\d)$/.exec(q); return m ? (2000 + +m[2]) * 4 + +m[1] : 0; }
+function quarters() { return Object.keys(S.data).sort(qSort); }
+function latestQuarter() { const qs = quarters(); return qs[qs.length - 1]; }
+function banksIn(q) { return Object.keys(S.data[q]).filter(k => /^bank\d+$/.test(k)).sort(); }
+function get(q, bank, section, key) {
+  const v = S.data?.[q]?.[bank]?.[section]?.[key];
+  return (v === undefined || v === "needs_review") ? null : v;
+}
+function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function bankColor(b) { return cssVar("--" + b) || cssVar("--muted"); }
+
+const fmt = {
+  usd: v => v == null ? "—" : "$" + (+v).toFixed(2),
+  m:   v => v == null ? "—" : (+v).toFixed(1),
+  m3:  v => v == null ? "—" : (+v).toFixed(2),
+  pct: v => v == null ? "—" : (+v).toFixed(2) + "%",
+  pct1:v => v == null ? "—" : (+v).toFixed(1) + "%",
+  pct0:v => v == null ? "—" : Math.round(+v) + "%",
+  x:   v => v == null ? "—" : (+v).toFixed(2) + "×",
+  bps: v => v == null ? "—" : (v > 0 ? "+" : "") + Math.round(v * 100) + " bps",
+};
+function median(arr) {
+  const a = arr.filter(v => v != null).slice().sort((x, y) => x - y);
+  if (!a.length) return null;
+  const mid = a.length >> 1;
+  return a.length % 2 ? a[mid] : (a[mid - 1] + a[mid]) / 2;
+}
+// rank: 1 = best. higherBetter=false flips.
+function ranks(values, higherBetter = true) {
+  const idx = values.map((v, i) => [v, i]).filter(p => p[0] != null)
+    .sort((a, b) => higherBetter ? b[0] - a[0] : a[0] - b[0]);
+  const out = values.map(() => null);
+  idx.forEach((p, r) => out[p[1]] = r + 1);
+  return out;
+}
+const ORDINAL = ["", "1st", "2nd", "3rd", "4th", "5th", "6th"];
+
+/* ================= charts ================= */
+function destroyCharts() { S.charts.forEach(c => c.destroy()); S.charts = []; }
+function baseOptions(unit) {
+  const grid = cssVar("--grid"), muted = cssVar("--muted"), ink2 = cssVar("--ink-2");
+  return {
+    responsive: true, maintainAspectRatio: false, animation: false,
+    interaction: { mode: "index", intersect: false },
+    plugins: {
+      legend: { labels: { color: ink2, usePointStyle: true, pointStyle: "line", boxWidth: 24 } },
+      tooltip: {
+        callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y == null ? "—" : ctx.parsed.y}${unit || ""}` }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, border: { color: cssVar("--baseline") }, ticks: { color: muted } },
+      y: { grid: { color: grid }, border: { display: false }, ticks: { color: muted } },
+    },
+  };
+}
+// horizontal threshold-line plugin (used on capital / concentration charts)
+const thresholdPlugin = {
+  id: "thresholds",
+  afterDatasetsDraw(chart, _args, opts) {
+    if (!opts || !opts.lines) return;
+    const { ctx, chartArea, scales } = chart;
+    opts.lines.forEach((l, li) => {
+      const scale = l.axis === "x" ? scales.x : scales.y;
+      const px = scale.getPixelForValue(l.value);
+      if (l.axis === "x" ? (px < chartArea.left || px > chartArea.right) : (px < chartArea.top || px > chartArea.bottom)) return;
+      ctx.save();
+      ctx.strokeStyle = l.color; ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      if (l.axis === "x") { ctx.moveTo(px, chartArea.top); ctx.lineTo(px, chartArea.bottom); }
+      else { ctx.moveTo(chartArea.left, px); ctx.lineTo(chartArea.right, px); }
+      ctx.stroke();
+      if (l.label) {
+        ctx.fillStyle = l.color; ctx.font = "600 11px system-ui, sans-serif";
+        const w = ctx.measureText(l.label).width;
+        if (l.axis === "x") {
+          const x = (px + 4 + w > chartArea.right) ? px - 4 - w : px + 4;
+          ctx.textBaseline = "bottom";
+          ctx.fillText(l.label, x, chartArea.top + 12 + li * 14);
+        } else {
+          const x = chartArea.right - w - 4;
+          if (px - 14 < chartArea.top) { ctx.textBaseline = "top"; ctx.fillText(l.label, x, px + 3); }
+          else { ctx.textBaseline = "bottom"; ctx.fillText(l.label, x, px - 3); }
+        }
+      }
+      ctx.restore();
+    });
+  }
+};
+if (typeof Chart === "undefined") {
+  document.getElementById("main").innerHTML = `<div class="error-banner"><strong>Chart.js failed to load</strong> from the CDN — charts need a network connection. Data tables still work after a reload once you're online.</div>`;
+  throw new Error("Chart.js not loaded");
+}
+Chart.register(thresholdPlugin);
+
+function makeChart(canvas, cfg) { const c = new Chart(canvas, cfg); S.charts.push(c); return c; }
+
+function lineChart(canvas, labels, series, unit) {
+  return makeChart(canvas, {
+    type: "line",
+    data: {
+      labels,
+      datasets: series.map(s => ({
+        label: s.label, data: s.data, borderColor: s.color, backgroundColor: s.color,
+        borderWidth: s.emph ? 3 : 2, pointRadius: 3, pointHoverRadius: 6, tension: 0,
+        spanGaps: true, pointStyle: "circle",
+      })),
+    },
+    options: baseOptions(unit),
+  });
+}
+
+function tableView(headers, rows) {
+  return `<details class="tableview"><summary>Table view</summary><div class="table-scroll"><table>
+    <thead><tr>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(r => `<tr>${r.map((c, i) => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody>
+  </table></div></details>`;
+}
+
+/* ================= tab renderers ================= */
+function render() {
+  destroyCharts();
+  const main = document.getElementById("main");
+  if (!S.data) return;
+  const fns = { scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, decisions: renderDecisions };
+  main.innerHTML = "";
+  fns[S.tab](main);
+}
+
+function quarterSelect(container, onchange) {
+  const qs = quarters();
+  const sel = document.createElement("select");
+  qs.forEach(q => {
+    const o = document.createElement("option");
+    o.value = q; o.textContent = q; if (q === S.quarter) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.addEventListener("change", () => { S.quarter = sel.value; onchange(); });
+  const label = document.createElement("label");
+  label.append("Quarter: ", sel);
+  container.appendChild(label);
+  return sel;
+}
+
+/* ---------- 1. SCOREBOARD ---------- */
+const SCORE_METRICS = [
+  { key: "stock_price", section: "capital", label: "Stock Price", fmt: fmt.usd, hb: true, lead: true },
+  { key: "mkt_book", section: "capital", label: "Mkt / Book", fmt: fmt.x, hb: true, lead: true },
+  { key: "net_income", section: "income", label: "Net Income ($M)", fmt: fmt.m3, hb: true },
+  { key: "operating_earnings", section: "income", label: "Oper. Earnings ($M)", fmt: fmt.m3, hb: true },
+  { key: "roaa", section: "income", label: "ROAA", fmt: fmt.pct, hb: true },
+  { key: "nim", section: "income", label: "NIM", fmt: fmt.pct, hb: true },
+  { key: "efficiency_ratio", section: "income", label: "Efficiency", fmt: fmt.pct0, hb: false },
+];
+function renderScoreboard(main) {
+  const q = S.quarter;
+  const banks = banksIn(q);
+  const controls = document.createElement("div"); controls.className = "controls";
+  quarterSelect(controls, render);
+  main.appendChild(controls);
+
+  // hero tiles for my bank
+  const prevQ = quarters()[quarters().indexOf(q) - 1] || null;
+  const tiles = [
+    { label: "Stock Price", v: get(q, MY, "capital", "stock_price"), f: fmt.usd, prev: prevQ && get(prevQ, MY, "capital", "stock_price"), pf: fmt.usd },
+    { label: "Market / Book", v: get(q, MY, "capital", "mkt_book"), f: fmt.x },
+    { label: "Net Income ($M)", v: get(q, MY, "income", "net_income"), f: fmt.m3 },
+    { label: "Operating Earnings ($M)", v: get(q, MY, "income", "operating_earnings"), f: fmt.m3 },
+    { label: "ROAA", v: get(q, MY, "income", "roaa"), f: fmt.pct },
+    { label: "Efficiency", v: get(q, MY, "income", "efficiency_ratio"), f: fmt.pct0 },
+  ];
+  const tileGrid = document.createElement("div"); tileGrid.className = "grid tiles";
+  tileGrid.innerHTML = tiles.map(t => {
+    let delta = "";
+    if (t.prev != null && t.v != null) {
+      const d = t.v - t.prev, up = d >= 0;
+      delta = `<div class="delta ${up ? "up" : "down"}">${up ? "▲" : "▼"} ${t.pf(Math.abs(d))} vs ${prevQ}</div>`;
+    }
+    return `<div class="card tile"><h3>${t.label}</h3><div class="value">${t.f(t.v)}</div>${delta}</div>`;
+  }).join("");
+  main.appendChild(tileGrid);
+
+  // ranking table
+  const card = document.createElement("div"); card.className = "card"; card.style.marginTop = "16px";
+  const metricRanks = SCORE_METRICS.map(m => ranks(banks.map(b => get(q, b, m.section, m.key)), m.hb));
+  const head = `<tr><th>Bank</th>${SCORE_METRICS.map(m => `<th>${m.label}${m.lead ? " ★" : ""}</th>`).join("")}</tr>`;
+  const body = banks.map((b, bi) => {
+    const cells = SCORE_METRICS.map((m, mi) => {
+      const v = get(q, b, m.section, m.key);
+      const r = metricRanks[mi][bi];
+      const badge = r == null ? "" : `<span class="badge r${r}">${ORDINAL[r]}</span>`;
+      return `<td>${m.fmt(v)}${badge}</td>`;
+    }).join("");
+    return `<tr class="${b === MY ? "me" : ""}"><td><span class="swatch" style="background:${bankColor(b)}"></span>${BANK_LABEL(b)}</td>${cells}</tr>`;
+  }).join("");
+  card.innerHTML = `<h3>Rankings — ${q} <span class="hint">(★ = likely win condition; efficiency ranked low-is-best)</span></h3>
+    <div class="table-scroll"><table><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
+  main.appendChild(card);
+
+  // stock price chart across banks
+  const chartCard = document.createElement("div"); chartCard.className = "card"; chartCard.style.marginTop = "16px";
+  chartCard.innerHTML = `<h3>Stock price by bank — ${q}</h3><div class="chart-wrap"><canvas></canvas></div>`;
+  main.appendChild(chartCard);
+  const prices = banks.map(b => get(q, b, "capital", "stock_price"));
+  makeChart(chartCard.querySelector("canvas"), {
+    type: "bar",
+    data: { labels: banks.map(BANK_LABEL), datasets: [{ data: prices, backgroundColor: banks.map(bankColor), borderRadius: 4, maxBarThickness: 48, borderSkipped: "bottom" }] },
+    options: { ...baseOptions("$"), plugins: { ...baseOptions("$").plugins, legend: { display: false } } },
+  });
+}
+
+/* ---------- 2. TRAJECTORY ---------- */
+function renderTrajectory(main) {
+  const qs = quarters();
+  const c1 = bankColor(MY);
+  const series = (section, key) => qs.map(q => get(q, MY, section, key));
+  main.insertAdjacentHTML("beforeend", `<h2>Bank 1 trajectory <span class="hint">— all quarters; gaps mean the metric wasn't reported that quarter</span></h2>`);
+  const grid = document.createElement("div"); grid.className = "grid charts2";
+  main.appendChild(grid);
+
+  const defs = [
+    { title: "Core vs reported earnings ($M) — one-time gains can flatter net income", unit: "", tall: true,
+      series: [
+        { label: "Operating earnings (core)", data: series("income", "operating_earnings"), color: c1, emph: true },
+        { label: "Net income (reported)", data: series("income", "net_income"), color: cssVar("--bank2") },
+        { label: "Gains on assets (one-time)", data: series("income", "gains_on_assets"), color: cssVar("--muted") },
+      ] },
+    { title: "Stock price ($)", unit: "$", series: [{ label: "Stock price", data: series("capital", "stock_price"), color: c1, emph: true }] },
+    { title: "Net interest margin (%)", unit: "%", series: [{ label: "NIM", data: series("income", "nim"), color: c1, emph: true }] },
+    { title: "ROAA (%)", unit: "%", series: [{ label: "ROAA", data: series("income", "roaa"), color: c1, emph: true }] },
+    { title: "ROAE (%)", unit: "%", series: [{ label: "ROAE", data: series("income", "roae"), color: c1, emph: true }] },
+    { title: "Efficiency ratio (%)", unit: "%", series: [{ label: "Efficiency", data: series("income", "efficiency_ratio"), color: c1, emph: true }] },
+    { title: "Balance sheet ($M)", unit: "", series: [
+        { label: "Total assets", data: series("balance", "total_assets"), color: c1, emph: true },
+        { label: "Total loans", data: series("balance", "total_loans"), color: cssVar("--bank3") },
+        { label: "Total deposits", data: series("balance", "total_deposits"), color: cssVar("--bank2") },
+      ] },
+    { title: "Credit quality (%)", unit: "%", series: [
+        { label: "Non-perf / loans", data: series("balance", "nonperf_loans"), color: c1, emph: true },
+        { label: "Charge-offs / avg loans", data: series("balance", "chgoff_avg_loans"), color: cssVar("--bank2") },
+        { label: "ACL / loans", data: series("balance", "acl_loans"), color: cssVar("--bank3") },
+      ] },
+  ];
+  defs.forEach(d => {
+    const card = document.createElement("div"); card.className = "card";
+    card.innerHTML = `<h3>${d.title}</h3><div class="chart-wrap ${d.tall ? "chart-tall" : ""}"><canvas></canvas></div>`;
+    if (d.tall) card.style.gridColumn = "1 / -1";
+    grid.appendChild(card);
+    lineChart(card.querySelector("canvas"), qs, d.series, d.unit);
+    card.insertAdjacentHTML("beforeend",
+      tableView(["Quarter", ...d.series.map(s => s.label)],
+        qs.map((q, i) => [q, ...d.series.map(s => s.data[i] == null ? "—" : s.data[i])])));
+  });
+}
+
+/* ---------- 3. RATE POSITIONING ---------- */
+const DEPOSIT_CATS = [
+  { key: "mmda_premium", label: "MMDA premium" },
+  { key: "mmda_base", label: "MMDA base" },
+  { key: "ibc", label: "Int-bearing checking" },
+  { key: "savings_ind", label: "Savings — individual" },
+  { key: "savings_bus", label: "Savings — business" },
+];
+const LOAN_CATS = [
+  { key: "national_credit_lines", label: "Nat'l corporate lines" },
+  { key: "national_term", label: "Nat'l corporate term" },
+  { key: "middle_market_credit_lines", label: "Middle market lines" },
+  { key: "middle_market_term", label: "Middle market term" },
+  { key: "small_business_credit_lines", label: "Small business lines" },
+  { key: "small_business_term", label: "Small business term" },
+  { key: "trade_finance", label: "Trade finance" },
+  { key: "construction", label: "RE construction" },
+  { key: "commercial_re", label: "RE commercial" },
+  { key: "multi_family", label: "RE multi-family" },
+  { key: "res_1_4_fixed", label: "1-4 family fixed" },
+  { key: "res_1_4_variable", label: "1-4 family variable" },
+  { key: "home_equity", label: "Home equity" },
+  { key: "personal", label: "Consumer personal" },
+  { key: "credit_card", label: "Credit card" },
+  { key: "installment", label: "Consumer installment" },
+];
+function rateRow(q, banks, section, cat, highIsCost) {
+  const vals = banks.map(b => get(q, b, section, cat.key));
+  const mine = vals[banks.indexOf(MY)];
+  const others = vals.filter((_, i) => banks[i] !== MY);
+  const min = Math.min(...vals.filter(v => v != null));
+  const max = Math.max(...vals.filter(v => v != null));
+  const med = median(vals);
+  const isMax = mine != null && mine >= max;
+  const isMin = mine != null && mine <= min;
+  return { cat, vals, mine, min, max, med, isMax, isMin, diff: mine != null && med != null ? mine - med : null };
+}
+function renderRates(main) {
+  const controls = document.createElement("div"); controls.className = "controls";
+  quarterSelect(controls, render);
+  main.appendChild(controls);
+  const q = S.quarter;
+  const banks = banksIn(q);
+  const hasRates = banks.some(b => S.data[q][b].deposit_rates || S.data[q][b].loan_rates);
+  if (!hasRates) {
+    main.insertAdjacentHTML("beforeend", `<div class="card">No rate data captured for ${q} (baseline quarters only carry balance-sheet data). Pick another quarter.</div>`);
+    return;
+  }
+
+  const depRows = DEPOSIT_CATS.map(c => rateRow(q, banks, "deposit_rates", c, true));
+  const loanRows = LOAN_CATS.map(c => rateRow(q, banks, "loan_rates", c, false));
+
+  const mkTable = (rows, isDeposit) => {
+    const head = `<tr><th>Category</th>${banks.map(b => `<th><span class="swatch" style="background:${bankColor(b)}"></span>${BANK_LABEL(b).replace(" (You)", "*")}</th>`).join("")}<th>vs median</th><th>Position</th></tr>`;
+    const body = rows.map(r => {
+      const flag = isDeposit
+        ? (r.isMax ? `<span class="flag serious" style="display:inline;padding:2px 8px"><span class="icon">⚠</span> highest-cost payer</span>` :
+           r.isMin ? `<span class="hint">lowest payer</span>` : `<span class="hint">mid-pack</span>`)
+        : (r.isMin ? `<span class="flag serious" style="display:inline;padding:2px 8px"><span class="icon">⚠</span> lowest-yield lender</span>` :
+           r.isMax ? `<span class="hint">highest yield</span>` : `<span class="hint">mid-pack</span>`);
+      const cells = r.vals.map((v, i) => {
+        const isMine = banks[i] === MY;
+        const strong = (v != null && ((isDeposit && v >= r.max) || (!isDeposit && v <= r.min)));
+        return `<td style="${isMine ? "font-weight:700;" : ""}${strong ? "text-decoration:underline;" : ""}">${v == null ? "—" : v.toFixed(2)}</td>`;
+      }).join("");
+      return `<tr><td>${r.cat.label}</td>${cells}<td>${fmt.bps(r.diff)}</td><td style="text-align:left">${flag}</td></tr>`;
+    }).join("");
+    return `<div class="table-scroll"><table><thead>${head}</thead><tbody>${body}</tbody></table></div>
+      <div class="note">* = you. Underline marks the ${isDeposit ? "highest rate paid (most expensive)" : "lowest rate charged (weakest yield)"} in each row.</div>`;
+  };
+
+  main.insertAdjacentHTML("beforeend", `<h2>Deposit rates — what each bank pays (${q})</h2>`);
+  const depCard = document.createElement("div"); depCard.className = "card";
+  depCard.innerHTML = mkTable(depRows, true);
+  main.appendChild(depCard);
+
+  main.insertAdjacentHTML("beforeend", `<h2>Loan rates — what each bank charges (${q})</h2>`);
+  const loanCard = document.createElement("div"); loanCard.className = "card";
+  loanCard.innerHTML = mkTable(loanRows, false);
+  main.appendChild(loanCard);
+
+  // diverging charts: my rate minus field median
+  main.insertAdjacentHTML("beforeend", `<h2>My position vs field median (basis points)</h2>`);
+  const grid = document.createElement("div"); grid.className = "grid charts2";
+  main.appendChild(grid);
+  const divergingBar = (title, rows, adverseWhenPositive, note) => {
+    const card = document.createElement("div"); card.className = "card";
+    const h = Math.max(200, rows.length * 26 + 60);
+    card.innerHTML = `<h3>${title}</h3><div class="chart-wrap" style="height:${h}px"><canvas></canvas></div><div class="note">${note}</div>`;
+    grid.appendChild(card);
+    const diffs = rows.map(r => r.diff == null ? null : Math.round(r.diff * 100));
+    makeChart(card.querySelector("canvas"), {
+      type: "bar",
+      data: {
+        labels: rows.map(r => r.cat.label),
+        datasets: [{
+          data: diffs, borderRadius: 4, maxBarThickness: 16,
+          backgroundColor: diffs.map(d => d == null ? cssVar("--muted") :
+            (adverseWhenPositive ? d > 0 : d < 0) ? cssVar("--div-adv") : cssVar("--div-fav")),
+        }],
+      },
+      options: {
+        ...baseOptions(" bps"), indexAxis: "y",
+        interaction: { mode: "nearest", intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x > 0 ? "+" : ""}${ctx.parsed.x} bps vs median` } },
+        },
+        scales: {
+          x: { grid: { color: cssVar("--grid") }, border: { display: false }, ticks: { color: cssVar("--muted") } },
+          y: { grid: { display: false }, border: { color: cssVar("--baseline") }, ticks: { color: cssVar("--ink-2"), autoSkip: false } },
+        },
+      },
+    });
+  };
+  divergingBar("Deposits: my rate − median", depRows, true,
+    "Red = I pay above the field median (cost pressure). Blue = below median (cheaper funding, but weaker deposit draw).");
+  divergingBar("Loans: my rate − median", loanRows, false,
+    "Red = I price below the field median (yield give-up, volume play). Blue = above median (better yield, weaker demand).");
+}
+
+/* ---------- 4. RISK ---------- */
+function renderRisk(main) {
+  const qs = quarters();
+  const q = latestQuarter();
+  const banks = banksIn(q);
+  const risk = S.data[q][MY].risk || {};
+
+  // flags first
+  const flags = [];
+  const constrPct = risk.construction_pct_capital, constrG = risk.construction_guidance_pct;
+  const crePct = risk.cre_pct_capital, creG = risk.cre_guidance_pct;
+  if (constrPct != null && constrG != null && constrPct > constrG)
+    flags.push({ lvl: "warning", txt: `Construction loans are ${constrPct}% of total capital vs ${constrG}% guidance — over the threshold, worth managing down but not a panic signal on its own.` });
+  if (crePct != null && creG != null)
+    flags.push({ lvl: crePct > creG ? "serious" : "good", txt: `Total CRE is ${crePct}% of total capital vs ${creG}% guidance — ${crePct > creG ? "over" : "within"} guidance.` });
+  const rcr = get(q, MY, "capital", "risk_capital_ratio");
+  if (rcr != null && rcr < 10) flags.push({ lvl: "serious", txt: `Total risk-based capital ratio ${rcr}% is below the 10% well-capitalized benchmark.` });
+  const lev = get(q, MY, "capital", "leverage_ratio");
+  if (lev != null && lev < 5) flags.push({ lvl: "critical", txt: `Leverage ratio ${lev}% is below the 5% well-capitalized benchmark.` });
+  else if (lev != null && lev < 7) flags.push({ lvl: "warning", txt: `Leverage ratio ${lev}% has thin headroom over the 5% well-capitalized benchmark.` });
+  const oe = get(q, MY, "income", "operating_earnings");
+  if (oe != null && oe < 0) flags.push({ lvl: "warning", txt: `Operating earnings are negative (${fmt.m3(oe)}$M) — core business is losing money before one-time gains.` });
+  const gap = risk.gap_1yr_pct_ta;
+  if (gap != null && Math.abs(gap) >= 10) flags.push({ lvl: "warning", txt: `1-year cumulative rate gap is ${gap > 0 ? "+" : ""}${gap}% of assets — strongly ${gap > 0 ? "asset" : "liability"}-sensitive; earnings ${gap > 0 ? "fall" : "rise"} if rates drop.` });
+  main.insertAdjacentHTML("beforeend", `<h2>Risk flags — ${q}</h2>`);
+  main.insertAdjacentHTML("beforeend", flags.length
+    ? flags.map(f => `<div class="flag ${f.lvl}"><span class="icon">${f.lvl === "good" ? "✓" : "⚠"}</span><span><strong>${f.lvl.toUpperCase()}</strong> — ${f.txt}</span></div>`).join("")
+    : `<div class="card">No flags computed.</div>`);
+
+  const grid = document.createElement("div"); grid.className = "grid charts2"; grid.style.marginTop = "10px";
+  main.appendChild(grid);
+
+  // CRE concentration bullet chart
+  if (crePct != null || constrPct != null) {
+    const card = document.createElement("div"); card.className = "card";
+    card.innerHTML = `<h3>CRE concentration vs interagency guidance (% of total capital)</h3><div class="chart-wrap"><canvas></canvas></div>
+      <div class="note">Vertical marks = guidance thresholds (construction 100%, total CRE 300%). Source: B205.</div>`;
+    grid.appendChild(card);
+    makeChart(card.querySelector("canvas"), {
+      type: "bar",
+      data: {
+        labels: ["Construction / capital", "Total CRE / capital"],
+        datasets: [{ data: [constrPct, crePct], maxBarThickness: 40, borderRadius: 4,
+          backgroundColor: [constrPct > constrG ? cssVar("--serious") : cssVar("--bank1"), crePct > creG ? cssVar("--serious") : cssVar("--bank1")] }],
+      },
+      options: {
+        ...baseOptions("%"), indexAxis: "y",
+        plugins: {
+          legend: { display: false },
+          thresholds: { lines: [
+            { axis: "x", value: constrG, color: cssVar("--critical"), label: `constr ${constrG}%` },
+            { axis: "x", value: creG, color: cssVar("--muted"), label: `CRE ${creG}%` },
+          ] },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x}% of total capital` } },
+        },
+        scales: {
+          x: { grid: { color: cssVar("--grid") }, border: { display: false }, ticks: { color: cssVar("--muted") }, max: Math.max(320, crePct + 20) },
+          y: { grid: { display: false }, border: { color: cssVar("--baseline") }, ticks: { color: cssVar("--ink-2") } },
+        },
+      },
+    });
+  }
+
+  // interest-rate gap
+  if (risk.gap_q1 != null) {
+    const card = document.createElement("div"); card.className = "card";
+    card.innerHTML = `<h3>Repricing gap by bucket ($M, assets − liabilities)</h3><div class="chart-wrap"><canvas></canvas></div>
+      <div class="note">1-yr cumulative: ${risk.gap_1yr_cum > 0 ? "+" : ""}${risk.gap_1yr_cum}$M (${risk.gap_1yr_pct_ta}% of assets) — positive = asset-sensitive. Source: B531.</div>`;
+    grid.appendChild(card);
+    const gaps = [risk.gap_q1, risk.gap_q2, risk.gap_q3, risk.gap_q4, risk.gap_over_1yr];
+    makeChart(card.querySelector("canvas"), {
+      type: "bar",
+      data: { labels: ["Qtr 1", "Qtr 2", "Qtr 3", "Qtr 4", "Over 1 yr"],
+        datasets: [{ data: gaps, maxBarThickness: 40, borderRadius: 4,
+          backgroundColor: gaps.map(g => g >= 0 ? cssVar("--div-fav") : cssVar("--div-adv")) }] },
+      options: { ...baseOptions("$M"), plugins: { ...baseOptions("$M").plugins, legend: { display: false } } },
+    });
+  }
+
+  // credit quality across banks, over time
+  const cqDefs = [
+    { key: "nonperf_loans", title: "Non-performing / loans (%)" },
+    { key: "chgoff_avg_loans", title: "Charge-offs / avg loans (%)" },
+    { key: "acl_loans", title: "Allowance (ACL) / loans (%)" },
+  ];
+  cqDefs.forEach(def => {
+    const card = document.createElement("div"); card.className = "card";
+    card.innerHTML = `<h3>${def.title}</h3><div class="chart-wrap"><canvas></canvas></div>`;
+    grid.appendChild(card);
+    const series = banks.map(b => ({
+      label: BANK_LABEL(b), color: bankColor(b), emph: b === MY,
+      data: qs.map(qq => get(qq, b, "balance", def.key)),
+    }));
+    lineChart(card.querySelector("canvas"), qs, series, "%");
+    card.insertAdjacentHTML("beforeend", tableView(["Quarter", ...banks.map(BANK_LABEL)],
+      qs.map((qq, i) => [qq, ...series.map(s => s.data[i] ?? "—")])));
+  });
+
+  // capital ratios across banks
+  const capCard = document.createElement("div"); capCard.className = "card";
+  capCard.innerHTML = `<h3>Capital ratios by bank — ${q} (%)</h3><div class="chart-wrap"><canvas></canvas></div>
+    <div class="note">Well-capitalized benchmarks: gray line = 5% leverage minimum, red line = 10% total risk-based minimum. Source: B550.</div>`;
+  grid.appendChild(capCard);
+  makeChart(capCard.querySelector("canvas"), {
+    type: "bar",
+    data: {
+      labels: banks.map(BANK_LABEL),
+      datasets: [
+        { label: "Leverage ratio", data: banks.map(b => get(q, b, "capital", "leverage_ratio")), backgroundColor: cssVar("--bank1"), borderRadius: 4, maxBarThickness: 28 },
+        { label: "Risk capital ratio", data: banks.map(b => get(q, b, "capital", "risk_capital_ratio")), backgroundColor: cssVar("--bank2"), borderRadius: 4, maxBarThickness: 28 },
+      ],
+    },
+    options: {
+      ...baseOptions("%"),
+      plugins: {
+        ...baseOptions("%").plugins,
+        legend: { labels: { color: cssVar("--ink-2"), usePointStyle: true, pointStyle: "rect" } },
+        thresholds: { lines: [
+          { axis: "y", value: 5, color: cssVar("--muted"), label: "" },
+          { axis: "y", value: 10, color: cssVar("--critical"), label: "" },
+        ] },
+      },
+      scales: {
+        x: { grid: { display: false }, border: { color: cssVar("--baseline") }, ticks: { color: cssVar("--muted") } },
+        y: { grid: { color: cssVar("--grid") }, border: { display: false }, ticks: { color: cssVar("--muted") }, suggestedMax: 11 },
+      },
+    },
+  });
+}
+
+/* ---------- 5. DECISIONS ---------- */
+const LS_KEY = "bmsim_decisions_v1";
+function loadDecisions() {
+  let local = null;
+  try { local = JSON.parse(localStorage.getItem(LS_KEY)); } catch (e) { /* ignore */ }
+  // localStorage (if present) wins per-quarter; file is the base
+  const merged = JSON.parse(JSON.stringify(S.decisionsBase || {}));
+  if (local) Object.keys(local).forEach(q => { merged[q] = local[q]; });
+  return merged;
+}
+function saveDecisions(all) { localStorage.setItem(LS_KEY, JSON.stringify(all)); }
+
+const DELTA_METRICS = [
+  { label: "Stock price", section: "capital", key: "stock_price", f: fmt.usd },
+  { label: "Mkt/Book", section: "capital", key: "mkt_book", f: fmt.x },
+  { label: "Net income ($M)", section: "income", key: "net_income", f: fmt.m3 },
+  { label: "Oper. earnings ($M)", section: "income", key: "operating_earnings", f: fmt.m3 },
+  { label: "NIM", section: "income", key: "nim", f: fmt.pct },
+  { label: "ROAA", section: "income", key: "roaa", f: fmt.pct },
+  { label: "Efficiency", section: "income", key: "efficiency_ratio", f: fmt.pct0 },
+  { label: "Total loans ($M)", section: "balance", key: "total_loans", f: fmt.m },
+  { label: "Total deposits ($M)", section: "balance", key: "total_deposits", f: fmt.m },
+  { label: "Non-perf / loans", section: "balance", key: "nonperf_loans", f: fmt.pct1 },
+];
+function renderDecisions(main) {
+  const controls = document.createElement("div"); controls.className = "controls";
+  quarterSelect(controls, render);
+  const exportBtn = document.createElement("button"); exportBtn.className = "btn"; exportBtn.textContent = "Export decisions.json";
+  exportBtn.addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(loadDecisions(), null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = "decisions.json"; a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  const resetBtn = document.createElement("button"); resetBtn.className = "btn"; resetBtn.textContent = "Discard local edits";
+  resetBtn.addEventListener("click", () => { if (confirm("Discard browser-local decision edits and revert to the committed decisions.json?")) { localStorage.removeItem(LS_KEY); render(); } });
+  controls.append(exportBtn, resetBtn);
+  main.appendChild(controls);
+  main.insertAdjacentHTML("beforeend", `<p class="hint">Entries are saved in this browser (localStorage). To make them permanent, Export and commit the file over <code>data/decisions.json</code>.</p>`);
+
+  const q = S.quarter;
+  const all = loadDecisions();
+  const entry = all[q] || { decisions: [], notes: "" };
+
+  // deltas that followed this quarter's decisions (this quarter vs previous)
+  const qi = quarters().indexOf(q);
+  const prevQ = qi > 0 ? quarters()[qi - 1] : null;
+  const deltaCard = document.createElement("div"); deltaCard.className = "card";
+  if (prevQ) {
+    const rows = DELTA_METRICS.map(m => {
+      const now = get(q, MY, m.section, m.key), before = get(prevQ, MY, m.section, m.key);
+      const d = (now != null && before != null) ? now - before : null;
+      const cls = d == null ? "" : (d >= 0 ? "up" : "down");
+      return `<tr><td>${m.label}</td><td>${m.f(before)}</td><td>${m.f(now)}</td>
+        <td class="delta ${cls}">${d == null ? "—" : (d >= 0 ? "▲ +" : "▼ ") + (Math.round(d * 100) / 100)}</td></tr>`;
+    }).join("");
+    deltaCard.innerHTML = `<h3>Bank 1 metric deltas: ${prevQ} → ${q}</h3>
+      <div class="table-scroll"><table><thead><tr><th>Metric</th><th>${prevQ}</th><th>${q}</th><th>Δ</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="note">Direction arrows are raw change, not judgement — a rising efficiency ratio or NPL is bad even when green.</div>`;
+  } else {
+    deltaCard.innerHTML = `<h3>Metric deltas</h3><div class="note">No earlier quarter to compare against.</div>`;
+  }
+  main.appendChild(deltaCard);
+
+  // decision list + form
+  const listCard = document.createElement("div"); listCard.className = "card"; listCard.style.marginTop = "16px";
+  listCard.innerHTML = `<h3>Decisions logged for ${q}</h3><div id="dec-list"></div>
+    <form class="dec-form" id="dec-form">
+      <select id="dec-cat">
+        ${["Loan pricing", "Deposit pricing", "Securities", "Funding", "Capital/Dividend", "Staffing/Expenses", "Other"].map(c => `<option>${c}</option>`).join("")}
+      </select>
+      <input id="dec-text" placeholder="Decision (e.g. cut construction rate to 6.87%)" required>
+      <span></span>
+      <textarea id="dec-why" placeholder="Rationale / expected effect (optional)"></textarea>
+      <div class="actions"><button class="btn" type="submit" id="dec-submit">Add decision</button>
+      <button class="btn" type="button" id="dec-cancel" hidden>Cancel edit</button></div>
+    </form>
+    <h3 style="margin-top:14px">Quarter notes</h3>
+    <textarea id="dec-notes" style="width:100%;min-height:60px" placeholder="Free-form notes for ${q}"></textarea>`;
+  main.appendChild(listCard);
+
+  const listEl = listCard.querySelector("#dec-list");
+  const formEl = listCard.querySelector("#dec-form");
+  const notesEl = listCard.querySelector("#dec-notes");
+  notesEl.value = entry.notes || "";
+  let editIdx = null;
+
+  const persist = () => { all[q] = entry; saveDecisions(all); };
+  notesEl.addEventListener("change", () => { entry.notes = notesEl.value; persist(); });
+
+  const drawList = () => {
+    listEl.innerHTML = entry.decisions.length ? entry.decisions.map((d, i) => `
+      <div class="decision-item">
+        <span class="row-actions"><button data-edit="${i}">edit</button> · <button data-del="${i}">delete</button></span>
+        <div class="cat">${d.category || "Other"}</div>
+        <div>${d.decision || ""}</div>
+        ${d.rationale ? `<div class="why">${d.rationale}</div>` : ""}
+      </div>`).join("") : `<div class="hint">Nothing logged yet for ${q}.</div>`;
+    listEl.querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
+      entry.decisions.splice(+b.dataset.del, 1); persist(); drawList();
+    }));
+    listEl.querySelectorAll("[data-edit]").forEach(b => b.addEventListener("click", () => {
+      editIdx = +b.dataset.edit;
+      const d = entry.decisions[editIdx];
+      formEl.querySelector("#dec-cat").value = d.category || "Other";
+      formEl.querySelector("#dec-text").value = d.decision || "";
+      formEl.querySelector("#dec-why").value = d.rationale || "";
+      formEl.querySelector("#dec-submit").textContent = "Save edit";
+      formEl.querySelector("#dec-cancel").hidden = false;
+    }));
+  };
+  drawList();
+
+  formEl.addEventListener("submit", e => {
+    e.preventDefault();
+    const d = {
+      category: formEl.querySelector("#dec-cat").value,
+      decision: formEl.querySelector("#dec-text").value.trim(),
+      rationale: formEl.querySelector("#dec-why").value.trim(),
+    };
+    if (!d.decision) return;
+    if (editIdx == null) entry.decisions.push(d); else entry.decisions[editIdx] = d;
+    editIdx = null;
+    formEl.reset();
+    formEl.querySelector("#dec-submit").textContent = "Add decision";
+    formEl.querySelector("#dec-cancel").hidden = true;
+    persist(); drawList();
+  });
+  formEl.querySelector("#dec-cancel").addEventListener("click", () => {
+    editIdx = null; formEl.reset();
+    formEl.querySelector("#dec-submit").textContent = "Add decision";
+    formEl.querySelector("#dec-cancel").hidden = true;
+  });
+}
+
+/* ================= boot ================= */
+document.getElementById("tabs").addEventListener("click", e => {
+  const btn = e.target.closest("button[data-tab]");
+  if (!btn) return;
+  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("active", b === btn));
+  S.tab = btn.dataset.tab;
+  render();
+});
+
+const THEME_KEY = "bmsim_theme";
+function applyTheme(mode) {
+  if (mode === "auto") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", mode);
+  document.getElementById("theme-toggle").textContent = "Theme: " + mode;
+}
+let themeMode = localStorage.getItem(THEME_KEY) || "auto";
+applyTheme(themeMode);
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  themeMode = themeMode === "auto" ? "light" : themeMode === "light" ? "dark" : "auto";
+  localStorage.setItem(THEME_KEY, themeMode);
+  applyTheme(themeMode); render();
+});
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { if (themeMode === "auto") render(); });
+
+Promise.all([
+  fetch("data/quarters.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch("data/decisions.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+]).then(([quartersData, decisionsData]) => {
+  S.data = quartersData;
+  S.decisionsBase = decisionsData;
+  S.quarter = latestQuarter();
+  render();
+}).catch(err => {
+  document.getElementById("main").innerHTML = `<div class="error-banner">
+    <strong>Couldn't load data/quarters.json</strong> (${err}).<br>
+    If you opened this file directly (file://), browsers block local fetches — serve the folder instead:
+    <code>python3 -m http.server</code> then open <code>http://localhost:8000</code>. On GitHub Pages this works as-is.</div>`;
+});
+</script>
+</body>
+</html>
