@@ -548,13 +548,32 @@ function renderRisk(main) {
     flags.push({ lvl: "warning", txt: `Construction loans are ${constrPct}% of total capital vs ${constrG}% guidance — over the threshold, worth managing down but not a panic signal on its own.` });
   if (crePct != null && creG != null)
     flags.push({ lvl: crePct > creG ? "serious" : "good", txt: `Total CRE is ${crePct}% of total capital vs ${creG}% guidance — ${crePct > creG ? "over" : "within"} guidance.` });
+  // Capital — sim regime: undercapitalized below 5% leverage / 8% TRBC now;
+  // Boulder Capital Accord requires 6% / 10% by end of 4Q29 (violation + escalating CMP after).
   const rcr = get(q, MY, "capital", "risk_capital_ratio");
-  if (rcr != null && rcr < 10) flags.push({ lvl: "serious", txt: `Total risk-based capital ratio ${rcr}% is below the 10% well-capitalized benchmark.` });
+  if (rcr != null && rcr < 8) flags.push({ lvl: "critical", txt: `Total risk-based capital ${rcr}% is below the 8% minimum — UNDERCAPITALIZED (special exam/supervision, correction plan required).` });
+  else if (rcr != null && rcr < 10) flags.push({ lvl: "serious", txt: `Total risk-based capital ${rcr}% is below the 10% Boulder Accord minimum due by end of 4Q29 (miss = violation + $100M CMP, doubling per occurrence). Need +${(10 - rcr).toFixed(2)} pts.` });
   const lev = get(q, MY, "capital", "leverage_ratio");
-  if (lev != null && lev < 5) flags.push({ lvl: "critical", txt: `Leverage ratio ${lev}% is below the 5% well-capitalized benchmark.` });
-  else if (lev != null && lev < 7) flags.push({ lvl: "warning", txt: `Leverage ratio ${lev}% has thin headroom over the 5% well-capitalized benchmark.` });
+  if (lev != null && lev < 5) flags.push({ lvl: "critical", txt: `Leverage ratio ${lev}% is below the 5% minimum — UNDERCAPITALIZED.` });
+  else if (lev != null && lev < 6) flags.push({ lvl: "serious", txt: `Leverage ratio ${lev}% is below the 6% Boulder Accord minimum due by end of 4Q29. Need +${(6 - lev).toFixed(2)} pts.` });
+  else if (lev != null && lev < 6.5) flags.push({ lvl: "warning", txt: `Leverage ratio ${lev}% has thin headroom over the 6% minimum required by end of 4Q29.` });
+  // Fed funds purchased vs equity (reg: >100% = prima facie unsafe & unsound)
+  const ffp = get(q, MY, "balance", "fed_funds_purch_equity");
+  if (ffp != null && ffp > 100) flags.push({ lvl: "serious", txt: `Fed funds purchased are ${ffp}% of owners equity — over the 100% regulatory limit (prima facie unsafe & unsound).` });
+  else if (ffp != null && ffp > 85) flags.push({ lvl: "warning", txt: `Fed funds purchased at ${ffp}% of owners equity — approaching the 100% regulatory limit.` });
+  // ACL minimum (CECL phase-in: >=1.00% of loans at 3/31/29; +/-10% of CECL calc from 6/30/29)
+  const acl = get(q, MY, "balance", "acl_loans");
+  if (acl != null && acl < 1.0) flags.push({ lvl: "serious", txt: `ACL is ${acl}% of loans — below the 1.00% regulatory minimum (CECL phase-in). From 6/30/29 the ACL must sit within ±10% of the CECL worksheet calc.` });
+  // Dividend cessation rule: two consecutive quarters of negative operating earnings
+  const qi = qs.indexOf(q);
   const oe = get(q, MY, "income", "operating_earnings");
-  if (oe != null && oe < 0) flags.push({ lvl: "warning", txt: `Operating earnings are negative (${fmt.m3(oe)}$M) — core business is losing money before one-time gains.` });
+  const oePrev = qi > 0 ? get(qs[qi - 1], MY, "income", "operating_earnings") : null;
+  if (oe != null && oe < 0 && oePrev != null && oePrev < 0) {
+    const dps = get(q, MY, "capital", "dps_qtr");
+    flags.push({ lvl: "warning", txt: `Two consecutive quarters of negative operating earnings — regulation requires dividends to cease${dps === 0 ? " (already at $0; must stay there until one quarter without operating losses)" : ""}.` });
+  } else if (oe != null && oe < 0) {
+    flags.push({ lvl: "warning", txt: `Operating earnings are negative (${fmt.m3(oe)}$M) — core business is losing money before one-time gains. A second consecutive negative quarter triggers mandatory dividend cessation.` });
+  }
   const gap = risk.gap_1yr_pct_ta;
   if (gap != null && Math.abs(gap) >= 10) flags.push({ lvl: "warning", txt: `1-year cumulative rate gap is ${gap > 0 ? "+" : ""}${gap}% of assets — strongly ${gap > 0 ? "asset" : "liability"}-sensitive; earnings ${gap > 0 ? "fall" : "rise"} if rates drop.` });
   main.insertAdjacentHTML("beforeend", `<h2>Risk flags — ${q}</h2>`);
@@ -634,7 +653,7 @@ function renderRisk(main) {
   // capital ratios across banks
   const capCard = document.createElement("div"); capCard.className = "card";
   capCard.innerHTML = `<h3>Capital ratios by bank — ${q} (%)</h3><div class="chart-wrap"><canvas></canvas></div>
-    <div class="note">Well-capitalized benchmarks: gray line = 5% leverage minimum, red line = 10% total risk-based minimum. Source: B550.</div>`;
+    <div class="note">Gray line = 6% leverage, red line = 10% total risk-based — the Boulder Accord minimums due by end of 4Q29 (current undercapitalized floors are 5% / 8%). Source: B550 + Regulatory session.</div>`;
   grid.appendChild(capCard);
   makeChart(capCard.querySelector("canvas"), {
     type: "bar",
@@ -651,7 +670,7 @@ function renderRisk(main) {
         ...baseOptions("%").plugins,
         legend: { labels: { color: cssVar("--ink-2"), usePointStyle: true, pointStyle: "rect" } },
         thresholds: { lines: [
-          { axis: "y", value: 5, color: cssVar("--muted"), label: "" },
+          { axis: "y", value: 6, color: cssVar("--muted"), label: "" },
           { axis: "y", value: 10, color: cssVar("--critical"), label: "" },
         ] },
       },

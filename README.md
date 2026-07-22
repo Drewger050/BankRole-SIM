@@ -12,6 +12,8 @@ index.html            the dashboard (single file, 5 tabs)
 data/quarters.json    all parsed report data, keyed by quarter → bank → section
 data/decisions.json   my decisions log, keyed by quarter
 data/schema.md        the data contract: every metric key + which report it comes from
+data/reference.md     sim rules distilled from the topic sessions (regulatory limits,
+                      treasury/deposit/credit mechanics) — drives the Risk-tab flags
 ```
 
 ## Tabs
