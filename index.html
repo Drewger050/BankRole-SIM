@@ -88,7 +88,8 @@
   .chart-tall { height: 300px; }
   table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
   th, td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
-  th { color: var(--ink-2); font-weight: 600; font-size: 12px; }
+  th { color: var(--ink-2); font-weight: 600; font-size: 12px; position: sticky; top: 0; background: var(--surface); z-index: 1; }
+  tbody tr:hover td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
   th:first-child, td:first-child { text-align: left; }
   tr.me td { background: color-mix(in srgb, var(--accent) 9%, transparent); font-weight: 600; }
   .table-scroll { overflow-x: auto; }
@@ -851,6 +852,156 @@ function renderProfit(main) {
     }).join("")}</tr>`).join("")}</tbody></table></div>
     <div class="note">* = you. Underline = best in field on that line (lowest for costs, highest for income).</div>`;
   main.appendChild(plCard);
+
+  // ---- per-product profitability (from detail.json, if present) ----
+  const lp = detailSection("loan_profitability");
+  if (lp && lp.viz) {
+    const card = document.createElement("div"); card.className = "card"; card.style.marginTop = "16px";
+    card.innerHTML = `<h3>Product profitability — ${lp.viz.title}</h3>`;
+    card.appendChild(sectionBarChart(lp, lp.viz));
+    card.insertAdjacentHTML("beforeend", `<div class="note">Red bars net less than your all-in cost of funds — every dollar in them destroys margin. Full table with charge-offs and costs on the Details tab (source ${lp.source}).</div>`);
+    main.appendChild(card);
+  }
+
+  // ---- potential sale income (loan packages from B275) ----
+  const mb = detailSection("mortgage_banking");
+  const capNow = S.data[q][MY].risk?.total_capital;
+  const rcrNow = get(q, MY, "capital", "risk_capital_ratio");
+  if (mb) {
+    const pkgs = mb.rows.filter(r => typeof r[0] === "string" && /^\d{3} /.test(r[0]))
+      .map(r => ({ name: r[0], book: r[1], mkt: r[2], gl: r[3], yield: r[4], cq: r[6], resi: /Resi/.test(r[0]), }));
+    if (pkgs.length) {
+      const riskAssets = (capNow != null && rcrNow) ? capNow / (rcrNow / 100) : null;
+      const rowsHtml = pkgs.map(p => {
+        let bps = null;
+        if (riskAssets) {
+          const rw = p.resi ? 0.5 : 1.0;
+          bps = Math.round(((capNow + p.gl) / (riskAssets - p.book * rw) * 100 - rcrNow) * 100);
+        }
+        return `<tr><td style="text-align:left">${p.name}</td><td>${p.book.toFixed(2)}</td><td>${p.mkt.toFixed(2)}</td>
+          <td class="delta ${p.gl >= 0 ? "up" : "down"}">${p.gl >= 0 ? "+" : ""}${p.gl.toFixed(3)}</td>
+          <td>${p.yield == null ? "—" : p.yield.toFixed(2) + "%"}</td><td>${p.cq ?? "—"}</td>
+          <td>${bps == null ? "—" : (bps >= 0 ? "+" : "") + bps + " bp"}</td></tr>`;
+      }).join("");
+      const totB = pkgs.reduce((s2, p) => s2 + p.book, 0), totM = pkgs.reduce((s2, p) => s2 + p.mkt, 0), totG = pkgs.reduce((s2, p) => s2 + p.gl, 0);
+      const card = document.createElement("div"); card.className = "card"; card.style.marginTop = "16px";
+      card.innerHTML = `<h3>Potential sale income — loan packages on the shelf (B275)</h3>
+        <div class="table-scroll"><table>
+        <thead><tr><th>Package</th><th>Book $M</th><th>Sale proceeds $M</th><th>Gain/loss $M</th><th>Yield given up</th><th>Avg CQ</th><th>≈TRBC impact</th></tr></thead>
+        <tbody>${rowsHtml}
+        <tr style="font-weight:600"><td style="text-align:left">SELL EVERYTHING</td><td>${totB.toFixed(1)}</td><td>${totM.toFixed(1)}</td>
+        <td class="delta ${totG >= 0 ? "up" : "down"}">${totG.toFixed(2)}</td><td colspan="3"></td></tr></tbody></table></div>
+        <div class="note">TRBC impact ≈ capital effect of the gain/loss plus risk-asset relief (100% weight, 50% for residential) on your current base of
+        ~$${riskAssets ? riskAssets.toFixed(0) : "—"}M risk assets. Rates rose since these were booked, so most sales take a small loss now —
+        but they free balance sheet for the 10%-by-4Q29 capital requirement and shed low-yield or high-charge-off paper (207/208 also cut CRE concentration).
+        Q1's actual sale: $13.6M book → $14.3M proceeds, +$0.715M gain.</div>`;
+      main.appendChild(card);
+    }
+  }
+
+  // ---- rate forecast (interactive parallel shock) ----
+  const risk1 = S.data[q][MY].risk;
+  if (risk1 && risk1.gap_q1 != null) {
+    const secSec = detailSection("securities");
+    const card = document.createElement("div"); card.className = "card"; card.style.marginTop = "16px";
+    card.innerHTML = `<h3>Rate forecast — what a parallel rate move does to you</h3>
+      <div class="controls" style="margin:10px 0 4px">
+        <label>Rate shock: <strong id="shock-label">+100 bp</strong></label>
+        <input type="range" id="shock" min="-200" max="200" step="25" value="100" style="width:260px">
+      </div>
+      <div class="grid tiles" id="shock-tiles" style="margin-bottom:8px"></div>
+      <div class="chart-wrap" style="height:220px"><canvas id="shock-canvas"></canvas></div>
+      <div class="note">Static-balance-sheet gap model from B531: quarterly NII impact = cumulative repricing gap × Δr/4, phasing in as
+      $${risk1.gap_q1}M / $${risk1.gap_q2}M / $${risk1.gap_q3}M / $${risk1.gap_q4}M of net assets reprice each quarter.
+      Securities mark-to-market uses B102 durations (only the long munis matter). You are asset-sensitive (+${risk1.gap_1yr_pct_ta}% of assets):
+      rising rates help earnings, falling rates hurt — the opposite of most of what you'd fear from the stock page.</div>`;
+    main.appendChild(card);
+    let shockChart = null;
+    const drawShock = () => {
+      const dr = +card.querySelector("#shock").value / 10000; // decimal
+      card.querySelector("#shock-label").textContent = (dr >= 0 ? "+" : "") + (dr * 10000) + " bp";
+      const cum = [risk1.gap_q1, risk1.gap_q1 + risk1.gap_q2, risk1.gap_q1 + risk1.gap_q2 + risk1.gap_q3, risk1.gap_1yr_cum];
+      const qDeltas = cum.map(c => c * dr / 4);
+      const year1 = qDeltas.reduce((a, b) => a + b, 0);
+      const runRate = risk1.gap_1yr_cum * dr / 4; // quarterly, fully repriced
+      let mtm = 0;
+      if (secSec) secSec.rows.forEach(r => {
+        const mkt = r[3], durQ = r[9];
+        if (typeof mkt === "number" && typeof durQ === "number" && typeof r[0] === "number") mtm += -(durQ / 4) * dr * mkt;
+      });
+      const newOE = oe + runRate;
+      card.querySelector("#shock-tiles").innerHTML = [
+        { l: "Δ NII per quarter (fully repriced)", v: (runRate >= 0 ? "+" : "") + runRate.toFixed(2) + "$M" },
+        { l: "Δ NII cumulative, first 4 qtrs", v: (year1 >= 0 ? "+" : "") + year1.toFixed(2) + "$M" },
+        { l: "Securities mark-to-market", v: (mtm >= 0 ? "+" : "") + mtm.toFixed(2) + "$M" },
+        { l: "Implied operating earnings run-rate", v: (newOE >= 0 ? "+" : "") + newOE.toFixed(2) + "$M/qtr" },
+      ].map(t => `<div class="card tile"><h3>${t.l}</h3><div class="value" style="font-size:18px">${t.v}</div></div>`).join("");
+      const data = qDeltas.map(v => +v.toFixed(3));
+      if (shockChart) { shockChart.data.datasets[0].data = data; shockChart.data.datasets[0].backgroundColor = data.map(v => v >= 0 ? cssVar("--div-fav") : cssVar("--div-adv")); shockChart.update(); }
+      else shockChart = makeChart(card.querySelector("#shock-canvas"), {
+        type: "bar",
+        data: { labels: ["Quarter +1", "Quarter +2", "Quarter +3", "Quarter +4"],
+          datasets: [{ data, backgroundColor: data.map(v => v >= 0 ? cssVar("--div-fav") : cssVar("--div-adv")), borderRadius: 4, maxBarThickness: 44 }] },
+        options: { ...baseOptions("$M"), plugins: { ...baseOptions("$M").plugins, legend: { display: false }, tooltip: { callbacks: { label: c => ` Δ NII ${c.parsed.y >= 0 ? "+" : ""}${c.parsed.y}$M` } } } },
+      });
+    };
+    card.querySelector("#shock").addEventListener("input", drawShock);
+    drawShock();
+  }
+}
+
+/* ---------- shared detail-section helpers ---------- */
+function detailQuarter() {
+  const dqs = Object.keys(S.detail || {}).sort(qSort);
+  return dqs[dqs.length - 1] || null;
+}
+function detailSection(id, q) {
+  const dq = q || detailQuarter();
+  return dq ? (S.detail[dq].sections || []).find(s => s.id === id) : null;
+}
+// horizontal bar chart from a detail section's viz config; returns the card element
+function sectionBarChart(sec, viz) {
+  let rows = sec.rows;
+  if (viz.excludeBelow) {
+    const cut = rows.findIndex(r => r[viz.label] === viz.excludeBelow);
+    if (cut >= 0) rows = rows.slice(0, cut);
+  }
+  rows = rows.filter(r => typeof r[viz.value] === "number" && typeof r[viz.label] === "string" && !/^TOTAL/.test(r[viz.label]));
+  rows = [...rows].sort((a, b) => b[viz.value] - a[viz.value]);
+  const div = document.createElement("div");
+  const h = Math.max(140, rows.length * 24 + 60);
+  div.innerHTML = `<div class="chart-wrap" style="height:${h}px"><canvas></canvas></div>`;
+  const vals = rows.map(r => r[viz.value]);
+  const colors = vals.map(v => viz.diverging
+    ? ((viz.adversePositive ? v > 0 : v < 0) ? cssVar("--div-adv") : cssVar("--div-fav"))
+    : (viz.threshold != null && v < viz.threshold ? cssVar("--serious") : cssVar("--bank1")));
+  makeChart(div.querySelector("canvas"), {
+    type: "bar",
+    data: { labels: rows.map(r => r[viz.label]), datasets: [{ data: vals, backgroundColor: colors, borderRadius: 4, maxBarThickness: 14 }] },
+    options: {
+      ...baseOptions(""), indexAxis: "y",
+      interaction: { mode: "nearest", intersect: false },
+      plugins: {
+        legend: { display: false },
+        thresholds: viz.threshold != null ? { lines: [{ axis: "x", value: viz.threshold, color: cssVar("--critical"), label: viz.thresholdLabel || String(viz.threshold) }] } : undefined,
+        tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x}` } },
+      },
+      scales: {
+        x: { grid: { color: cssVar("--grid") }, border: { display: false }, ticks: { color: cssVar("--muted") } },
+        y: { grid: { display: false }, border: { color: cssVar("--baseline") }, ticks: { color: cssVar("--ink-2"), autoSkip: false, font: { size: 11 } } },
+      },
+    },
+  });
+  return div;
+}
+// heat tint for a numeric cell given its column's range
+function heatStyle(v, min, max, dir) {
+  if (typeof v !== "number" || min === max) return "";
+  let t = (v - min) / (max - min);            // 0..1, high = large value
+  if (dir === "low_good") t = 1 - t;          // now high t = good
+  const col = t >= 0.5 ? "--good" : "--critical";
+  const strength = Math.round(Math.abs(t - 0.5) * 2 * 22); // up to 22% tint
+  return `background: color-mix(in srgb, var(${col}) ${strength}%, transparent);`;
 }
 
 /* ---------- 6. DETAILS (searchable bank-1 report data) ---------- */
@@ -875,22 +1026,39 @@ function renderDetails(main) {
   const sections = S.detail[S.quarter].sections || [];
   const fmtCell = v => v == null ? "—" : (typeof v === "number" && !Number.isInteger(v) ? +v.toFixed(3) : v);
 
+  const totalRow = r => typeof r[0] === "string" && /^TOTAL|^—|^SOLD/.test(r[0]);
   function draw(filter) {
     const f = (filter || "").trim().toLowerCase();
-    wrap.innerHTML = sections.map(sec => {
+    destroyCharts();
+    wrap.innerHTML = "";
+    let any = false;
+    sections.forEach(sec => {
       const secMatch = !f || sec.title.toLowerCase().includes(f) || (sec.source || "").toLowerCase().includes(f);
       const rows = secMatch ? sec.rows : sec.rows.filter(r => r.some(c => c != null && String(c).toLowerCase().includes(f)));
-      if (!rows.length) return "";
-      const totalRow = r => typeof r[0] === "string" && /^TOTAL|^—/.test(r[0]);
-      return `<div class="card" style="margin-bottom:16px">
-        <h3>${sec.title} <span class="hint">— source: ${sec.source}${rows.length < sec.rows.length ? ` · ${rows.length}/${sec.rows.length} rows match` : ""}</span></h3>
-        <div class="table-scroll"><table>
-          <thead><tr>${sec.columns.map(c => `<th>${c}</th>`).join("")}</tr></thead>
-          <tbody>${rows.map(r => `<tr${totalRow(r) ? ' style="font-weight:600"' : ""}>${r.map((c, i) => `<td${i === 0 ? ' style="text-align:left"' : ""}>${fmtCell(c)}</td>`).join("")}</tr>`).join("")}</tbody>
-        </table></div>
-        ${sec.note ? `<div class="note">${sec.note}</div>` : ""}
-      </div>`;
-    }).join("") || `<div class="card">No rows match "${filter}".</div>`;
+      if (!rows.length) return;
+      any = true;
+      // per-column ranges for heat tint (data rows only, totals excluded)
+      const heat = sec.heatCols || {};
+      const ranges = {};
+      Object.keys(heat).forEach(ci => {
+        const vs = sec.rows.filter(r => !totalRow(r)).map(r => r[+ci]).filter(v => typeof v === "number");
+        if (vs.length) ranges[ci] = [Math.min(...vs), Math.max(...vs)];
+      });
+      const card = document.createElement("div"); card.className = "card"; card.style.marginBottom = "16px";
+      card.innerHTML = `<h3>${sec.title} <span class="hint">— source: ${sec.source}${rows.length < sec.rows.length ? ` · ${rows.length}/${sec.rows.length} rows match` : ""}</span></h3>`;
+      if (!f && sec.viz) card.appendChild(sectionBarChart(sec, sec.viz));
+      const tbl = document.createElement("div");
+      tbl.innerHTML = `<div class="table-scroll" style="max-height:480px;overflow-y:auto"><table>
+        <thead><tr>${sec.columns.map(c => `<th>${c}</th>`).join("")}</tr></thead>
+        <tbody>${rows.map(r => `<tr${totalRow(r) ? ' style="font-weight:600"' : ""}>${r.map((c, i) => {
+          const style = (i === 0 ? "text-align:left;" : "") + (!totalRow(r) && heat[i] && ranges[i] ? heatStyle(c, ranges[i][0], ranges[i][1], heat[i]) : "");
+          return `<td${style ? ` style="${style}"` : ""}>${fmtCell(c)}</td>`;
+        }).join("")}</tr>`).join("")}</tbody>
+      </table></div>${sec.note ? `<div class="note">${sec.note}</div>` : ""}`;
+      card.appendChild(tbl);
+      wrap.appendChild(card);
+    });
+    if (!any) wrap.innerHTML = `<div class="card">No rows match "${filter}".</div>`;
   }
   draw("");
   search.addEventListener("input", () => draw(search.value));

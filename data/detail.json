@@ -343,7 +343,19 @@
       5.07
      ]
     ],
-    "note": "Direct expense = salaries + benefits + business development. 'Net after' also deducts loan review costs ($0.126M total: Construction reviews downgraded $9.1M/upgraded $4.5M; CRE downgraded $7.3M). Best net-after-losses: MidMkt lines 6.66%, Construction 6.86%, Credit card 6.40%. Worst: Commercial RE 2.78%, Installment 3.22%, Nat'l lines 4.97% (chgoffs)."
+    "note": "Direct expense = salaries + benefits + business development. 'Net after' also deducts loan review costs ($0.126M total: Construction reviews downgraded $9.1M/upgraded $4.5M; CRE downgraded $7.3M). Best net-after-losses: MidMkt lines 6.66%, Construction 6.86%, Credit card 6.40%. Worst: Commercial RE 2.78%, Installment 3.22%, Nat'l lines 4.97% (chgoffs).",
+    "heatCols": {
+     "7": "high_good",
+     "9": "low_good",
+     "11": "high_good"
+    },
+    "viz": {
+     "label": 0,
+     "value": 11,
+     "title": "Net yield after charge-offs, review & direct costs (annualized %)",
+     "threshold": 3.74,
+     "thresholdLabel": "all-in cost of funds 3.74%"
+    }
    },
    {
     "id": "loan_activity",
@@ -826,7 +838,10 @@
       19.1
      ]
     ],
-    "note": "Turndowns = demand you rejected via CQ targets. Construction turned down $5.9M vs $6.8M written (R1's tight 45/45/10/0/0 targets); Home Equity turned down $3.2M."
+    "note": "Turndowns = demand you rejected via CQ targets. Construction turned down $5.9M vs $6.8M written (R1's tight 45/45/10/0/0 targets); Home Equity turned down $3.2M.",
+    "heatCols": {
+     "2": "low_good"
+    }
    },
    {
     "id": "loan_yields",
@@ -960,7 +975,10 @@
       318.9
      ]
     ],
-    "note": "Runoff column: projected balance of TODAY'S portfolio 4 quarters out \u2014 $264M (45%) rolls off within a year and reprices at whatever rates you set. Short-books: Trade (1.8 left), Credit card (4.4), Installment (4.7), Construction (10.6)."
+    "note": "Runoff column: projected balance of TODAY'S portfolio 4 quarters out \u2014 $264M (45%) rolls off within a year and reprices at whatever rates you set. Short-books: Trade (1.8 left), Credit card (4.4), Installment (4.7), Construction (10.6).",
+    "heatCols": {
+     "2": "high_good"
+    }
    },
    {
     "id": "funds_profitability",
@@ -1080,7 +1098,18 @@
       11
      ]
     ],
-    "note": "All-in = interest + allocated operating expense (and fee offsets). Biggest funding outliers vs community: IBC +117bp, MMA +45bp. Retail CDs are the most expensive money on the book at 6.03% \u2014 dearer than borrowed funds at 3.71%."
+    "note": "All-in = interest + allocated operating expense (and fee offsets). Biggest funding outliers vs community: IBC +117bp, MMA +45bp. Retail CDs are the most expensive money on the book at 6.03% \u2014 dearer than borrowed funds at 3.71%.",
+    "heatCols": {
+     "4": "low_good"
+    },
+    "viz": {
+     "label": 0,
+     "value": 4,
+     "title": "All-in cost gap vs community average (bp \u2014 positive = you pay/earn more)",
+     "diverging": true,
+     "adversePositive": true,
+     "excludeBelow": "\u2014 Earning assets \u2014"
+    }
    },
    {
     "id": "deposit_cost",
@@ -1242,7 +1271,10 @@
       3.75
      ]
     ],
-    "note": "Business savings looks expensive (13.1%) only because $30K bus-dev sits on a $1.1M balance. The real money: individual retail CDs cost 6.42% all-in on $82M \u2014 the most expensive funding at scale."
+    "note": "Business savings looks expensive (13.1%) only because $30K bus-dev sits on a $1.1M balance. The real money: individual retail CDs cost 6.42% all-in on $82M \u2014 the most expensive funding at scale.",
+    "heatCols": {
+     "8": "low_good"
+    }
    },
    {
     "id": "core_deposit_activity",
@@ -2016,7 +2048,10 @@
       0
      ]
     ],
-    "note": "Consumer lending ran $222K OVER budget ($422 vs $200) \u2014 volume-driven staffing you don't fully control; R2 budgeted 325. 'Proposed' = the system's request for next quarter; your decision can differ, but underfunding vs proposed risks weaker attraction/processing."
+    "note": "Consumer lending ran $222K OVER budget ($422 vs $200) \u2014 volume-driven staffing you don't fully control; R2 budgeted 325. 'Proposed' = the system's request for next quarter; your decision can differ, but underfunding vs proposed risks weaker attraction/processing.",
+    "heatCols": {
+     "4": "low_good"
+    }
    },
    {
     "id": "premises",
