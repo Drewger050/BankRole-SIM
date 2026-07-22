@@ -142,6 +142,7 @@
   <button data-tab="trajectory">Trajectory</button>
   <button data-tab="rates">Rate Positioning</button>
   <button data-tab="risk">Risk</button>
+  <button data-tab="profit">Path to Profit</button>
   <button data-tab="decisions">Decisions</button>
 </nav>
 <main id="main"><div class="card">Loading data…</div></main>
@@ -280,7 +281,7 @@ function render() {
   destroyCharts();
   const main = document.getElementById("main");
   if (!S.data) return;
-  const fns = { scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, decisions: renderDecisions };
+  const fns = { scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, profit: renderProfit, decisions: renderDecisions };
   // decision-only quarters (no packet yet) are valid on the Decisions tab, nowhere else
   if (S.tab !== "decisions" && !S.data[S.quarter]) S.quarter = latestQuarter();
   main.innerHTML = "";
@@ -685,7 +686,173 @@ function renderRisk(main) {
   });
 }
 
-/* ---------- 5. DECISIONS ---------- */
+/* ---------- 5. PATH TO PROFIT ---------- */
+// Everything here is computed from the latest quarter's data vs the best
+// competitor on each lever — nothing is hardcoded to a specific quarter.
+function renderProfit(main) {
+  const qs = quarters();
+  // latest quarter that actually has income data for my bank
+  const q = [...qs].reverse().find(qq => S.data[qq]?.[MY]?.income?.operating_earnings != null);
+  if (!q) { main.innerHTML = `<div class="card">No income data parsed yet.</div>`; return; }
+  const banks = banksIn(q);
+  const peers = banks.filter(b => b !== MY);
+  const val = (b, s, k) => get(q, b, s, k);
+  const peerVals = (s, k) => peers.map(b => val(b, s, k)).filter(v => v != null);
+  const peerBest = (s, k, min) => {
+    const vs = peers.map(b => [val(b, s, k), b]).filter(p => p[0] != null);
+    if (!vs.length) return null;
+    vs.sort((a, b2) => min ? a[0] - b2[0] : b2[0] - a[0]);
+    return { v: vs[0][0], bank: vs[0][1] };
+  };
+
+  const oe = val(MY, "income", "operating_earnings");
+  const ta = val(MY, "balance", "total_assets");
+  const eaD = val(MY, "balance", "earning_assets_ta") / 100 * ta;   // earning assets $M
+  const iblD = val(MY, "balance", "int_bearing_liab_ta") / 100 * ta; // int-bearing liabilities $M
+
+  // ---- levers: each = {label, mine, best, fmt, gap$, how} — gap$ is quarterly $M if I matched the best peer
+  const levers = [];
+  const yb = peerBest("income", "te_int_inc_avg_ea", false);
+  if (yb) {
+    const gap = Math.max(0, yb.v - val(MY, "income", "te_int_inc_avg_ea"));
+    levers.push({ label: "Earning-asset yield", mine: fmt.pct(val(MY, "income", "te_int_inc_avg_ea")), best: `${fmt.pct(yb.v)} (${BANK_LABEL(yb.bank)})`,
+      gapD: gap / 100 / 4 * eaD, how: "Raise loan base/max rates where you're lowest-yield (see Rate Positioning); let low-rate paper roll off; keep bills short only if rates are rising." });
+  }
+  const fb = peerBest("income", "int_exp_avg_ibl", true);
+  if (fb) {
+    const gap = Math.max(0, val(MY, "income", "int_exp_avg_ibl") - fb.v);
+    levers.push({ label: "Funding cost", mine: fmt.pct(val(MY, "income", "int_exp_avg_ibl")), best: `${fmt.pct(fb.v)} (${BANK_LABEL(fb.bank)})`,
+      gapD: gap / 100 / 4 * iblD, how: "Trim deposit rate premiums vs the field; shift mix toward DDA/core (75% of business DDA follows loan customers); reduce wholesale reliance." });
+  }
+  const pb = peerBest("income", "credit_loss_provision", true);
+  if (pb) {
+    const gap = Math.max(0, val(MY, "income", "credit_loss_provision") - pb.v);
+    levers.push({ label: "Credit loss provision", mine: fmt.m3(val(MY, "income", "credit_loss_provision")) + "$M", best: `${fmt.m3(pb.v)}$M (${BANK_LABEL(pb.bank)})`,
+      gapD: gap, how: "Provision is driven by portfolio risk (CECL): better CQ mix and fewer charge-offs shrink it. Caution: regulatory floor is ±10% of the CECL calc — don't underfund to chase earnings." });
+  }
+  const ob = peerBest("income", "operating_expenses", true);
+  if (ob) {
+    const gap = Math.max(0, val(MY, "income", "operating_expenses") - ob.v);
+    levers.push({ label: "Operating expenses", mine: fmt.m3(val(MY, "income", "operating_expenses")) + "$M", best: `${fmt.m3(ob.v)}$M (${BANK_LABEL(ob.bank)})`,
+      gapD: gap, how: "Salaries are the big block — but cutting too deep hurts loan/deposit attraction. Premises sales trade recurring occupancy cost for one-time gains." });
+  }
+  const feb = peerBest("income", "fees_svc_other", false);
+  if (feb) {
+    const gap = Math.max(0, feb.v - val(MY, "income", "fees_svc_other"));
+    levers.push({ label: "Fee income", mine: fmt.m3(val(MY, "income", "fees_svc_other")) + "$M", best: `${fmt.m3(feb.v)}$M (${BANK_LABEL(feb.bank)})`,
+      gapD: gap, how: "Origination/annual fees on loans, deposit service charges, mortgage banking sales. Watch: big deposit-fee cuts (R2) push this down." });
+  }
+  levers.sort((a, b2) => b2.gapD - a.gapD);
+  const totalUpside = levers.reduce((s2, l) => s2 + l.gapD, 0);
+
+  // ---- hero tiles
+  const bkNeeded = Math.max(0, -oe);
+  const bpsNeeded = eaD ? (bkNeeded * 4 / eaD * 10000) : null; // bps of annualized EA yield to break even
+  const tiles = [
+    { label: "Operating earnings (" + q + ")", v: fmt.m3(oe) + "$M" },
+    { label: "Gap to breakeven", v: bkNeeded ? fmt.m3(bkNeeded) + "$M / qtr" : "profitable ✓" },
+    { label: "…as margin", v: bpsNeeded ? "≈" + Math.round(bpsNeeded) + " bps of NIM" : "—" },
+    { label: "If you matched the best bank on every lever", v: "+" + fmt.m3(totalUpside) + "$M / qtr" },
+  ];
+  main.insertAdjacentHTML("beforeend", `<h2>Path to profit — computed from ${q} vs the field</h2>`);
+  const tileGrid = document.createElement("div"); tileGrid.className = "grid tiles";
+  tileGrid.innerHTML = tiles.map(t => `<div class="card tile"><h3>${t.label}</h3><div class="value" style="font-size:20px">${t.v}</div></div>`).join("");
+  main.appendChild(tileGrid);
+
+  // ---- levers chart + table
+  const levCard = document.createElement("div"); levCard.className = "card"; levCard.style.marginTop = "16px";
+  const h = Math.max(160, levers.length * 34 + 60);
+  levCard.innerHTML = `<h3>Levers ranked by quarterly $ impact (close the gap to the best bank in the field)</h3>
+    <div class="chart-wrap" style="height:${h}px"><canvas></canvas></div>`;
+  main.appendChild(levCard);
+  makeChart(levCard.querySelector("canvas"), {
+    type: "bar",
+    data: {
+      labels: levers.map(l => l.label),
+      datasets: [{ data: levers.map(l => +l.gapD.toFixed(3)), backgroundColor: cssVar("--bank1"), borderRadius: 4, maxBarThickness: 18 }],
+    },
+    options: {
+      ...baseOptions("$M"), indexAxis: "y",
+      interaction: { mode: "nearest", intersect: false },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` +$${ctx.parsed.x}M per quarter if matched` } } },
+      scales: {
+        x: { grid: { color: cssVar("--grid") }, border: { display: false }, ticks: { color: cssVar("--muted") } },
+        y: { grid: { display: false }, border: { color: cssVar("--baseline") }, ticks: { color: cssVar("--ink-2"), autoSkip: false } },
+      },
+    },
+  });
+  levCard.insertAdjacentHTML("beforeend", `<div class="table-scroll" style="margin-top:10px"><table>
+    <thead><tr><th>Lever</th><th>You</th><th>Best in field</th><th>≈$M/qtr if closed</th><th style="text-align:left">How to move it</th></tr></thead>
+    <tbody>${levers.map(l => `<tr><td>${l.label}</td><td>${l.mine}</td><td>${l.best}</td><td><strong>${l.gapD >= 0.005 ? "+" + l.gapD.toFixed(2) : "already best"}</strong></td><td style="text-align:left;white-space:normal;min-width:280px">${l.how}</td></tr>`).join("")}</tbody>
+  </table></div>
+  <div class="note">Illustrative, not additive-exact: each gap assumes your balance-sheet size with the best competitor's rate/level on that one dimension. Chasing one lever usually moves another (e.g. cheaper funding → fewer deposits).</div>`);
+
+  // ---- what's dragging us down (computed)
+  const drags = [];
+  // loan yield give-ups
+  if (S.data[q][MY].loan_rates) {
+    const low = LOAN_CATS.map(c => rateRow(q, banks, "loan_rates", c)).filter(r => r.isMin);
+    if (low.length) {
+      const worst = low.map(r => ({ ...r, giveup: r.med - r.mine })).sort((a, b2) => b2.giveup - a.giveup).slice(0, 3);
+      drags.push({ lvl: "serious", txt: `Lowest-yield lender in ${low.length} of ${LOAN_CATS.length} loan categories — worst give-ups: ${worst.map(w => `${w.cat.label} (−${Math.round(w.giveup * 100)}bp vs median)`).join(", ")}. Every new loan written below the field is margin locked in for its whole term.` });
+    }
+    const dep = DEPOSIT_CATS.map(c => rateRow(q, banks, "deposit_rates", c)).filter(r => r.diff != null && r.diff > 0);
+    if (dep.length >= 3) {
+      drags.push({ lvl: "warning", txt: `Paying above the field median on ${dep.length} of ${DEPOSIT_CATS.length} deposit categories (${dep.map(d2 => `${d2.cat.label} +${Math.round(d2.diff * 100)}bp`).join(", ")}). That buys deposit share — make sure the loans it funds are priced to carry it.` });
+    }
+  }
+  // provision vs field
+  const provMed = median(banks.map(b => val(b, "income", "credit_loss_provision")));
+  const myProv = val(MY, "income", "credit_loss_provision");
+  if (myProv != null && provMed != null && myProv >= provMed) {
+    drags.push({ lvl: "warning", txt: `Credit loss provision ${fmt.m3(myProv)}$M is at/above the field median (${fmt.m3(provMed)}$M) — with an Expansive credit policy and down-market CQ targets, expect CECL to keep this elevated. Provision is the single biggest controllable expense line.` });
+  }
+  // wholesale funding reliance
+  const bfPct = val(MY, "balance", "borrowed_funds") / ta * 100;
+  const bfPeers = peers.map(b => val(b, "balance", "borrowed_funds") / val(b, "balance", "total_assets") * 100);
+  if (bfPct > median(bfPeers)) {
+    drags.push({ lvl: "warning", txt: `Borrowed funds are ${bfPct.toFixed(1)}% of assets vs field median ${median(bfPeers).toFixed(1)}% — wholesale money costs more than core deposits and is the expensive tail of your funding stack.` });
+  }
+  // one-time gains masking
+  const gains = val(MY, "income", "gains_on_assets");
+  const ni = val(MY, "income", "net_income");
+  if (gains != null && gains > 0 && oe != null && oe < 0) {
+    drags.push({ lvl: "warning", txt: `Reported net income (${fmt.m3(ni)}$M) is flattered by ${fmt.m3(gains)}$M of one-time asset gains — the core bank lost ${fmt.m3(Math.abs(oe))}$M. Asset sales can't repeat forever; the market prices the core.` });
+  }
+  // efficiency rank
+  const effRank = ranks(banks.map(b => val(b, "income", "efficiency_ratio")), false)[banks.indexOf(MY)];
+  if (effRank != null && effRank >= 4) {
+    drags.push({ lvl: "warning", txt: `Efficiency ratio ${fmt.pct0(val(MY, "income", "efficiency_ratio"))} ranks ${ORDINAL[effRank]} of ${banks.length} — expenses are heavy for the revenue they generate, but the whole field is bloated (best is ${fmt.pct0(Math.min(...banks.map(b => val(b, "income", "efficiency_ratio"))))}); the bigger fix is revenue, not just cuts.` });
+  }
+  main.insertAdjacentHTML("beforeend", `<h2>What's dragging you down — ${q}</h2>`);
+  main.insertAdjacentHTML("beforeend", drags.length
+    ? drags.map(f => `<div class="flag ${f.lvl}"><span class="icon">⚠</span><span>${f.txt}</span></div>`).join("")
+    : `<div class="card">No major drags detected this quarter.</div>`);
+
+  // ---- how the P&L stacks up vs field median
+  const plCard = document.createElement("div"); plCard.className = "card"; plCard.style.marginTop = "16px";
+  const plRows = [
+    { k: "net_interest_income", label: "Net interest income" },
+    { k: "fees_svc_other", label: "Fees & other income" },
+    { k: "credit_loss_provision", label: "Credit loss provision", cost: true },
+    { k: "operating_expenses", label: "Operating expenses", cost: true },
+    { k: "operating_earnings", label: "= Operating earnings" },
+    { k: "gains_on_assets", label: "One-time gains" },
+    { k: "net_income", label: "= Net income" },
+  ];
+  plCard.innerHTML = `<h3>P&L vs the field — ${q} ($M, quarterly)</h3><div class="table-scroll"><table>
+    <thead><tr><th>Line</th>${banks.map(b => `<th><span class="swatch" style="background:${bankColor(b)}"></span>${BANK_LABEL(b).replace(" (You)", "*")}</th>`).join("")}</tr></thead>
+    <tbody>${plRows.map(r => `<tr${r.k.startsWith("operating_e") || r.k === "net_income" ? ' style="font-weight:600"' : ""}><td>${r.label}</td>${banks.map(b => {
+      const v = val(b, "income", r.k);
+      const vals2 = banks.map(bb => val(bb, "income", r.k)).filter(x => x != null);
+      const isBest = v != null && (r.cost ? v <= Math.min(...vals2) : v >= Math.max(...vals2));
+      return `<td style="${b === MY ? "font-weight:700;" : ""}${isBest ? "text-decoration:underline;" : ""}">${v == null ? "—" : v.toFixed(2)}</td>`;
+    }).join("")}</tr>`).join("")}</tbody></table></div>
+    <div class="note">* = you. Underline = best in field on that line (lowest for costs, highest for income).</div>`;
+  main.appendChild(plCard);
+}
+
+/* ---------- 6. DECISIONS ---------- */
 const LS_KEY = "bmsim_decisions_v1";
 function loadDecisions() {
   let local = null;
