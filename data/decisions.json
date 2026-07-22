@@ -1,6 +1,77 @@
 {
   "Q1/29": {
-    "decisions": [],
-    "notes": ""
+    "decisions": [
+      {
+        "category": "Securities",
+        "decision": "Bought $20M Treasury bills, 1-quarter maturity. No securities sales.",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Business base rates (base/max, orig fee): Nat'l credit lines 5.73/6.48 @1.00%, Nat'l term 5.93/6.68 @1.00%, MidMkt credit lines 5.63/6.38 @1.00%, MidMkt term 5.89/6.64 @1.00%, SmBiz credit lines 5.67/6.42 @1.00%, SmBiz term 6.03/6.78 @1.00%, Trade finance 6.08/6.83 @1.50%. Annual fees: Nat'l/MidMkt lines 0.50%, SmBiz/Trade 1.00%.",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Real estate base rates (base/max, orig fee): Construction 6.62/7.12 @1.50% (annual fee 1.00%), Commercial RE 6.28/6.78 @1.50%, Multi-family 5.99/6.49 @1.50%, 1-4 fixed 5.50/6.50 @0.50%, 1-4 variable 4.75/5.75 @1.00%, Home equity 5.73/6.48 @1.00% ($25 annual).",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Consumer base rates (base/max, orig fee): Personal 6.12/7.12 @1.00%, Credit card 10.64/11.14 @1.00% ($20 annual), Installment 6.51/7.01 @0%.",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Loan business development ($K): Nat'l 10/10, MidMkt 10/25, SmBiz 10/25, Trade 15, Construction 15, CRE 15, Multi-family 15, 1-4 family 20/20, Home equity 20, Consumer 20 per product.",
+        "rationale": ""
+      },
+      {
+        "category": "Other",
+        "decision": "Mortgage banking division turned ON this quarter. Selling loan packages 213 and 215.",
+        "rationale": ""
+      },
+      {
+        "category": "Credit policy",
+        "decision": "Max outstandings ($M): Nat'l CL 50 / term 30, MidMkt CL 60 / term 30, SmBiz CL 60 / term 50, Trade 40, Construction 75, CRE 50, Multi-family 30, 1-4 fixed 75 / variable 100, Home equity 100, Personal 50, Credit card 30, Installment 30.",
+        "rationale": ""
+      },
+      {
+        "category": "Credit policy",
+        "decision": "Credit-quality targets (CQ 1&2/3/4/5/6): business lines 15/25/25/25/10; Construction 45/45/10/0/0; CRE & Multi-family 15/25/30/30/0; 1-4 family 0/20/20/30/30; Home equity 15/25/25/25/10; consumer products 20/20/30/30/0. Loan review ON for Construction, CRE, Multi-family, Personal, Credit card, Installment; OFF elsewhere. General credit policy: Moderate.",
+        "rationale": ""
+      },
+      {
+        "category": "Credit policy",
+        "decision": "Credit loss provision $2.100M (ACL at entry $4.999M).",
+        "rationale": ""
+      },
+      {
+        "category": "Deposit pricing",
+        "decision": "DDA fees — Business: monthly 5.00, debit 0.05, deposit 1.00, ECR 4.00. Public: monthly 5.00, debit 0.06, deposit 1.00, ECR 4.00. Individual: monthly 1.00, item 0.05, NSF 10.00, ECR 2.00. IB checking 1.98% (no item/monthly fee, NSF 10, $4,000 waiver min). Money market premium 3.20 / base 2.70, no fee, $2,000 premium min. Savings: individual 2.18, business 2.25, no fees.",
+        "rationale": ""
+      },
+      {
+        "category": "Deposit pricing",
+        "decision": "Retail CD ladder (qtrs@rate): 1@3.20F, 2@3.50F, 4@3.40F, 4@3.50V, 8@3.70F, 8@3.70V, 12@3.70V, 20@4.00V. Non-relationship CD cap $10M. Deposit bus-dev ($K): BusDDA 50, Public 10, IndivDDA 30, IB Chk 40, PrivBank 25, BusSav 30, MMA 40, IndivSav 30, CDs 25.",
+        "rationale": ""
+      },
+      {
+        "category": "Funding",
+        "decision": "FHLB advance: variable rate, $40M, 4-quarter maturity.",
+        "rationale": ""
+      },
+      {
+        "category": "Capital/Dividend",
+        "decision": "Dividend cut to $0.00/share. Forecast quarterly EPS $0.20. $10M capital issue planned for next quarter (none this quarter). No buyback (1,000,000 shares outstanding; retire price $38.30 info only).",
+        "rationale": ""
+      },
+      {
+        "category": "Staffing/Expenses",
+        "decision": "Quarterly salary budgets ($K) — Lending BU/CA: Nat'l 48/28, MidMkt 56/32, SmBiz 96/40, Trade 40/24, CRE 168/40, Resi-HE 240/48, Consumer 200/25. Lending ops: Commercial 48, RE 120, Consumer 100. Deposit staff: Business 101, Public 28, Individual 480, PrivBank 60, Deposit Ops 240. Central Ops 200, Administrative 160, Personnel/Training 48, salary adj 1.0% (locked). Marketing 50. No premises changes.",
+        "rationale": ""
+      }
+    ],
+    "notes": "Round 1 master log — Bank B1, sim Q1-2029. Entered 2026-07-21, locked 2026-07-22 (FINAL)."
   }
 }

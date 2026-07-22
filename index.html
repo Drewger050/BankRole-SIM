@@ -444,8 +444,9 @@ function rateRow(q, banks, section, cat, highIsCost) {
   const min = Math.min(...vals.filter(v => v != null));
   const max = Math.max(...vals.filter(v => v != null));
   const med = median(vals);
-  const isMax = mine != null && mine >= max;
-  const isMin = mine != null && mine <= min;
+  const spread = max > min;   // when every bank has the same rate, nobody gets flagged
+  const isMax = mine != null && spread && mine >= max;
+  const isMin = mine != null && spread && mine <= min;
   return { cat, vals, mine, min, max, med, isMax, isMin, diff: mine != null && med != null ? mine - med : null };
 }
 function renderRates(main) {

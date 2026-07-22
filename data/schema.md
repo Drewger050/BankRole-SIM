@@ -197,11 +197,19 @@ ratios captured in `balance` (`acl_loans`, `nonperf_loans`, `chgoff_avg_loans`, 
 
 ## Baseline quarter `Q4/28`
 
-Parsed from the prior-quarter columns of the Q1/29 packet (B021 right block, B002
-prior-quarter column, B550 prior price). All five banks start from the identical
-Starting Point Bank, so their Q4/28 balance sheets are the same. Income detail for
-Q4/28 exists only for bank1 (from B002); ratios (ROAA/NIM/etc.) were not published
-for Q4/28 and are omitted rather than guessed.
+Sources: the prior-quarter columns of the Q1/29 packet (B021 right block, B002
+prior-quarter column) **plus the "2026 BMSim Starting Point Bank" packet**
+(quarter ending 12/31/28), which is the identical state every bank started from.
+Because of that, all five banks carry the same Q4/28 `income` ratios, `capital`,
+`deposit_rates`, and `loan_rates`; bank1's `income` keeps the more precise B002
+dollar figures. Caveats:
+
+- `capital.stock_price_prev` in Q4/28 refers to Q3/28 ($33.70), and the starting
+  credit rating was C (upgraded to B by Q1/29).
+- `deposit_rates.mkt_share_*` is omitted for Q4/28 — the starting-point report
+  shows 100% (single bank in its community), which is meaningless for comparison.
+- Origination/annual fees existed in the starting-point B210 but per-bank fees are
+  still not captured (see `loan_rates` note above).
 
 ## `decisions.json`
 
