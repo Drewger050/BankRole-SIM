@@ -696,10 +696,49 @@ function renderDecisions(main) {
     a.href = URL.createObjectURL(blob); a.download = "decisions.json"; a.click();
     URL.revokeObjectURL(a.href);
   });
+  const importBtn = document.createElement("button"); importBtn.className = "btn"; importBtn.textContent = "Import JSON (bulk)";
+  importBtn.addEventListener("click", () => {
+    const box = document.getElementById("import-box");
+    box.hidden = !box.hidden;
+  });
   const resetBtn = document.createElement("button"); resetBtn.className = "btn"; resetBtn.textContent = "Discard local edits";
   resetBtn.addEventListener("click", () => { if (confirm("Discard browser-local decision edits and revert to the committed decisions.json?")) { localStorage.removeItem(LS_KEY); render(); } });
-  controls.append(exportBtn, resetBtn);
+  controls.append(exportBtn, importBtn, resetBtn);
   main.appendChild(controls);
+
+  // bulk import panel
+  const importCard = document.createElement("div"); importCard.className = "card"; importCard.id = "import-box"; importCard.hidden = true;
+  importCard.style.marginBottom = "16px";
+  importCard.innerHTML = `<h3>Bulk import decisions</h3>
+    <p class="hint">Paste a decisions JSON covering any number of quarters, e.g.
+    <code>{"Q1/29": {"decisions": [{"category": "…", "decision": "…", "rationale": "…"}], "notes": "…"}, "Q2/29": {…}}</code>.
+    Each imported quarter <strong>replaces</strong> that quarter's current entry; quarters not in the paste are untouched.</p>
+    <textarea id="import-text" style="width:100%;min-height:140px;font-family:ui-monospace,monospace" placeholder='{"Q1/29": {"decisions": [...], "notes": ""}}'></textarea>
+    <div style="margin-top:8px"><button class="btn" id="import-apply">Apply import</button>
+    <span class="hint" id="import-msg"></span></div>`;
+  main.appendChild(importCard);
+  importCard.querySelector("#import-apply").addEventListener("click", () => {
+    const msg = importCard.querySelector("#import-msg");
+    let obj;
+    const raw = importCard.querySelector("#import-text").value
+      .replace(/^\s*```(?:json)?/, "").replace(/```\s*$/, "").trim();   // tolerate pasted code fences
+    try { obj = JSON.parse(raw); } catch (e) { msg.textContent = "✗ Not valid JSON: " + e.message; return; }
+    if (typeof obj !== "object" || obj === null || Array.isArray(obj)) { msg.textContent = "✗ Expected an object keyed by quarter."; return; }
+    const bad = Object.keys(obj).filter(k => !/^Q[1-4]\/\d\d$/.test(k));
+    if (bad.length) { msg.textContent = `✗ Keys must look like "Q1/29" — bad: ${bad.join(", ")}`; return; }
+    const allDec = loadDecisions();
+    let nQ = 0, nD = 0;
+    for (const [qk, v] of Object.entries(obj)) {
+      const decisions = Array.isArray(v?.decisions) ? v.decisions
+        .filter(d => d && typeof d === "object" && (d.decision || "").toString().trim())
+        .map(d => ({ category: (d.category || "Other").toString(), decision: d.decision.toString(), rationale: (d.rationale || "").toString() })) : [];
+      allDec[qk] = { decisions, notes: (v?.notes || "").toString() };
+      nQ++; nD += decisions.length;
+    }
+    saveDecisions(allDec);
+    msg.textContent = `✓ Imported ${nD} decision(s) across ${nQ} quarter(s).`;
+    setTimeout(render, 600);
+  });
   main.insertAdjacentHTML("beforeend", `<p class="hint">Entries are saved in this browser (localStorage). To make them permanent, Export and commit the file over <code>data/decisions.json</code>.</p>`);
 
   const q = S.quarter;
