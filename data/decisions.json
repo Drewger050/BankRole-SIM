@@ -73,5 +73,90 @@
       }
     ],
     "notes": "Round 1 master log — Bank B1, sim Q1-2029. Entered 2026-07-21, locked 2026-07-22 (FINAL)."
+  },
+  "Q2/29": {
+    "decisions": [
+      {
+        "category": "Securities",
+        "decision": "Bought $50M Treasury bills, laddered: $10M 2-qtr, $20M 3-qtr, $20M 4-qtr. No sales. (R1 was a single $20M 1-qtr purchase.)",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Business rates raised across the board (base/max, orig fee): Nat'l CL 6.02/6.77 @1.00% (+29bp), Nat'l term 6.31/7.06 @1.00% (+38bp), MidMkt CL 5.89/6.64 @1.00% (+26bp), MidMkt term 6.24/6.99 @1.00% (+35bp), SmBiz CL 5.87/6.62 @1.00% (+20bp), SmBiz term 6.33/7.08 @1.00% (+30bp). Trade finance 5.81/6.56 @1.50% (−27bp — the only cut).",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Real estate rates (base/max, orig fee): Construction 7.16/7.66 @1.50% (+54bp — biggest hike), Commercial RE 6.43/6.93 @1.50% (+15bp), Multi-family 6.27/6.77 @1.50% (+28bp), 1-4 fixed 5.48/6.48 @0.50% (−2bp), 1-4 variable 4.87/5.87 @1.00% (+12bp), Home equity 5.92/6.67 @1.00% (+19bp, $25 annual).",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Consumer rates (base/max, orig fee): Personal 6.39/7.39 @1.00% (+27bp), Credit card 10.82/11.32 @1.00% (+18bp, $20 annual), Installment 6.70/7.20 @0% (+19bp).",
+        "rationale": ""
+      },
+      {
+        "category": "Loan pricing",
+        "decision": "Loan bus-dev reshuffled ($K): Nat'l CL 15 (was 10), Nat'l term 10, MidMkt CL 15 (was 10), MidMkt term 15 (was 25), SmBiz CL 20 (was 10), SmBiz term 10 (was 25), Trade 10 (was 15), Construction 10 (was 15), CRE 15, MF 15, 1-4 fixed 15 (was 20), 1-4 var 20, Home equity 10 (was 20), Personal 20, Credit card 25 (was 20), Installment 10 (was 20).",
+        "rationale": ""
+      },
+      {
+        "category": "Other",
+        "decision": "No loan package sales this quarter. Mortgage banking division stays live from Round 1.",
+        "rationale": ""
+      },
+      {
+        "category": "Credit policy",
+        "decision": "Max outstandings mostly raised ($M): Nat'l CL 60 (was 50) / term 40 (was 30), MidMkt CL 75 (was 60) / term 40 (was 30), SmBiz CL 75 (was 60) / term 50, Trade 50 (was 40), Construction 80 (was 75), CRE 65 (was 50), MF 30, Personal 75 (was 50), Credit card 50 (was 30). Tightened: 1-4 fixed 50 (was 75), 1-4 variable 75 (was 100), Home equity 75 (was 100), Installment 25 (was 30).",
+        "rationale": ""
+      },
+      {
+        "category": "Credit policy",
+        "decision": "CQ targets (1&2/3/4/5/6): business books opened up — Nat'l 15/25/20/20/20, MidMkt & Trade 20/20/20/20/20 (was 15/25/25/25/10). Construction majorly loosened to 20/20/25/25/10 (was 45/45/10/0/0). CRE & MF 10/20/30/30/10. 1-4 family shifted down-market to 0/10/20/35/35 (was 0/20/20/30/30). Installment hard-tightened to 40/40/20/0/0 (was 20/20/30/30/0). Home equity, Personal, Credit card unchanged.",
+        "rationale": ""
+      },
+      {
+        "category": "Credit policy",
+        "decision": "Loan reviews flipped: now ON for Nat'l, MidMkt, SmBiz, Trade, 1-4 family, Home equity; dropped for Construction, CRE, Multi-family, Personal, Credit card, Installment (R1 reviewed exactly the opposite set).",
+        "rationale": ""
+      },
+      {
+        "category": "Credit policy",
+        "decision": "Provision $2.092M (was 2.100). ACL at entry $6.171M — implies ~$0.93M net Q1 charge-offs (4.999 + 2.100 − 6.171). General credit policy: EXPANSIVE (was Moderate).",
+        "rationale": ""
+      },
+      {
+        "category": "Deposit pricing",
+        "decision": "Fees cut to chase balances — Bus DDA: monthly 4.00 (was 5.00), debit 0.03 (was 0.05), deposit fee 0 (was 1.00). Public DDA: monthly 4.00 (was 5.00), debit 0.05, deposit fee 0.75 (was 1.00). Indiv DDA monthly 0.50 (was 1.00). Rates raised: IB checking 2.30 (was 1.98, NSF 9.00), MMA premium 3.90 / base 3.76 (was 3.20/2.70; monthly fee now 1.00), Savings 2.63/2.63 (was 2.18/2.25).",
+        "rationale": ""
+      },
+      {
+        "category": "Deposit pricing",
+        "decision": "CD menu trimmed to 6 products (was 8): 1@3.20F, 2@3.50F, 4@3.50V, 8@3.70V, 12@3.70V, 20@3.90V (was 4.00). Deleted 4-qtr fixed 3.40 and 8-qtr fixed 3.70. Non-relationship cap $10M unchanged. Bus-dev: Business Demand 75 (was 50), rest unchanged.",
+        "rationale": ""
+      },
+      {
+        "category": "Funding",
+        "decision": "FHLB variable $10M, 4-qtr (was $40M in R1).",
+        "rationale": ""
+      },
+      {
+        "category": "Capital/Dividend",
+        "decision": "Executed capital issue: code 106 (common stock), $12M — $2M over the R1 $10M plan. Filed a new $5M issue plan for next quarter. Dividend stays $0.00. EPS forecast cut to $0.00 (was 0.20). No buyback (retire price $29.68 info only).",
+        "rationale": ""
+      },
+      {
+        "category": "Staffing/Expenses",
+        "decision": "Salary cuts nearly everywhere ($K/qtr) — Lending BU/CA: Nat'l 40/25, MidMkt 50/30, SmBiz 90/37, Trade 35/20, CRE 150/38, Resi-HE 225/40; Consumer 325/25 (was 200/25 — the only increase). Lending ops: Commercial 45, RE 100, Consumer 100. Deposit staff: Business 101, Public 26, Individual 450, PrivBank 55, Deposit Ops 240. Central Ops 180 (was 200), Administrative 140 (was 160), Personnel/Training 40 (was 48). Marketing zeroed (was 50).",
+        "rationale": ""
+      },
+      {
+        "category": "Staffing/Expenses",
+        "decision": "Premises sales: −$1M Regional Branches, −$1M Admin/Ops — proceeds will hit Gains/Losses on Assets in Q2.",
+        "rationale": ""
+      }
+    ],
+    "notes": "Round 2 master log — Bank B1, sim Q2-2029. Entered 2026-07-22, LOCKED. Theme: raise loan rates off the Q1 lows (construction +54bp), go Expansive on credit with higher caps, buy deposits with higher rates/lower fees, issue $12M common stock, cut overhead and marketing, ladder $50M in bills."
   }
 }

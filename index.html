@@ -281,12 +281,15 @@ function render() {
   const main = document.getElementById("main");
   if (!S.data) return;
   const fns = { scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, decisions: renderDecisions };
+  // decision-only quarters (no packet yet) are valid on the Decisions tab, nowhere else
+  if (S.tab !== "decisions" && !S.data[S.quarter]) S.quarter = latestQuarter();
   main.innerHTML = "";
   fns[S.tab](main);
 }
 
-function quarterSelect(container, onchange) {
-  const qs = quarters();
+function quarterSelect(container, onchange, list) {
+  const qs = list || quarters();
+  if (!qs.includes(S.quarter)) S.quarter = qs[qs.length - 1];
   const sel = document.createElement("select");
   qs.forEach(q => {
     const o = document.createElement("option");
@@ -708,7 +711,9 @@ const DELTA_METRICS = [
 ];
 function renderDecisions(main) {
   const controls = document.createElement("div"); controls.className = "controls";
-  quarterSelect(controls, render);
+  // include quarters that only exist in the decisions log (decisions are entered before the packet arrives)
+  const qList = [...new Set([...quarters(), ...Object.keys(loadDecisions())])].sort(qSort);
+  quarterSelect(controls, render, qList);
   const exportBtn = document.createElement("button"); exportBtn.className = "btn"; exportBtn.textContent = "Export decisions.json";
   exportBtn.addEventListener("click", () => {
     const blob = new Blob([JSON.stringify(loadDecisions(), null, 2)], { type: "application/json" });
