@@ -139,7 +139,8 @@
   <button class="btn" id="theme-toggle" title="Cycle theme">Theme: auto</button>
 </header>
 <nav class="tabs" id="tabs">
-  <button data-tab="scoreboard" class="active">Scoreboard</button>
+  <button data-tab="briefing" class="active">Briefing</button>
+  <button data-tab="scoreboard">Scoreboard</button>
   <button data-tab="trajectory">Trajectory</button>
   <button data-tab="rates">Rate Positioning</button>
   <button data-tab="risk">Risk</button>
@@ -153,7 +154,7 @@
 "use strict";
 /* ================= data & state ================= */
 const S = {
-  data: null, decisionsBase: {}, tab: "scoreboard", quarter: null, charts: [],
+  data: null, decisionsBase: {}, tab: "briefing", quarter: null, charts: [],
 };
 const BANK_LABEL = b => b === "bank1" ? "Bank 1 (You)" : "Bank " + b.slice(4);
 const MY = "bank1";
@@ -283,7 +284,7 @@ function render() {
   destroyCharts();
   const main = document.getElementById("main");
   if (!S.data) return;
-  const fns = { scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, profit: renderProfit, details: renderDetails, decisions: renderDecisions };
+  const fns = { briefing: renderBriefing, scoreboard: renderScoreboard, trajectory: renderTrajectory, rates: renderRates, risk: renderRisk, profit: renderProfit, details: renderDetails, decisions: renderDecisions };
   // decision-only quarters (no packet yet) are valid on the Decisions tab, nowhere else
   if (S.tab !== "decisions" && !S.data[S.quarter]) S.quarter = latestQuarter();
   main.innerHTML = "";
@@ -304,6 +305,134 @@ function quarterSelect(container, onchange, list) {
   label.append("Quarter: ", sel);
   container.appendChild(label);
   return sel;
+}
+
+/* ---------- 0. BRIEFING (executive summary) ---------- */
+const METRIC_LABELS = {
+  net_income: ["Net income", "$M"], operating_earnings: ["Operating earnings", "$M"],
+  gains_on_assets: ["One-time gains", "$M"], net_interest_income: ["Net interest income", "$M"],
+  interest_income: ["Interest income", "$M"], interest_expense: ["Interest expense", "$M"],
+  credit_loss_provision: ["Credit loss provision", "$M"], operating_expenses: ["Operating expenses", "$M"],
+  fees_svc_other: ["Fees & other income", "$M"], nim: ["Net interest margin", "%"],
+  roaa: ["ROAA", "%"], roae: ["ROAE", "%"], efficiency_ratio: ["Efficiency ratio", "%"],
+  te_int_inc_avg_ea: ["Earning-asset yield", "%"], int_exp_avg_ibl: ["Cost of int-bearing funds", "%"],
+  total_assets: ["Total assets", "$M"], total_loans: ["Total loans", "$M"], total_deposits: ["Total deposits", "$M"],
+  owners_equity: ["Owners equity", "$M"], borrowed_funds: ["Borrowed funds", "$M"],
+  business_loans: ["Business loans", "$M"], real_estate_loans: ["Real estate loans", "$M"],
+  consumer_loans: ["Consumer loans", "$M"], securities: ["Securities", "$M"],
+  retail_cds: ["Retail CDs", "$M"], money_market: ["Money market", "$M"], savings: ["Savings", "$M"],
+  interest_checking: ["Int-bearing checking", "$M"], demand_deposits: ["Demand deposits", "$M"],
+  public_brokered_cds: ["Public/Brokered CDs", "$M"],
+  loans_to_deposits: ["Loans / deposits", "%"], core_deposit_ratio: ["Core deposit ratio", "%"],
+  fed_funds_purch_equity: ["Fed funds purch / equity", "%"], acl_loans: ["ACL / loans", "%"],
+  nonperf_loans: ["Non-perf / loans", "%"], chgoff_avg_loans: ["Charge-offs / avg loans", "%"],
+  stock_price: ["Stock price", "$"], mkt_book: ["Market / book", "×"], book_value: ["Book value/share", "$"],
+  leverage_ratio: ["Leverage ratio", "%"], risk_capital_ratio: ["Risk capital ratio", "%"],
+  eps_actual: ["EPS", "$"], dps_qtr: ["Dividend/share", "$"], dividend_yield: ["Dividend yield", "%"],
+};
+// metrics where a numeric increase is BAD (colors the delta red)
+const BAD_UP = new Set(["interest_expense", "credit_loss_provision", "operating_expenses", "efficiency_ratio",
+  "int_exp_avg_ibl", "borrowed_funds", "fed_funds_purch_equity", "nonperf_loans", "chgoff_avg_loans", "loans_to_deposits"]);
+
+function renderBriefing(main) {
+  const qs = quarters();
+  if (!qs.includes(S.quarter)) S.quarter = qs[qs.length - 1];
+  const controls = document.createElement("div"); controls.className = "controls";
+  quarterSelect(controls, render);
+  main.appendChild(controls);
+  const q = S.quarter;
+  const qi = qs.indexOf(q), prevQ = qi > 0 ? qs[qi - 1] : null;
+  const brief = (S.briefing || {})[q];
+
+  if (brief?.headline) {
+    main.insertAdjacentHTML("beforeend",
+      `<div class="card" style="border-left:4px solid var(--accent);margin-bottom:16px">
+        <h3>Executive summary — ${q}</h3>
+        <div style="font-size:15px;line-height:1.6">${brief.headline}</div>
+      </div>`);
+  } else {
+    main.insertAdjacentHTML("beforeend",
+      `<div class="card" style="margin-bottom:16px"><h3>Executive summary — ${q}</h3>
+       <div class="hint">No written briefing for ${q} yet — the numbers below are computed live from the data. The narrative gets added when the quarter is analyzed.</div></div>`);
+  }
+
+  // ---- biggest moves (auto-computed, bank1, vs previous quarter) ----
+  if (prevQ) {
+    const moves = [];
+    ["income", "balance", "capital"].forEach(sec => {
+      const now = S.data[q][MY][sec] || {}, before = S.data[prevQ][MY][sec] || {};
+      Object.keys(now).forEach(k => {
+        const a = now[k], b = before[k];
+        if (typeof a !== "number" || typeof b !== "number") return;
+        const d = a - b;
+        if (d === 0) return;
+        const rel = b !== 0 ? Math.abs(d / b) : Math.abs(d);
+        moves.push({ k, sec, a, b, d, rel });
+      });
+    });
+    moves.sort((x, y) => y.rel - x.rel);
+    const top = moves.filter(m => METRIC_LABELS[m.k]).slice(0, 14);
+    const rowsH = top.map(m => {
+      const [label, unit] = METRIC_LABELS[m.k];
+      const up = m.d > 0;
+      const good = BAD_UP.has(m.k) ? !up : up;
+      const fmtV = v => unit === "$M" ? v.toFixed(v % 1 ? 2 : 1) : unit === "%" ? v.toFixed(2) : unit === "×" ? v.toFixed(2) : v.toFixed(2);
+      return `<tr><td style="text-align:left">${label}</td><td>${fmtV(m.b)}${unit === "$M" ? "" : unit}</td><td>${fmtV(m.a)}${unit === "$M" ? "" : unit}</td>
+        <td class="delta ${good ? "up" : "down"}">${up ? "▲ +" : "▼ "}${fmtV(Math.abs(m.d) * (up ? 1 : -1)).replace("-", "−")}</td>
+        <td class="hint">${m.b !== 0 ? (m.d / Math.abs(m.b) * 100).toFixed(0) + "%" : "new"}</td></tr>`;
+    }).join("");
+    const mc = document.createElement("div"); mc.className = "card"; mc.style.marginBottom = "16px";
+    mc.innerHTML = `<h3>Biggest moves — ${prevQ} → ${q} (Bank 1, auto-computed, sorted by relative change)</h3>
+      <div class="table-scroll"><table><thead><tr><th>Metric</th><th>${prevQ}</th><th>${q}</th><th>Δ</th><th>%</th></tr></thead>
+      <tbody>${rowsH}</tbody></table></div>
+      <div class="note">Green/red reflects whether the direction helps or hurts (e.g. rising expenses = red even though the number went up).</div>`;
+    main.appendChild(mc);
+
+    // ---- rank changes on scoreboard metrics ----
+    const banksNow = banksIn(q);
+    const rankRows = SCORE_METRICS.map(m => {
+      const rNow = ranks(banksNow.map(b => get(q, b, m.section, m.key)), m.hb)[banksNow.indexOf(MY)];
+      const banksPrev = banksIn(prevQ);
+      const prevVals = banksPrev.map(b => get(prevQ, b, m.section, m.key)).filter(v => v != null);
+      const allTied = prevVals.length > 1 && prevVals.every(v => v === prevVals[0]);
+      const rPrev = allTied ? null : ranks(banksPrev.map(b => get(prevQ, b, m.section, m.key)), m.hb)[banksPrev.indexOf(MY)];
+      if (rNow == null) return "";
+      const ch = (rPrev != null && rPrev !== rNow) ? (rNow < rPrev ? `<span class="delta up">▲ from ${ORDINAL[rPrev]}</span>` : `<span class="delta down">▼ from ${ORDINAL[rPrev]}</span>`) : `<span class="hint">${rPrev == null ? "" : "unchanged"}</span>`;
+      return `<tr><td style="text-align:left">${m.label}</td><td>${m.fmt(get(q, MY, m.section, m.key))}</td><td><span class="badge r${rNow}">${ORDINAL[rNow]}</span></td><td style="text-align:left">${ch}</td></tr>`;
+    }).join("");
+    const rc = document.createElement("div"); rc.className = "card"; rc.style.marginBottom = "16px";
+    rc.innerHTML = `<h3>League table — where we rank (${q})</h3>
+      <div class="table-scroll"><table><thead><tr><th>Metric</th><th>Value</th><th>Rank</th><th>vs ${prevQ}</th></tr></thead><tbody>${rankRows}</tbody></table></div>`;
+    main.appendChild(rc);
+  }
+
+  // ---- narrative sections ----
+  if (brief?.sections) brief.sections.forEach(sec => {
+    main.insertAdjacentHTML("beforeend", `<div class="card" style="margin-bottom:16px">
+      <h3>${sec.title}</h3>
+      <ul style="margin:8px 0 2px;padding-left:20px;line-height:1.65">${sec.points.map(p => `<li style="margin-bottom:7px">${p}</li>`).join("")}</ul>
+    </div>`);
+  });
+
+  // ---- decisions in force this quarter ----
+  const dec = loadDecisions()[q];
+  if (dec?.decisions?.length) {
+    main.insertAdjacentHTML("beforeend", `<div class="card" style="margin-bottom:16px">
+      <h3>Decisions in force this quarter <span class="hint">(full detail on the Decisions tab)</span></h3>
+      <ul style="margin:8px 0 2px;padding-left:20px;line-height:1.6">${dec.decisions.map(d => `<li style="margin-bottom:5px"><strong>${d.category}:</strong> ${d.decision.length > 160 ? d.decision.slice(0, 157) + "…" : d.decision}</li>`).join("")}</ul>
+    </div>`);
+  }
+
+  // ---- board Q&A ----
+  if (brief?.qa?.length) {
+    const qaCard = document.createElement("div"); qaCard.className = "card";
+    qaCard.innerHTML = `<h3>Board Q&A — anticipated questions</h3>` + brief.qa.map(item =>
+      `<details style="margin:8px 0;border-bottom:1px solid var(--grid);padding-bottom:8px">
+        <summary style="cursor:pointer;font-weight:600">${item.q}</summary>
+        <div style="margin-top:6px;line-height:1.6;color:var(--ink-2)">${item.a}</div>
+      </details>`).join("");
+    main.appendChild(qaCard);
+  }
 }
 
 /* ---------- 1. SCOREBOARD ---------- */
@@ -1268,10 +1397,12 @@ Promise.all([
   fetch("data/quarters.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
   fetch("data/decisions.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
   fetch("data/detail.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
-]).then(([quartersData, decisionsData, detailData]) => {
+  fetch("data/briefing.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+]).then(([quartersData, decisionsData, detailData, briefingData]) => {
   S.data = quartersData;
   S.decisionsBase = decisionsData;
   S.detail = detailData;
+  S.briefing = briefingData;
   S.quarter = latestQuarter();
   render();
 }).catch(err => {

@@ -1,0 +1,51 @@
+{
+  "Q1/29": {
+    "headline": "Core bank lost $1.34M operating (worst quarter yet); a one-time $0.7M mortgage sale gain held reported net income to −$0.63M. Stock fell 22.5% to $26.99 — middle of a field where everyone but Bank 3 got hammered. The quarter bought market position (deposits grew, funding crisis fixed) at the cost of margin.",
+    "sections": [
+      {
+        "title": "What happened",
+        "points": [
+          "Reported net income −$0.63M; operating earnings −$1.34M (vs −$0.53M in Q4/28). The gap is the $0.715M gain on selling $13.6M of 1-4 family fixed mortgages — one-time, not repeatable.",
+          "NIM compressed 3.33% → 3.12% (4th of 5). Both blades of the scissors: asset yield 6.11% is 4th in field, funding cost 3.68% is 2nd-highest.",
+          "Stock −22.5% to $26.99 (3rd of 5), market/book 0.58×. The whole field repriced down except Bank 3 (−0.2%); Banks 2 and 5 fell harder than us.",
+          "Deposits grew +$1.9M to $552.9M and the fed-funds-purchased emergency was fixed: 186.9% of equity (unsafe/unsound territory) down to 86.6%. That was the quarter's quiet win.",
+          "Loans shrank $3.6M — originated $68.9M vs $84.1M repaid; we also turned down $19.1M of demand via tight credit targets (construction alone: $5.9M turned down vs $6.8M written).",
+          "Credit rating upgraded C → B, restoring brokered CD access."
+        ]
+      },
+      {
+        "title": "What our decisions drove",
+        "points": [
+          "R1 cut loan rates across the board (lowest-yield lender in 7 of 16 categories) → volume did NOT respond enough to offset margin: new originations were only $68.9M against $84.1M of runoff. Rate cuts locked low yields into multi-year paper; R2's across-the-board hikes (+12 to +54bp) are the correction.",
+          "R1 raised every deposit rate (MMDA premium 2.25→3.20, IBC 1.60→1.98, savings 1.75→2.18) → deposits stabilized and mix improved (IBC +$3.9M, savings +$4.3M, MMDA +$5.1M), but we now pay above the field median on all 5 categories — the funding-cost drag is self-inflicted and deliberate.",
+          "R1's CD ladder mispriced fixed CDs ~80bp under market → CDs bled $13.4M matured vs $6.4M new. The 3.40% 4-qtr product sold zero. R2 deleted the dead products and leaned variable.",
+          "Dividend cut to $0 (required by two negative operating quarters anyway) → part of the stock drop; Bank 4 kept paying $0.50 and fell least among the losers.",
+          "Provision $2.1M vs $0.93M of actual net charge-offs → ACL rebuilt from 0.85% to exactly the 1.00% regulatory floor. Half the field's best quarter (Bank 3, +$0.50M NI) is explained by their $1.0M provision.",
+          "Mortgage banking turned on + $13.6M package sale → +$0.715M gain and $19.8M of balance-sheet relief; this is the play to repeat deliberately, not accidentally."
+        ]
+      },
+      {
+        "title": "Board watch items",
+        "points": [
+          "CAPITAL CLOCK: TRBC 8.70% vs 10.00% required by end of 4Q29 (escalating penalties after). The R2 $12M stock issue at $23.90 should land us near ~9.5-9.7%; the follow-on $5M plan plus retained earnings (or package sales) closes the rest. This must stay on track.",
+          "PROFITABILITY PATH: breakeven needs ~$1.34M/qtr — matching best-in-field on provision (+$1.10M) and funding cost (+$0.48M) more than covers it. R2 attacks yield; provision depends on credit quality choices now that policy is Expansive.",
+          "EXPANSIVE + CECL TENSION: R2 went Expansive with down-market credit targets while the ACL sits exactly at its floor. From 6/30/29 the ACL must track the CECL calc ±10% — growth in 5/6-rated paper raises the requirement mechanically. Expect provisions to stay $2M+; do not let anyone promise the board provision relief.",
+          "RATE POSITION: we are asset-sensitive (+15% of assets, 1-yr gap). If the newsletter signals rising rates, we win ~$0.27M/qtr per +100bp; falling rates deepen the loss. Watch the quarterly newsletter's rate signal before extending the securities ladder.",
+          "LOAN REVIEW MANDATE: 100% of the portfolio must be reviewed by end of Q3/29. R1+R2 combined cover roughly everything once — verify nothing was missed after Q2 results, or it's a violation + CMP.",
+          "COMMERCIAL RE: nets 2.78% after charge-offs — below our 3.74% cost of funds. Packages 207/208 are sellable at ~$0.10M loss for +20bp of TRBC and less concentration. Cheap fix; recommend executing."
+        ]
+      }
+    ],
+    "qa": [
+      { "q": "Why did the stock fall 22.5%?", "a": "Three stacked hits: EPS missed forecast badly (−$0.63 actual vs +$0.20 forecast), the dividend went from $1.00 to zero (regulation forces it to stay at zero until we post one clean operating quarter), and book value fell. Context matters: Banks 2 and 5 fell 27-29%. Bank 3 was flat because they posted the field's only profit." },
+      { "q": "Are we in trouble with the regulators?", "a": "Watch-list, not crisis. We cured the worst item (fed funds purchased was 187% of equity vs the 100% rule; now 86.6%). ACL is at its 1.00% floor exactly. The live issue is the Boulder Accord: TRBC must be 10% by end of 4Q29 and we're at 8.70% — hence the $12M capital raise executed in Round 2. Construction is 133% of capital vs 100% guidance (a flag, not a violation)." },
+      { "q": "Why raise capital at 0.52× book? That's dilutive.", "a": "The alternative is a $100M (thousand) civil money penalty that doubles per occurrence, plus regulator-imposed constraints. Sub-debt was the other option (no dilution, counts for TRBC) — worth debating for the next $5M tranche, but common equity also fixes the leverage ratio, which sub-debt doesn't." },
+      { "q": "Why is our margin the 2nd-worst in the field?", "a": "We pay the 2nd-most for money (3.68% of interest-bearing liabilities; field best is 3.33%) and earn the 4th-least on assets (6.11%). Both were Round 1 choices: we cut loan rates to grow and raised deposit rates to fix a funding crisis. Round 2 reverses the loan side (+12 to +54bp) while keeping the deposit push — betting share gains fund the margin later." },
+      { "q": "What's actually making money?", "a": "After charge-offs and direct costs: Construction 6.86%, Middle Market lines 6.66%, Credit Card 6.40% — all comfortably above the 3.74% cost of funds. Commercial RE (2.78%) and Installment (3.22%) are below it, i.e., value-destroying at current pricing. That's why R2 raised CRE only modestly but hard-tightened installment credit targets." },
+      { "q": "Was the $0.7M gain just window dressing?", "a": "No — it was a real sale of $13.6M in low-yield fixed mortgages at a premium, which also freed balance sheet. But it is one-time, and the board should evaluate us on the −$1.34M operating number. Nine more packages sit on the shelf worth $63M; selling into strength is now a deliberate capital tool, not an earnings crutch." },
+      { "q": "Deposits grew — why is that a win if it costs so much?", "a": "In Q4 we were funding the bank with emergency fed funds at 187% of equity — an unsafe/unsound finding waiting to happen. We converted that into core deposits (95.7% core ratio, best in field) and cut wholesale reliance. The 3.75% all-in deposit cost is the price of that stability; the fix now is earning more on assets, not un-buying the deposits." },
+      { "q": "What if rates fall?", "a": "We're asset-sensitive: −100bp costs ~$0.27M/qtr of NII once fully repriced, deepening the core loss to ~−$1.6M/qtr. Partial offset: our securities gain ~$1.25M of market value we could realize, and CD/deposit rates could be cut with the market. The gap model on the Path to Profit tab lets us size any scenario live." },
+      { "q": "When do we break even?", "a": "The math: ~$1.34M/qtr gap. R2's loan repricing on ~$264M of paper that rolls within 4 quarters is worth roughly +$0.3-0.5M/qtr as it compounds; provision normalizing toward $1.2-1.5M as the ACL is now funded adds +$0.6-0.9M; expense cuts add ~$0.3M. Plausible path to positive operating earnings by Q3/29 if credit holds — but the Expansive policy is the swing variable." }
+    ]
+  }
+}
