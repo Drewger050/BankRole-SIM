@@ -1393,11 +1393,13 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 });
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => { if (themeMode === "auto") render(); });
 
+// cache-buster: GitHub Pages caches files ~10 min; a fresh query string forces current data
+const bust = "?t=" + Date.now();
 Promise.all([
-  fetch("data/quarters.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
-  fetch("data/decisions.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
-  fetch("data/detail.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
-  fetch("data/briefing.json").then(r => r.ok ? r.json() : {}).catch(() => ({})),
+  fetch("data/quarters.json" + bust).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+  fetch("data/decisions.json" + bust).then(r => r.ok ? r.json() : {}).catch(() => ({})),
+  fetch("data/detail.json" + bust).then(r => r.ok ? r.json() : {}).catch(() => ({})),
+  fetch("data/briefing.json" + bust).then(r => r.ok ? r.json() : {}).catch(() => ({})),
 ]).then(([quartersData, decisionsData, detailData, briefingData]) => {
   S.data = quartersData;
   S.decisionsBase = decisionsData;
