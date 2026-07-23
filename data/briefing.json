@@ -1,51 +1,158 @@
 {
   "Q1/29": {
-    "headline": "Core bank lost $1.34M operating (worst quarter yet); a one-time $0.7M mortgage sale gain held reported net income to −$0.63M. Stock fell 22.5% to $26.99 — middle of a field where everyone but Bank 3 got hammered. The quarter bought market position (deposits grew, funding crisis fixed) at the cost of margin.",
+    "headline": "Core bank lost $1.34M operating (worst quarter yet); a one-time $0.7M mortgage sale gain held reported net income to \u2212$0.63M. Stock fell 22.5% to $26.99 \u2014 middle of a field where everyone but Bank 3 got hammered. The quarter bought market position (deposits grew, funding crisis fixed) at the cost of margin.",
     "sections": [
       {
         "title": "What happened",
         "points": [
-          "Reported net income −$0.63M; operating earnings −$1.34M (vs −$0.53M in Q4/28). The gap is the $0.715M gain on selling $13.6M of 1-4 family fixed mortgages — one-time, not repeatable.",
-          "NIM compressed 3.33% → 3.12% (4th of 5). Both blades of the scissors: asset yield 6.11% is 4th in field, funding cost 3.68% is 2nd-highest.",
-          "Stock −22.5% to $26.99 (3rd of 5), market/book 0.58×. The whole field repriced down except Bank 3 (−0.2%); Banks 2 and 5 fell harder than us.",
+          "Reported net income \u2212$0.63M; operating earnings \u2212$1.34M (vs \u2212$0.53M in Q4/28). The gap is the $0.715M gain on selling $13.6M of 1-4 family fixed mortgages \u2014 one-time, not repeatable.",
+          "NIM compressed 3.33% \u2192 3.12% (4th of 5). Both blades of the scissors: asset yield 6.11% is 4th in field, funding cost 3.68% is 2nd-highest.",
+          "Stock \u221222.5% to $26.99 (3rd of 5), market/book 0.58\u00d7. The whole field repriced down except Bank 3 (\u22120.2%); Banks 2 and 5 fell harder than us.",
           "Deposits grew +$1.9M to $552.9M and the fed-funds-purchased emergency was fixed: 186.9% of equity (unsafe/unsound territory) down to 86.6%. That was the quarter's quiet win.",
-          "Loans shrank $3.6M — originated $68.9M vs $84.1M repaid; we also turned down $19.1M of demand via tight credit targets (construction alone: $5.9M turned down vs $6.8M written).",
-          "Credit rating upgraded C → B, restoring brokered CD access."
+          "Loans shrank $3.6M \u2014 originated $68.9M vs $84.1M repaid; we also turned down $19.1M of demand via tight credit targets (construction alone: $5.9M turned down vs $6.8M written).",
+          "Credit rating upgraded C \u2192 B, restoring brokered CD access."
         ]
       },
       {
         "title": "What our decisions drove",
         "points": [
-          "R1 cut loan rates across the board (lowest-yield lender in 7 of 16 categories) → volume did NOT respond enough to offset margin: new originations were only $68.9M against $84.1M of runoff. Rate cuts locked low yields into multi-year paper; R2's across-the-board hikes (+12 to +54bp) are the correction.",
-          "R1 raised every deposit rate (MMDA premium 2.25→3.20, IBC 1.60→1.98, savings 1.75→2.18) → deposits stabilized and mix improved (IBC +$3.9M, savings +$4.3M, MMDA +$5.1M), but we now pay above the field median on all 5 categories — the funding-cost drag is self-inflicted and deliberate.",
-          "R1's CD ladder mispriced fixed CDs ~80bp under market → CDs bled $13.4M matured vs $6.4M new. The 3.40% 4-qtr product sold zero. R2 deleted the dead products and leaned variable.",
-          "Dividend cut to $0 (required by two negative operating quarters anyway) → part of the stock drop; Bank 4 kept paying $0.50 and fell least among the losers.",
-          "Provision $2.1M vs $0.93M of actual net charge-offs → ACL rebuilt from 0.85% to exactly the 1.00% regulatory floor. Half the field's best quarter (Bank 3, +$0.50M NI) is explained by their $1.0M provision.",
-          "Mortgage banking turned on + $13.6M package sale → +$0.715M gain and $19.8M of balance-sheet relief; this is the play to repeat deliberately, not accidentally."
+          "R1 cut loan rates across the board (lowest-yield lender in 7 of 16 categories) \u2192 volume did NOT respond enough to offset margin: new originations were only $68.9M against $84.1M of runoff. Rate cuts locked low yields into multi-year paper; R2's across-the-board hikes (+12 to +54bp) are the correction.",
+          "R1 raised every deposit rate (MMDA premium 2.25\u21923.20, IBC 1.60\u21921.98, savings 1.75\u21922.18) \u2192 deposits stabilized and mix improved (IBC +$3.9M, savings +$4.3M, MMDA +$5.1M), but we now pay above the field median on all 5 categories \u2014 the funding-cost drag is self-inflicted and deliberate.",
+          "R1's CD ladder mispriced fixed CDs ~80bp under market \u2192 CDs bled $13.4M matured vs $6.4M new. The 3.40% 4-qtr product sold zero. R2 deleted the dead products and leaned variable.",
+          "Dividend cut to $0 (required by two negative operating quarters anyway) \u2192 part of the stock drop; Bank 4 kept paying $0.50 and fell least among the losers.",
+          "Provision $2.1M vs $0.93M of actual net charge-offs \u2192 ACL rebuilt from 0.85% to exactly the 1.00% regulatory floor. Half the field's best quarter (Bank 3, +$0.50M NI) is explained by their $1.0M provision.",
+          "Mortgage banking turned on + $13.6M package sale \u2192 +$0.715M gain and $19.8M of balance-sheet relief; this is the play to repeat deliberately, not accidentally."
         ]
       },
       {
         "title": "Board watch items",
         "points": [
           "CAPITAL CLOCK: TRBC 8.70% vs 10.00% required by end of 4Q29 (escalating penalties after). The R2 $12M stock issue at $23.90 should land us near ~9.5-9.7%; the follow-on $5M plan plus retained earnings (or package sales) closes the rest. This must stay on track.",
-          "PROFITABILITY PATH: breakeven needs ~$1.34M/qtr — matching best-in-field on provision (+$1.10M) and funding cost (+$0.48M) more than covers it. R2 attacks yield; provision depends on credit quality choices now that policy is Expansive.",
-          "EXPANSIVE + CECL TENSION: R2 went Expansive with down-market credit targets while the ACL sits exactly at its floor. From 6/30/29 the ACL must track the CECL calc ±10% — growth in 5/6-rated paper raises the requirement mechanically. Expect provisions to stay $2M+; do not let anyone promise the board provision relief.",
+          "PROFITABILITY PATH: breakeven needs ~$1.34M/qtr \u2014 matching best-in-field on provision (+$1.10M) and funding cost (+$0.48M) more than covers it. R2 attacks yield; provision depends on credit quality choices now that policy is Expansive.",
+          "EXPANSIVE + CECL TENSION: R2 went Expansive with down-market credit targets while the ACL sits exactly at its floor. From 6/30/29 the ACL must track the CECL calc \u00b110% \u2014 growth in 5/6-rated paper raises the requirement mechanically. Expect provisions to stay $2M+; do not let anyone promise the board provision relief.",
           "RATE POSITION: we are asset-sensitive (+15% of assets, 1-yr gap). If the newsletter signals rising rates, we win ~$0.27M/qtr per +100bp; falling rates deepen the loss. Watch the quarterly newsletter's rate signal before extending the securities ladder.",
-          "LOAN REVIEW MANDATE: 100% of the portfolio must be reviewed by end of Q3/29. R1+R2 combined cover roughly everything once — verify nothing was missed after Q2 results, or it's a violation + CMP.",
-          "COMMERCIAL RE: nets 2.78% after charge-offs — below our 3.74% cost of funds. Packages 207/208 are sellable at ~$0.10M loss for +20bp of TRBC and less concentration. Cheap fix; recommend executing."
+          "LOAN REVIEW MANDATE: 100% of the portfolio must be reviewed by end of Q3/29. R1+R2 combined cover roughly everything once \u2014 verify nothing was missed after Q2 results, or it's a violation + CMP.",
+          "COMMERCIAL RE: nets 2.78% after charge-offs \u2014 below our 3.74% cost of funds. Packages 207/208 are sellable at ~$0.10M loss for +20bp of TRBC and less concentration. Cheap fix; recommend executing."
         ]
       }
     ],
     "qa": [
-      { "q": "Why did the stock fall 22.5%?", "a": "Three stacked hits: EPS missed forecast badly (−$0.63 actual vs +$0.20 forecast), the dividend went from $1.00 to zero (regulation forces it to stay at zero until we post one clean operating quarter), and book value fell. Context matters: Banks 2 and 5 fell 27-29%. Bank 3 was flat because they posted the field's only profit." },
-      { "q": "Are we in trouble with the regulators?", "a": "Watch-list, not crisis. We cured the worst item (fed funds purchased was 187% of equity vs the 100% rule; now 86.6%). ACL is at its 1.00% floor exactly. The live issue is the Boulder Accord: TRBC must be 10% by end of 4Q29 and we're at 8.70% — hence the $12M capital raise executed in Round 2. Construction is 133% of capital vs 100% guidance (a flag, not a violation)." },
-      { "q": "Why raise capital at 0.52× book? That's dilutive.", "a": "The alternative is a $100M (thousand) civil money penalty that doubles per occurrence, plus regulator-imposed constraints. Sub-debt was the other option (no dilution, counts for TRBC) — worth debating for the next $5M tranche, but common equity also fixes the leverage ratio, which sub-debt doesn't." },
-      { "q": "Why is our margin the 2nd-worst in the field?", "a": "We pay the 2nd-most for money (3.68% of interest-bearing liabilities; field best is 3.33%) and earn the 4th-least on assets (6.11%). Both were Round 1 choices: we cut loan rates to grow and raised deposit rates to fix a funding crisis. Round 2 reverses the loan side (+12 to +54bp) while keeping the deposit push — betting share gains fund the margin later." },
-      { "q": "What's actually making money?", "a": "After charge-offs and direct costs: Construction 6.86%, Middle Market lines 6.66%, Credit Card 6.40% — all comfortably above the 3.74% cost of funds. Commercial RE (2.78%) and Installment (3.22%) are below it, i.e., value-destroying at current pricing. That's why R2 raised CRE only modestly but hard-tightened installment credit targets." },
-      { "q": "Was the $0.7M gain just window dressing?", "a": "No — it was a real sale of $13.6M in low-yield fixed mortgages at a premium, which also freed balance sheet. But it is one-time, and the board should evaluate us on the −$1.34M operating number. Nine more packages sit on the shelf worth $63M; selling into strength is now a deliberate capital tool, not an earnings crutch." },
-      { "q": "Deposits grew — why is that a win if it costs so much?", "a": "In Q4 we were funding the bank with emergency fed funds at 187% of equity — an unsafe/unsound finding waiting to happen. We converted that into core deposits (95.7% core ratio, best in field) and cut wholesale reliance. The 3.75% all-in deposit cost is the price of that stability; the fix now is earning more on assets, not un-buying the deposits." },
-      { "q": "What if rates fall?", "a": "We're asset-sensitive: −100bp costs ~$0.27M/qtr of NII once fully repriced, deepening the core loss to ~−$1.6M/qtr. Partial offset: our securities gain ~$1.25M of market value we could realize, and CD/deposit rates could be cut with the market. The gap model on the Path to Profit tab lets us size any scenario live." },
-      { "q": "When do we break even?", "a": "The math: ~$1.34M/qtr gap. R2's loan repricing on ~$264M of paper that rolls within 4 quarters is worth roughly +$0.3-0.5M/qtr as it compounds; provision normalizing toward $1.2-1.5M as the ACL is now funded adds +$0.6-0.9M; expense cuts add ~$0.3M. Plausible path to positive operating earnings by Q3/29 if credit holds — but the Expansive policy is the swing variable." }
+      {
+        "q": "Why did the stock fall 22.5%?",
+        "a": "Three stacked hits: EPS missed forecast badly (\u2212$0.63 actual vs +$0.20 forecast), the dividend went from $1.00 to zero (regulation forces it to stay at zero until we post one clean operating quarter), and book value fell. Context matters: Banks 2 and 5 fell 27-29%. Bank 3 was flat because they posted the field's only profit."
+      },
+      {
+        "q": "Are we in trouble with the regulators?",
+        "a": "Watch-list, not crisis. We cured the worst item (fed funds purchased was 187% of equity vs the 100% rule; now 86.6%). ACL is at its 1.00% floor exactly. The live issue is the Boulder Accord: TRBC must be 10% by end of 4Q29 and we're at 8.70% \u2014 hence the $12M capital raise executed in Round 2. Construction is 133% of capital vs 100% guidance (a flag, not a violation)."
+      },
+      {
+        "q": "Why raise capital at 0.52\u00d7 book? That's dilutive.",
+        "a": "The alternative is a $100M (thousand) civil money penalty that doubles per occurrence, plus regulator-imposed constraints. Sub-debt was the other option (no dilution, counts for TRBC) \u2014 worth debating for the next $5M tranche, but common equity also fixes the leverage ratio, which sub-debt doesn't."
+      },
+      {
+        "q": "Why is our margin the 2nd-worst in the field?",
+        "a": "We pay the 2nd-most for money (3.68% of interest-bearing liabilities; field best is 3.33%) and earn the 4th-least on assets (6.11%). Both were Round 1 choices: we cut loan rates to grow and raised deposit rates to fix a funding crisis. Round 2 reverses the loan side (+12 to +54bp) while keeping the deposit push \u2014 betting share gains fund the margin later."
+      },
+      {
+        "q": "What's actually making money?",
+        "a": "After charge-offs and direct costs: Construction 6.86%, Middle Market lines 6.66%, Credit Card 6.40% \u2014 all comfortably above the 3.74% cost of funds. Commercial RE (2.78%) and Installment (3.22%) are below it, i.e., value-destroying at current pricing. That's why R2 raised CRE only modestly but hard-tightened installment credit targets."
+      },
+      {
+        "q": "Was the $0.7M gain just window dressing?",
+        "a": "No \u2014 it was a real sale of $13.6M in low-yield fixed mortgages at a premium, which also freed balance sheet. But it is one-time, and the board should evaluate us on the \u2212$1.34M operating number. Nine more packages sit on the shelf worth $63M; selling into strength is now a deliberate capital tool, not an earnings crutch."
+      },
+      {
+        "q": "Deposits grew \u2014 why is that a win if it costs so much?",
+        "a": "In Q4 we were funding the bank with emergency fed funds at 187% of equity \u2014 an unsafe/unsound finding waiting to happen. We converted that into core deposits (95.7% core ratio, best in field) and cut wholesale reliance. The 3.75% all-in deposit cost is the price of that stability; the fix now is earning more on assets, not un-buying the deposits."
+      },
+      {
+        "q": "What if rates fall?",
+        "a": "We're asset-sensitive: \u2212100bp costs ~$0.27M/qtr of NII once fully repriced, deepening the core loss to ~\u2212$1.6M/qtr. Partial offset: our securities gain ~$1.25M of market value we could realize, and CD/deposit rates could be cut with the market. The gap model on the Path to Profit tab lets us size any scenario live."
+      },
+      {
+        "q": "When do we break even?",
+        "a": "The math: ~$1.34M/qtr gap. R2's loan repricing on ~$264M of paper that rolls within 4 quarters is worth roughly +$0.3-0.5M/qtr as it compounds; provision normalizing toward $1.2-1.5M as the ACL is now funded adds +$0.6-0.9M; expense cuts add ~$0.3M. Plausible path to positive operating earnings by Q3/29 if credit holds \u2014 but the Expansive policy is the swing variable."
+      }
+    ]
+  },
+  "Q2/29": {
+    "headline": "Rates exploded +125bp and every bank in the community lost money \u2014 we lost the least-worst way: operating loss narrowed to \u2212$1.19M, loans grew $50M (originations doubled), the $12M capital raise landed (TRBC 9.86%, one small step from the 10% requirement), and NIM actually held at 3.13%. But three things bit us: fed-funds-purchased blew back through the 100%-of-equity limit (131.5%), our credit rating was cut to C, and salary costs exploded $1.3M past budget on the volume surge. Stock \u221214.9% to $22.97.",
+    "sections": [
+      {
+        "title": "What happened",
+        "points": [
+          "The economy delivered a shock, not a nudge: fed funds 3.87\u21925.06%, prime 6.07\u21927.13%, inflation 2.17\u21923.74%. Every bank posted a loss (us \u2212$1.2M, B2 \u2212$2.3M, B3 \u2212$0.8M, B4 \u2212$1.5M, B5 \u2212$1.6M). Leading indicators decelerated to +0.70 and housing starts slowed \u2014 this smells like the peak.",
+          "Our operating loss improved to \u2212$1.19M (from \u2212$1.34M) and reported net income was \u2212$1.23M (no one-time gain this quarter; the $2M premises sale actually booked \u2212$0.04M).",
+          "Loans grew $50M to $633.6M gross \u2014 originations DOUBLED to $136M because the field repriced faster than we did (+90-130bp vs our +25-54bp), making us the cheap lender again in most categories. We are now the biggest loan book in the community.",
+          "Deposits grew only $3.3M despite paying up \u2014 Bank 3 escalated the war (MMA to 4.40%) and everyone matched. Result: loans/deposits hit 113.9% and the growth was funded with wholesale money.",
+          "Fed funds purchased ended at 131.5% of equity \u2014 back over the 100% regulatory line we cured in Q1. This is the quarter's most urgent problem.",
+          "Credit rating downgraded B \u2192 C. Brokered CDs now quoted at 6.9%+ for us (+160bp). Wholesale funding just got expensive exactly when we need it most.",
+          "Capital: $12M common issued at $23.92 (1,501,607 shares now out). TRBC 8.70\u21929.86%, leverage 6.14\u21927.10%. Banks 2 and 5 each issued $12M too \u2014 the whole field is racing the Boulder Accord deadline. Book value per share diluted to $38.03.",
+          "Stock $22.97 (\u221214.9%, 3rd of 5). Bank 4 was the only gainer (+8.1%) \u2014 they guided EPS to \u2212$0.50 and delivered \u2212$1.49; honest-ish guidance and an intact share count beat our $0.00 forecast miss (\u2212$0.82 actual)."
+        ]
+      },
+      {
+        "title": "What our decisions drove",
+        "points": [
+          "R2 loan-rate hikes (+12 to +54bp) \u2192 asset yields now BEAT the community (business +41bp, RE +34bp vs peers) and net-after-loss loan yield rose 5.07\u21925.22%. The repricing thesis worked \u2014 construction now nets 8.03% after charge-offs, trade finance 6.90%.",
+          "But the field hiked +90-130bp, so our 'increases' left us cheapest in ~10 of 16 categories \u2192 demand flooded in: $136M originated, 45% of it CQ 5-6 ($57.5M). Expansive policy took everything the pricing attracted. Construction commitments exploded to $175.7M \u2014 future draws are locked in regardless of what R3 decides.",
+          "Deposit strategy (rates up, fees cut, marketing zeroed) \u2192 only +$3.3M total deposits. Bank 3's 4.40% MMA out-bid our 3.90%; our CD menu (topped at 3.90%) is now 35-105bp under a market where the 1-qtr bill pays 5.22% \u2014 CDs bled another $5.3M. Business deposit share did jump 27\u219234% (the fee cuts + loan linkage worked); it wasn't enough.",
+          "The funding math: +$50M loans \u2212 $3M deposits \u2212 $8M brokered runoff = FFP ballooned to $75M (131.5% of equity). We re-created the exact violation we cured in Q1, and it likely drove the C downgrade.",
+          "R2 salary cuts were overrun by volume: actuals beat budget by ~$1.3M (Consumer lending $979K vs $325K budgeted \u2014 card balances +36%). Total opex $6.98M vs $5.85M. You cannot budget your way out of volume-driven staffing.",
+          "The $2.092M provision + $1.26M charge-offs left ACL at 1.09% of loans \u2014 above the 1.00% floor, but loan reviews downgraded $55M vs upgraded $26M and charge-offs are accelerating (0.64\u21920.82% of avg loans). CECL pressure is building, not easing.",
+          "Capital execution: $12M at $23.92 was the right call in hindsight \u2014 the stock is lower now ($22.97) and next quarter's offer is $20.75. Raising early saved real dilution."
+        ]
+      },
+      {
+        "title": "Board watch items",
+        "points": [
+          "FIX FFP NOW (Round 3): three levers stack \u2014 (1) sell CRE loan packages 205/206/207/208 (~$28M proceeds, only \u2212$0.13M loss, also cuts CRE concentration); (2) draw FHLB instead of fed funds ($114M capacity vs $50M used, no rating penalty); (3) reset the CD menu to market (~5.2-5.5% short) to stop the bleed and re-fund with core money. Brokered CDs at 6.9% are the trap \u2014 the C rating made them the most expensive option.",
+          "CAPITAL: TRBC 9.86% vs 10.00% needed by end of 4Q29 \u2014 14bp away. Executing the planned $5M issue (stock at $20.75 or sub notes at 6.90%) clears it with margin. Consider SUB NOTES this time: TRBC counts them, leverage is already fine at 7.10%, and it avoids a third dilution at 0.55\u00d7 book.",
+          "CREDIT AT THE PEAK: 45% of new production is CQ 5-6, construction is 132% of capital with $92M of undrawn commitments, and reviews show heavy negative migration. Leading indicators are rolling over. R3 should walk credit policy back toward Moderate and tighten construction/CQ targets \u2014 the pipeline will keep growth going for 2 more quarters anyway.",
+          "CONSUMER PROFITABILITY: credit card now nets 3.22% and installment 2.86% after charge-offs \u2014 both BELOW the 4.13% cost of funds, dragged down by the salary explosion. Either reprice cards up / raise annual fees, or cap the growth; current card growth is buying losses.",
+          "EPS GUIDANCE: we've missed two forecasts in a row (+0.20 vs \u22120.63; 0.00 vs \u22120.82). Bank 4 guided negative and was the only stock that ROSE. Guide Q3 realistically (\u2248 \u2212$0.40 to \u2212$0.60) and let a beat surprise the market.",
+          "RATE POSITION FLIPPED NEAR-TERM: the next-quarter repricing bucket is now NEGATIVE ($27M liability-sensitive) before turning strongly asset-sensitive in quarters 2-4 (+$141M). If rates plateau or fall from the peak, next quarter we get a small NII tailwind from the near bucket, then give it back later \u2014 the securities book (\u2212$0.83M underwater) also recovers. A rate peak is roughly neutral-to-mildly-good for us right now.",
+          "LOAN REVIEW MANDATE: business lines + 1-4/HE were reviewed in Q2 (per R2); combined with Q1's construction/CRE/consumer reviews, the 100%-by-Q3 requirement looks satisfied \u2014 but verify against the R3 packet before assuming compliance."
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "We lost money again \u2014 is the plan working?",
+        "a": "The core loss narrowed (\u2212$1.34M \u2192 \u2212$1.19M) in a quarter where rates rose 125bp and all five banks lost money \u2014 the field's other losses ranged from \u2212$0.8M to \u2212$2.3M. More importantly the drivers moved our way: asset yields now beat the community for the first time, fee income nearly doubled on origination volume, and NIM held while three competitors' margins compressed. The remaining gap is provision and volume-driven expenses, both of which are Round 3 decisions."
+      },
+      {
+        "q": "Why did our rating get cut to C?",
+        "a": "The quarter-end snapshot showed fed funds purchased at 131.5% of equity \u2014 over the 100% regulatory line \u2014 plus a second consecutive operating loss. The fix is funding mix, not solvency: we have $114M of untapped FHLB capacity, $71M of sellable loan packages, and a CD book that re-fills the moment we price it at market. Expect the rating back at B once FFP is inside the line and a quarter's trend is shown."
+      },
+      {
+        "q": "How did loans grow $50M when we raised rates?",
+        "a": "Everyone else raised more. The market moved +90-130bp; we moved +12-54bp, which left us the cheapest lender in most categories while running an Expansive credit policy. We effectively bought market share in a rising market \u2014 deliberately on pricing, but the volume overshot because the field repriced so hard."
+      },
+      {
+        "q": "Isn't 45% of new loans in the two worst grades reckless this late in the cycle?",
+        "a": "It's the biggest risk we're carrying. Mitigants: those grades are priced 75-100bp over base (max-rate pricing), construction still nets 8.0% after charge-offs, and the ACL sits above its floor with the provision running $2.1M/qtr. But the board should expect R3 to tighten credit targets \u2014 the pipeline ($176M construction commitments) sustains growth for two quarters even if we stop adding risk today."
+      },
+      {
+        "q": "Did the capital raise work?",
+        "a": "Yes. TRBC went 8.70% \u2192 9.86% against a 10% end-of-4Q29 requirement; leverage 6.14% \u2192 7.10% vs 6%. We issued at $23.92 \u2014 above today's $22.97 and well above next quarter's $20.75 offer, so raising early was cheaper than waiting. One more small issue ($5M, or sub-debt at 6.90%) finishes the job. Banks 2 and 5 did the same $12M raises, which tells you the whole field read the regulation the same way."
+      },
+      {
+        "q": "Why did the stock fall 15% if the loss narrowed?",
+        "a": "Dilution (book value per share $46.34 \u2192 $38.03), a second straight EPS miss (\u2212$0.82 vs $0.00 guided), the C downgrade, and zero dividend. Note Bank 4: guided \u2212$0.50, delivered \u2212$1.49, stock ROSE 8% \u2014 the market is rewarding credible guidance and an intact share count. We should guide Q3 negative and realistic."
+      },
+      {
+        "q": "Where did the expense overrun come from?",
+        "a": "Volume. Card balances grew 36% and total originations doubled; the sim staffs to workload, so Consumer lending salaries hit $979K against a $325K budget and ops lines all overran \u2014 $1.3M total above plan. The lever isn't the salary budget, it's the volume: cap card growth and the cost follows. Note card now NETS 3.22% after charge-offs \u2014 below our 4.13% cost of funds \u2014 so this growth is currently value-destroying."
+      },
+      {
+        "q": "What happens if rates fall from here?",
+        "a": "Near-term it's mildly positive: our next-quarter repricing bucket is $27M liability-sensitive, and our underwater securities (\u2212$0.83M) recover. Over a full year we're still asset-sensitive (+$114M, 14% of assets), so a sustained decline would compress NII by roughly $0.28M/qtr per 100bp once fully repriced \u2014 but it would also cool the deposit war and let us cut MMA/savings rates with the market. A plateau at the peak is the friendliest scenario on the board."
+      },
+      {
+        "q": "When do we break even now?",
+        "a": "The bridge from \u2212$1.19M: loan repricing momentum (+$0.3-0.4M as another ~$150M rolls at Q2 rates), provision normalizing if R3 tightens credit (+$0.3-0.6M), card/installment fixes (+$0.15M), CD/funding mix repair (+$0.2M), less some deposit-cost drift. A realistic path crosses zero in Q4/29 \u2014 one quarter later than hoped, because the rate shock repriced our liabilities faster than our assets. Upside case: rates plateau and Q3 comes in near \u2212$0.4M."
+      }
     ]
   }
 }
