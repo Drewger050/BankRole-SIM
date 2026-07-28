@@ -154,5 +154,136 @@
         "a": "The bridge from \u2212$1.19M: loan repricing momentum (+$0.3-0.4M as another ~$150M rolls at Q2 rates), provision normalizing if R3 tightens credit (+$0.3-0.6M), card/installment fixes (+$0.15M), CD/funding mix repair (+$0.2M), less some deposit-cost drift. A realistic path crosses zero in Q4/29 \u2014 one quarter later than hoped, because the rate shock repriced our liabilities faster than our assets. Upside case: rates plateau and Q3 comes in near \u2212$0.4M."
       }
     ]
+  },
+  "Q3/29": {
+    "headline": "BREAKEVEN \u2014 first positive operating quarter (+$0.32M) and the stock ripped +31.5% to $30.19 as the market saw the turn. Rates spiked again (+108bp, fed funds 6.14%) and the R3 repricing caught the wave: NII jumped to $6.09M and asset yield hit 7.27%. The $5M sub notes executed. Costs of the quarter: another loan-growth surge (+$70M gross) kept FFP over the line at 138.6%, and the securities swap loss (\u2212$0.30M) held net income to $0.02M.",
+    "sections": [
+      {
+        "title": "What happened",
+        "points": [
+          "Operating earnings +$0.32M \u2014 the first positive core quarter, one quarter earlier than the base-case projection. Net income $0.02M after the planned \u2212$0.30M securities swap loss.",
+          "Rates rose ANOTHER 108bp (fed funds 5.06\u21926.14%, prime 8.02%) and leading indicators went negative (\u22120.14) \u2014 the peak arrived. Everyone benefited: Banks 2/4/5 posted profits, helped by provision holidays (B2 and B4 provisioned ZERO with 1.1-1.2% NPLs).",
+          "Loans surged again: +$70M gross to $711M (construction $119M \u2014 the commitment pipeline drew hard). Loans/deposits hit 124%; FFP ended at 138.6% of equity \u2014 still over the regulatory line despite the $40M FHLB draw.",
+          "The R3 deposit strategy held rates at MMA 5.22/4.87, IBC 3.14, savings 3.61 \u2014 deposits +$9M and business deposit share hit 33%. CD menu reset to ~4.97 stopped the bleed (book flat at $114M).",
+          "Capital: $5M sub notes at 6.90% executed (they took the full range-compliant amount). TRBC 9.82% \u2014 just under 10% because risk assets grew $70M; leverage 6.61%.",
+          "Stock +31.5% to $30.19 (2nd of 5), mkt/book 0.79. The market paid for the inflection even at breakeven.",
+          "Credit clouds forming: NPLs 2.0% (highest in field with B3), past-dues $11.1M, construction 169% of capital (guidance 100), efficiency ratio dropped to 72% \u2014 best-ever \u2014 on the volume."
+        ]
+      },
+      {
+        "title": "Prediction scorecard (what we projected before the quarter)",
+        "points": [
+          "Operating earnings: projected \u2212$0.5 to \u2212$1.3M depending on levers \u2192 ACTUAL +$0.32M. Beat even the best case \u2014 because rates rose another 108bp into our asset-sensitive gap and the floating credit lines repriced instantly (+$0.35M was our estimate for prime's Q2 move alone; Q3's second spike doubled it).",
+          "Interest income: projected $12.0-12.4M \u2192 ACTUAL $13.7M. The miss was volume + the second rate spike, same direction as Q2's lesson: the loan machine outruns projections.",
+          "Interest expense: projected $6.9M as-drafted \u2192 ACTUAL $7.6M \u2014 the MMA-at-5.22 whole-book repricing cost what we feared (+$0.5M vs trimmed), but the rate spike made everyone pay up too.",
+          "Provision came in at $2.097M (near the $2.6 draft we debated, not the $2.9 original). ACL 1.2% \u2014 fine for now, but ACL/NPL fell to 60%.",
+          "Stock: projected 'one more hit, low-to-mid $20s' \u2192 ACTUAL +31.5% to $30.19. Wrong \u2014 the market priced the forward earnings power, not the flat quarter. Good lesson: inflection > level."
+        ]
+      },
+      {
+        "title": "Board watch items",
+        "points": [
+          "FFP at 138.6% for a second straight quarter \u2014 the loan pipeline keeps outrunning funding. The Q4 fix has to be structural: cap construction draws where possible, keep deposit growth, and consider Public Time now that bills can be freed for pledging.",
+          "Construction: $119M, 169% of capital, with the leading indicators negative. This is now THE risk position of the game. Every quarter of +$20M draws adds ~$0.4M of CECL requirement at construction loss rates.",
+          "B2 and B4 provisioned zero \u2014 their Q3 profits are partly borrowed from their Q4. Our 2.1 provision is honest; keep it that way as NPLs build.",
+          "TRBC 9.82% \u2014 18bp short purely from asset growth. The Q4 capital plan ($5M) or slower growth closes it; both is safest with the 4Q29 deadline now one quarter away."
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Is breakeven with $864M of assets actually good?",
+        "a": "The trajectory is the point: \u2212$1.34M \u2192 \u2212$1.19M \u2192 +$0.32M in three quarters, while absorbing a 230bp rate shock and pre-funding credit. ROAA is still ~0%, but the exit-rate NIM (3.24 and rising as the book reprices) supports ~$1.5-2M/qtr of operating earnings by Q1/30."
+      },
+      {
+        "q": "Why is the stock up 31% on a zero-profit quarter?",
+        "a": "Markets price direction and forward power: the margin inflected, the capital plan is nearly done, and EPS guidance ($0.00) was finally MET rather than missed. Banks 2/5 rose similarly on their own turns."
+      }
+    ]
+  },
+  "Q4/29": {
+    "headline": "THE TURNAROUND QUARTER \u2014 operating earnings +$1.60M, net income +$1.78M (EPS $1.04 vs $0.25 guided), NIM 3.70%, efficiency 67%, ROAE 11.7%. Rates finally fell (fed funds 6.14\u21924.74%) and the variable-funding architecture paid off exactly as designed. FFP breach CURED (28.8% of equity), rating back to B, TRBC 10.85% \u2014 Boulder Accord requirement met ON the deadline with margin. $6M more stock issued at $28.41 (above book economics improving).",
+    "sections": [
+      {
+        "title": "What happened",
+        "points": [
+          "Operating earnings +$1.60M, net +$1.78M \u2014 the best quarter in the bank's sim history. Every bank was profitable as rates eased off the peak.",
+          "NII $7.18M (+$1.1M QoQ): the loan book's repriced yields held (asset yield 7.96%) while variable CDs, MMA and FHLB floated down with the market. This asymmetry \u2014 fixed-ish assets at peak rates, floating liabilities falling \u2014 is the whole quarter.",
+          "Funding fixed: deposits +$16.5M to $582M, borrowed funds down $31M, FFP to 28.8% of equity. Brokered CDs zero. Core deposit ratio 99.9% \u2014 the best in the field.",
+          "Loans held ~flat at $700M gross (finally!) \u2014 consumer ran off $12.5M (the frozen products), construction kept drawing (+$21M to $141M, now 179% of capital vs 100 guidance \u2014 the one metric still going the wrong way).",
+          "Capital: $6M common issued at $28.41 (vs $20.75 two quarters ago \u2014 patience paid). Equity $64.9M, TRBC 10.85%, leverage 7.57%. Requirement met with headroom; rating upgraded C\u2192B.",
+          "Provision $1.39M vs charge-offs ~$1.2M \u2014 normalizing as promised, though NPLs rose to 2.3% and ACL/NPL sits at just 52%.",
+          "Stock +4.6% to $31.59 \u2014 modest because the field re-rated too (B2 +23%, B3 +25%; B3 hit A-rating). Swaps went live (+$0.10M NII) \u2014 regulatory approval earned back."
+        ]
+      },
+      {
+        "title": "What the decisions drove",
+        "points": [
+          "The R3 'reprice hard, freeze consumer, reserve up' pivot delivered on lag: top-of-market loan rates locked into ~$300M of paper written/rolled in H2/29 now yields 7.5-9.5%.",
+          "Variable-everything funding (CDs, MMA repriced with market, FHLB variable) converted the rate collapse into an instant \u2212$1.5M/yr funding tailwind. The Q2 'trap' of whole-book deposit repricing works in REVERSE when rates fall.",
+          "The consumer freeze finished the job: card/installment/personal balances \u2212$12.5M, consumer salaries down, and the worst below-cost-of-funds products are shrinking instead of compounding losses.",
+          "Guidance discipline: guided $0.25, delivered $1.04 \u2014 a massive beat. Combined with the A-and-B-rated field, the stock's 0.83 mkt/book leaves room to re-rate as ROE persists."
+        ]
+      },
+      {
+        "title": "Board watch items",
+        "points": [
+          "CONSTRUCTION: $141M = 179% of capital, still growing from the $176M commitment pipeline, in an economy decelerating from the peak. NPLs 2.3% and rising. This is the exposure that can undo the turnaround \u2014 cap it, sell participations/packages, and review it every quarter.",
+          "ACL/NPL 52% is the field's weakest coverage. With rates down, provisions are cheap to fund now \u2014 better to build to 70-80% coverage from strength.",
+          "Rates fell 140bp and our gap flipped near-term liability-sensitive (\u2212$115M first bucket) \u2014 GOOD for the next quarter or two. But the 1-yr gap is +$118M asset-sensitive: if rates keep falling through 2030, NIM compresses back. Consider extending some funding fixed at these lower rates.",
+          "Dividend: one clean operating quarter achieved \u2014 regulation now allows restart. A modest, sustainable dividend signals the turn to the market."
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "Is this quarter repeatable or a rate windfall?",
+        "a": "Both. Roughly $0.7-0.9M of the QoQ improvement is durable (repriced loan book, normalized provision, expense control); ~$0.4-0.6M is the falling-rate funding tailwind, which persists only while rates decline. Run-rate operating earnings of $1.5-2M/qtr is the honest base case."
+      },
+      {
+        "q": "Why issue $6M more stock when TRBC was nearly there?",
+        "a": "At $28.41 \u2014 a 37% better price than Q2's issue \u2014 it bought the ratio to 10.85% with the deadline one quarter out, eliminating any scenario where loan growth or a charge-off spike forced a violation. Insurance priced at 0.75\u00d7 book."
+      }
+    ]
+  },
+  "Q1/30": {
+    "headline": "FULL REDEMPTION \u2014 operating earnings +$2.13M (best in class except Bank 3), EPS $0.99 vs $0.80 guided (beat), NIM 3.85%, efficiency 63% (best in field), ROAE 10.4%, dividend RESTARTED at $0.25, and the stock ripped +34% to $42.30 \u2014 above book value (1.09\u00d7) for the first time. Rates collapsed (fed funds 2.91%) and the funding machine converted it straight to margin. The war isn't won: Bank 3 trades at $53.98, and our construction book (198% of capital) plus 2.4% NPLs with 47% coverage is the tail risk we carry into the endgame.",
+    "sections": [
+      {
+        "title": "What happened",
+        "points": [
+          "Operating earnings +$2.13M, net +$1.70M (after taxes resumed \u2014 a nice problem). Two consecutive strongly profitable quarters.",
+          "Rates collapsed another 183bp (fed funds 4.74\u21922.91%, prime 5.24%). Interest expense fell $1.5M while loan yields only gave back $1.0M \u2014 the liability-sensitive near bucket + variable funding + new swaps (+$0.39M) captured the down-cycle.",
+          "NIM 3.85% (2nd best), efficiency 63% (best), fee income normalized. The P&L now looks like the bank we designed three rounds ago.",
+          "Deposits +$11.8M to $593.7M; borrowed funds down again; FFP 20.1%; core ratio 100%. Funding is fully repaired. MMA/savings rates were cut with the market (3.97/3.47, 3.57) \u2014 riding rates DOWN, finally on the right side of the deposit book.",
+          "Dividend restarted at $0.25/qtr (2.4% yield) and EPS beat guidance ($0.99 vs $0.80) \u2014 the market paid 1.09\u00d7 book, P/E 10.6.",
+          "Consumer book run down to $61M (installment/card exit nearly complete); business +$8M; construction STILL growing: $157M, 198% of capital.",
+          "Field: Bank 3 remains champion ($53.98, 1.26\u00d7 book, A-rated, ROAE 13.6%). Bank 4 stumbled (\u22128.4%, loss), Bank 5 downgraded to C at 177% FFP. We are a clear #2 with the best margin momentum."
+        ]
+      },
+      {
+        "title": "Board watch items \u2014 the endgame",
+        "points": [
+          "CONSTRUCTION IS THE BET: $157M at 198% of capital-vs-100 guidance, in a decelerating economy (GDP +2.4 and falling, non-accruals $5.3M \u2014 doubled QoQ). If the sim ends with a credit event, this book decides our finish. Options: halt new commitments, sell construction participations, and push CQ targets up-market NOW \u2014 the yield is already locked in the rest of the portfolio.",
+          "COVERAGE: NPLs 2.4% (worst in field), ACL/NPL 47% (worst in field). One $2M provision quarter fixes optics and substance while earnings can absorb it. Do it from strength, not when forced.",
+          "FALLING RATES CUT BOTH WAYS: 1-yr gap +$138M asset-sensitive means continued rate cuts compress 2030 margins (~$0.35M/qtr per 100bp). Extend fixed funding / add received-fixed swaps at these levels to lock the NIM in.",
+          "CATCHING BANK 3: they win on quality (A rating, 1.26\u00d7 book, zero provision quarters). The path: sustain $2M+ operating quarters, build coverage so the market stops discounting our credit tail, grow the dividend on a payout path, and keep beating guidance. Mkt/book 1.09\u21921.3 is worth ~$8/share."
+        ]
+      }
+    ],
+    "qa": [
+      {
+        "q": "We made $1.7M \u2014 why not celebrate harder?",
+        "a": "Celebrate the machine: NIM 3.85, efficiency 63, ROAE 10.4 are all top-tier and repeatable. The discount in our multiple vs Bank 3 (1.09\u00d7 vs 1.26\u00d7) is entirely the credit tail: 198% construction concentration with 47% reserve coverage. De-risk that and the stock follows."
+      },
+      {
+        "q": "Was the three-quarter loss streak worth it?",
+        "a": "The scoreboard says yes: from last-place trajectory to #2 stock, best efficiency, second-best NIM, requirement-beating capital, and a restarted dividend. The $3.5M of cumulative operating losses bought a repriced loan book, a rebuilt funding stack, and market share (business deposits 34%, biggest loan book until Q1/30). The alternative \u2014 Bank 4's path of caution \u2014 currently trades at 0.79\u00d7 book with a Q1 loss."
+      },
+      {
+        "q": "What decisions data is missing?",
+        "a": "Rounds 4 and 5 master logs were never shared \u2014 the decisions log shows R1-R3 only (R3 partially, from draft screens). Share those logs and the Decisions tab plus these briefings can attribute Q4/29 and Q1/30 outcomes precisely."
+      }
+    ]
   }
 }
