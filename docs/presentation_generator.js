@@ -402,7 +402,54 @@ function chartBase(extra = {}) {
   s.addNotes("JS (2 min): Six KPIs across financial, customer, and cultural measures — each with today's reading. Close on M&A readiness: an acquirer needs three things — excess capital (we have ~$15M above requirements), a credible currency (stock at ~1.0x book and an A rating), and an integration-ready operating model (our efficiency and credit discipline). Two years ago we'd have been the target. Today we can be the buyer — organic remains plan A, but we are prepared to move if the right bank comes available.");
 }
 
-// ============ 16. CLOSING ============
+// ============ 16. M&A OUTCOME ============
+{
+  const s = lightSlide("The Next Barrel: Acquiring Bank 4", "M&A exercise outcome — our recommendation to shareholders");
+  // Left: the deal
+  s.addShape("roundRect", { x: 0.6, y: 1.65, w: 5.55, h: 3.5, rectRadius: 0.08, fill: { color: CREAM }, line: { type: "none" } });
+  s.addText("THE PROPOSED DEAL", { x: 0.85, y: 1.82, w: 5.0, h: 0.3, fontFace: BODY, fontSize: 10.5, bold: true, color: AMBER, charSpacing: 2, margin: 0 });
+  const dealRows = [
+    ["Offer", "$49.00 / share — 100% stock"],
+    ["Premium", "24.7% over market · 108% of tangible book"],
+    ["Deal value", "$57.3M · ~1.39M new shares issued"],
+    ["Combined bank", "≈ $1.50B assets — the $1B goal, achieved"],
+    ["Why Bank 4", "97% core deposits · fixable 86% efficiency"],
+    ["Cost savings", "$6.2M / yr (30% of their expense base)"],
+  ];
+  let dy = 2.2;
+  dealRows.forEach(([k, v]) => {
+    s.addText(k, { x: 0.85, y: dy, w: 1.55, h: 0.42, fontFace: BODY, fontSize: 11, bold: true, color: NAVY, margin: 0 });
+    s.addText(v, { x: 2.45, y: dy, w: 3.6, h: 0.42, fontFace: BODY, fontSize: 11, color: INK, margin: 0 });
+    dy += 0.47;
+  });
+  // Right: FinPro model scorecard — all green
+  s.addShape("roundRect", { x: 6.45, y: 1.65, w: 6.25, h: 3.5, rectRadius: 0.08, fill: { color: "EFF2EE" }, line: { type: "none" } });
+  s.addText("FINPRO M&A MODEL — EVERY GATE PASSED", { x: 6.7, y: 1.82, w: 5.8, h: 0.3, fontFace: BODY, fontSize: 10.5, bold: true, color: "3E5C41", charSpacing: 2, margin: 0 });
+  const gates = [
+    ["Cash EPS accretion", "+$0.85 (+25%)", "must be positive"],
+    ["Tangible book dilution", "−8.4%", "limit −10%"],
+    ["Earn-back period", "4.0 years", "limit 5 years"],
+    ["Pro-forma TCE / TA", "8.0%", "minimum 6%"],
+    ["Buyer currency (P/TBV)", "103%", "must exceed 100%"],
+    ["Combined CAMELS profile", "2-rated buyer", "required"],
+  ];
+  let gy = 2.2;
+  gates.forEach(([k, v, lim]) => {
+    s.addShape("ellipse", { x: 6.7, y: gy + 0.08, w: 0.24, h: 0.24, fill: { color: GOOD }, line: { type: "none" } });
+    s.addText(k, { x: 7.05, y: gy, w: 2.65, h: 0.42, fontFace: BODY, fontSize: 11, bold: true, color: NAVY, margin: 0 });
+    s.addText(v, { x: 9.7, y: gy, w: 1.5, h: 0.42, fontFace: BODY, fontSize: 11, bold: true, color: "3E5C41", margin: 0 });
+    s.addText(lim, { x: 11.15, y: gy, w: 1.45, h: 0.42, fontFace: BODY, fontSize: 9.5, color: MUT, margin: 0 });
+    gy += 0.47;
+  });
+  s.addShape("roundRect", { x: 0.6, y: 5.4, w: 12.1, h: 1.6, rectRadius: 0.08, fill: { color: NAVY }, line: { type: "none" } });
+  s.addText([
+    { text: "Recommendation: move forward, pending regulatory approval.  ", options: { bold: true, color: GOLD } },
+    { text: "What we learned: discipline is the deal. Price past a 30% premium and the same transaction fails two gates — dilution and earn-back. The model kept us honest: pay for the franchise, not the trophy.", options: { color: "E8EBF2" } },
+  ], { x: 0.9, y: 5.6, w: 11.5, h: 1.2, fontFace: BODY, fontSize: 13, margin: 0 });
+  s.addNotes("JS + AY (90 sec): We didn't just claim M&A readiness — we ran the full FinPro exercise on our community. Bank 4 is the strategic fit: $684M of assets, 97% core deposits, and an 86% efficiency ratio that is a fixable flaw, not a franchise flaw — our operating discipline converts it into $6.2M of annual savings. At $49 all-stock we pay a fair 24.7% premium yet only 108% of tangible book, because they trade at 0.87x. Every FinPro gate is green: +25% cash EPS accretion, 8.4% book dilution earned back in 4 years, 8% pro-forma tangible capital. And the combined bank crosses $1.5B — the growth goal we declined to buy with wholesale leverage, achieved with a franchise instead. Q&A crib: (1) Why not Bank 3? Stronger bank but B-rated funding profile and priced closer to book — less value to unlock. (2) Integration risk? Cost saves at 30% are mid-range of the 20–40% norm; credit marked at 150% of their allowance because their coverage is thin (63.5% of non-performers). (3) Management? Our team leads; their retail and consumer bench deepens ours. (4) Above 30% premium the deal fails dilution and earn-back gates — we walk.");
+}
+
+// ============ 17. CLOSING ============
 {
   const s = darkSlide();
   s.addImage({ path: "bottle.jpg", x: 0.9, y: 1.35, w: 3.2, h: 4.8 });
